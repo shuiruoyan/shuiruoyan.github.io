@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="[TOC]  集群配置参考 http:&#x2F;&#x2F;activemq.apache.org&#x2F;clustering.html  数据库共享方案1、 使用数据库进行消息持久化1.1、引入数据库驱动包和数据库连接池12根据需要，把数据库驱动放到activemq目录下 lib&#x2F;extra如：mysql-connector-java-5.1.41.jar 1.2、修改activemq.xml，使用jdbc持">
+<meta name="description" content="[TOC]  集群配置参考 http:&#x2F;&#x2F;activemq.apache.org&#x2F;clustering.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ActiveMQ主从数据库集群方案">
 <meta property="og:url" content="http://www.songwh.top/2020/04/06/activemq%E4%B8%BB%E4%BB%8E%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="浩子同学">
-<meta property="og:description" content="[TOC]  集群配置参考 http:&#x2F;&#x2F;activemq.apache.org&#x2F;clustering.html  数据库共享方案1、 使用数据库进行消息持久化1.1、引入数据库驱动包和数据库连接池12根据需要，把数据库驱动放到activemq目录下 lib&#x2F;extra如：mysql-connector-java-5.1.41.jar 1.2、修改activemq.xml，使用jdbc持">
+<meta property="og:description" content="[TOC]  集群配置参考 http:&#x2F;&#x2F;activemq.apache.org&#x2F;clustering.html">
 <meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-06T06:08:39.753Z">
+<meta property="article:modified_time" content="2020-04-06T10:47:53.184Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="ActiveMQ">
@@ -336,6 +336,8 @@
 <blockquote>
 <p>集群配置参考 <a href="http://activemq.apache.org/clustering.html" target="_blank" rel="noopener">http://activemq.apache.org/clustering.html</a></p>
 </blockquote>
+<a id="more"></a>
+
 <h1 id="数据库共享方案"><a href="#数据库共享方案" class="headerlink" title="数据库共享方案"></a>数据库共享方案</h1><h2 id="1、-使用数据库进行消息持久化"><a href="#1、-使用数据库进行消息持久化" class="headerlink" title="1、 使用数据库进行消息持久化"></a>1、 使用数据库进行消息持久化</h2><h3 id="1-1、引入数据库驱动包和数据库连接池"><a href="#1-1、引入数据库驱动包和数据库连接池" class="headerlink" title="1.1、引入数据库驱动包和数据库连接池"></a>1.1、引入数据库驱动包和数据库连接池</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">根据需要，把数据库驱动放到activemq目录下 lib&#x2F;extra</span><br><span class="line">如：mysql-connector-java-5.1.41.jar</span><br></pre></td></tr></table></figure>
 <h3 id="1-2、修改activemq-xml，使用jdbc持久化"><a href="#1-2、修改activemq-xml，使用jdbc持久化" class="headerlink" title="1.2、修改activemq.xml，使用jdbc持久化"></a>1.2、修改activemq.xml，使用jdbc持久化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># &#x2F;var&#x2F;activemq&#x2F;conf&#x2F;activemq.xml  文件 persistenceAdapter节点</span><br><span class="line">&lt;!-- persistent&#x3D;true--&gt;</span><br><span class="line">&lt;broker brokerName&#x3D;&quot;localhost&quot; persistent&#x3D;&quot;true&quot; xmlns&#x3D;&quot;http:&#x2F;&#x2F;activemq.apache.org&#x2F;schema&#x2F;core&quot;&gt;</span><br><span class="line">    &lt;persistenceAdapter&gt;</span><br><span class="line">       &lt;!-- 这里是关键 --&gt;</span><br><span class="line">        &lt;jdbcPersistenceAdapter dataSource&#x3D;&quot;#mysql-ds&quot; useDatabaseLock&#x3D;&quot;false&quot; transactionIsolation&#x3D;&quot;4&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;persistenceAdapter&gt;</span><br><span class="line">      ........</span><br><span class="line">&lt;&#x2F;broker&gt;</span><br><span class="line">&lt;!-- MySql DataSource Sample Setup --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;mysql-ds&quot; class&#x3D;&quot;org.apache.commons.dbcp2.BasicDataSource&quot; destroy-method&#x3D;&quot;close&quot;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;driverClassName&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot;&#x2F;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;database.tony.com:3306&#x2F;test_activemq?relaxAutoCommit&#x3D;true&quot;&#x2F;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;tony&quot;&#x2F;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;tony&quot;&#x2F;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;poolPreparedStatements&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="2、集群配置"><a href="#2、集群配置" class="headerlink" title="2、集群配置"></a>2、集群配置</h2><blockquote>

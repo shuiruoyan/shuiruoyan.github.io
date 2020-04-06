@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="[TOC] 前提-配置java环境变量tomcat12345678# 下载curl &quot;http:&#x2F;&#x2F;mirror.bit.edu.cn&#x2F;apache&#x2F;tomcat&#x2F;tomcat-8&#x2F;v8.5.31&#x2F;bin&#x2F;apache-tomcat-8.5.31.tar.gz&quot; -o apache-tomcat-8">
+<meta name="description" content="[TOC]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KeepAlive-LVS使用手册">
 <meta property="og:url" content="http://www.songwh.top/2020/04/06/keepalived-lvs%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.html">
 <meta property="og:site_name" content="浩子同学">
-<meta property="og:description" content="[TOC] 前提-配置java环境变量tomcat12345678# 下载curl &quot;http:&#x2F;&#x2F;mirror.bit.edu.cn&#x2F;apache&#x2F;tomcat&#x2F;tomcat-8&#x2F;v8.5.31&#x2F;bin&#x2F;apache-tomcat-8.5.31.tar.gz&quot; -o apache-tomcat-8">
+<meta property="og:description" content="[TOC]">
 <meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-06T06:08:44.516Z">
+<meta property="article:modified_time" content="2020-04-06T10:48:01.097Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="LVS">
@@ -334,6 +334,8 @@
 
       
         <p>[TOC]</p>
+<a id="more"></a>
+
 <h1 id="前提-配置java环境变量"><a href="#前提-配置java环境变量" class="headerlink" title="前提-配置java环境变量"></a>前提-配置java环境变量</h1><h1 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 下载</span><br><span class="line">curl &quot;http:&#x2F;&#x2F;mirror.bit.edu.cn&#x2F;apache&#x2F;tomcat&#x2F;tomcat-8&#x2F;v8.5.31&#x2F;bin&#x2F;apache-tomcat-8.5.31.tar.gz&quot; -o apache-tomcat-8.5.31.tar.gz</span><br><span class="line"></span><br><span class="line"># 解压</span><br><span class="line">tar -xvf apache-tomcat-8.5.31.tar.gz </span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">.&#x2F;apache-tomcat-8.5.31&#x2F;bin&#x2F;startup.sh</span><br></pre></td></tr></table></figure>
 
 <h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><h2 id="下载及解压-相关的模块到-u01目录"><a href="#下载及解压-相关的模块到-u01目录" class="headerlink" title="下载及解压 相关的模块到/u01目录"></a>下载及解压 相关的模块到/u01目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.14.0.tar.gz&quot; -o nginx-1.14.0.tar.gz</span><br><span class="line">tar -xvf nginx-1.14.0.tar.gz</span><br><span class="line"></span><br><span class="line">curl &quot;http:&#x2F;&#x2F;www.zlib.net&#x2F;zlib-1.2.11.tar.gz&quot; -o zlib-1.2.11.tar.gz</span><br><span class="line">tar -xvf zlib-1.2.11.tar.gz</span><br><span class="line"></span><br><span class="line">curl &quot;https:&#x2F;&#x2F;jaist.dl.sourceforge.net&#x2F;project&#x2F;pcre&#x2F;pcre&#x2F;8.41&#x2F;pcre-8.41.tar.gz&quot; -o pcre-8.41.tar.gz</span><br><span class="line">tar -xvf pcre-8.41.tar.gz</span><br><span class="line"></span><br><span class="line">curl &quot;https:&#x2F;&#x2F;www.openssl.org&#x2F;source&#x2F;openssl-1.0.2o.tar.gz&quot; -o openssl-1.0.2o.tar.gz</span><br><span class="line">tar -xvf openssl-1.0.2o.tar.gz</span><br><span class="line"></span><br><span class="line">curl &quot;http:&#x2F;&#x2F;labs.frickle.com&#x2F;files&#x2F;ngx_cache_purge-2.3.tar.gz&quot; -o ngx_cache_purge-2.3.tar.gz</span><br><span class="line">tar -xvf ngx_cache_purge-2.3.tar.gz</span><br></pre></td></tr></table></figure>

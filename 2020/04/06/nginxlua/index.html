@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="[TOC]  参考项：https:&#x2F;&#x2F;github.com&#x2F;openresty&#x2F;lua-nginx-module#installation  安装依赖项1234567yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel# lua_jitwget http:&#x2F;&#x2F;luajit.org&#x2F;dow">
+<meta name="description" content="[TOC]  参考项：https:&#x2F;&#x2F;github.com&#x2F;openresty&#x2F;lua-nginx-module#installation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx及其测试模块lua的安装">
 <meta property="og:url" content="http://www.songwh.top/2020/04/06/nginxlua/index.html">
 <meta property="og:site_name" content="浩子同学">
-<meta property="og:description" content="[TOC]  参考项：https:&#x2F;&#x2F;github.com&#x2F;openresty&#x2F;lua-nginx-module#installation  安装依赖项1234567yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel# lua_jitwget http:&#x2F;&#x2F;luajit.org&#x2F;dow">
+<meta property="og:description" content="[TOC]  参考项：https:&#x2F;&#x2F;github.com&#x2F;openresty&#x2F;lua-nginx-module#installation">
 <meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-06T06:08:55.868Z">
+<meta property="article:modified_time" content="2020-04-06T10:48:26.006Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Nginx">
@@ -336,6 +336,8 @@
 <blockquote>
 <p>参考项：<a href="https://github.com/openresty/lua-nginx-module#installation" target="_blank" rel="noopener">https://github.com/openresty/lua-nginx-module#installation</a></p>
 </blockquote>
+<a id="more"></a>
+
 <h1 id="安装依赖项"><a href="#安装依赖项" class="headerlink" title="安装依赖项"></a>安装依赖项</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br><span class="line"></span><br><span class="line"># lua_jit</span><br><span class="line">wget http:&#x2F;&#x2F;luajit.org&#x2F;download&#x2F;LuaJIT-2.0.5.tar.gz </span><br><span class="line">tar -xvf LuaJIT-2.0.5.tar.gz</span><br><span class="line">cd LuaJIT-2.0.5</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
 <h1 id="下载安装nginx和依赖项"><a href="#下载安装nginx和依赖项" class="headerlink" title="下载安装nginx和依赖项"></a>下载安装nginx和依赖项</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;netease</span><br><span class="line"># nginx</span><br><span class="line">wget http:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.14.2.tar.gz</span><br><span class="line">tar -xvf nginx-1.14.2.tar.gz</span><br><span class="line"># ndk</span><br><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;simplresty&#x2F;ngx_devel_kit&#x2F;archive&#x2F;v0.3.0.zip </span><br><span class="line">unzip v0.3.0.zip </span><br><span class="line"># ngx_lua 模块</span><br><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;openresty&#x2F;lua-nginx-module&#x2F;archive&#x2F;v0.10.14.zip</span><br><span class="line">unzip v0.10.14.zip</span><br><span class="line"></span><br><span class="line"># 安装nginx</span><br><span class="line">cd nginx-1.14.2</span><br><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx-1.14.2 \</span><br><span class="line">         --add-module&#x3D;..&#x2F;ngx_devel_kit-0.3.0 \</span><br><span class="line">         --add-module&#x3D;..&#x2F;lua-nginx-module-0.10.14</span><br></pre></td></tr></table></figure>

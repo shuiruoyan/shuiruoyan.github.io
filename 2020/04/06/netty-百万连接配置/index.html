@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="0、 启动客户端和服务端1234567# 测试环境： centos7 jdk8 4核6G# 服务端启动java -Xmx4096m -Xms4096m -Dnetease.debug&#x3D;true -cp netty-all-4.1.32.Final.jar:netty-push-1.0.0.jar com.study.netty.push.server.WebSocketServer# 客">
+<meta name="description" content="Netty百万连接配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty百万连接配置">
 <meta property="og:url" content="http://www.songwh.top/2020/04/06/netty-%E7%99%BE%E4%B8%87%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="浩子同学">
-<meta property="og:description" content="0、 启动客户端和服务端1234567# 测试环境： centos7 jdk8 4核6G# 服务端启动java -Xmx4096m -Xms4096m -Dnetease.debug&#x3D;true -cp netty-all-4.1.32.Final.jar:netty-push-1.0.0.jar com.study.netty.push.server.WebSocketServer# 客">
+<meta property="og:description" content="Netty百万连接配置">
 <meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-06T06:08:48.669Z">
+<meta property="article:modified_time" content="2020-04-06T10:48:19.924Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Netty">
@@ -332,7 +332,10 @@
       
 
       
-        <h1 id="0、-启动客户端和服务端"><a href="#0、-启动客户端和服务端" class="headerlink" title="0、 启动客户端和服务端"></a>0、 启动客户端和服务端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 测试环境： centos7 jdk8 4核6G</span><br><span class="line"></span><br><span class="line"># 服务端启动</span><br><span class="line">java -Xmx4096m -Xms4096m -Dnetease.debug&#x3D;true -cp netty-all-4.1.32.Final.jar:netty-push-1.0.0.jar com.study.netty.push.server.WebSocketServer</span><br><span class="line"></span><br><span class="line"># 客户端</span><br><span class="line">java -Xmx4096m -Xms4096m -Dnetease.debug&#x3D;false -Dnetease.pushserver.host&#x3D;192.168.100.241 -cp netty-all-4.1.32.Final.jar:netty-push-1.0.0.jar com.study.netty.push.client.WebSocketClient</span><br></pre></td></tr></table></figure>
+        <p>Netty百万连接配置</p>
+<a id="more"></a>
+
+<h1 id="0、-启动客户端和服务端"><a href="#0、-启动客户端和服务端" class="headerlink" title="0、 启动客户端和服务端"></a>0、 启动客户端和服务端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 测试环境： centos7 jdk8 4核6G</span><br><span class="line"></span><br><span class="line"># 服务端启动</span><br><span class="line">java -Xmx4096m -Xms4096m -Dnetease.debug&#x3D;true -cp netty-all-4.1.32.Final.jar:netty-push-1.0.0.jar com.study.netty.push.server.WebSocketServer</span><br><span class="line"></span><br><span class="line"># 客户端</span><br><span class="line">java -Xmx4096m -Xms4096m -Dnetease.debug&#x3D;false -Dnetease.pushserver.host&#x3D;192.168.100.241 -cp netty-all-4.1.32.Final.jar:netty-push-1.0.0.jar com.study.netty.push.client.WebSocketClient</span><br></pre></td></tr></table></figure>
 
 <h1 id="1、-too-many-openFiles-服务端和测试机都改一下"><a href="#1、-too-many-openFiles-服务端和测试机都改一下" class="headerlink" title="1、 too many openFiles  服务端和测试机都改一下"></a>1、 too many openFiles  服务端和测试机都改一下</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 进程最大文件打开添加参数最大限制</span><br><span class="line">vi &#x2F;etc&#x2F;security&#x2F;limits.conf  </span><br><span class="line">* soft nofile 1000000</span><br><span class="line">* hard nofile 1000000</span><br><span class="line"></span><br><span class="line"># 全局限制 cat &#x2F;proc&#x2F;sys&#x2F;fs&#x2F;file-nr</span><br><span class="line">echo 1200000 &gt; &#x2F;proc&#x2F;sys&#x2F;fs&#x2F;file-max</span><br><span class="line"></span><br><span class="line">vi &#x2F;etc&#x2F;sysctl.conf</span><br><span class="line">fs.file-max &#x3D; 1000000</span><br></pre></td></tr></table></figure>
 

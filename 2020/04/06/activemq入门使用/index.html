@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="演示环境： Centos7、jdk8、activemq5.15.8下载地址： http:&#x2F;&#x2F;activemq.apache.org&#x2F;activemq-5158-release.html解压： tar -zxvf apache-activemq-5.15.8-bin.tar.gz -C &#x2F;var修改目录名称 mv &#x2F;var&#x2F;apache-activemq-5.15.8&#x2F; &#x2F;var&#x2F;activemq&#x2F;">
 <meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-06T06:08:33.504Z">
+<meta property="article:modified_time" content="2020-04-06T10:47:48.152Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="ActiveMQ">
@@ -333,6 +333,8 @@
 
       
         <p>演示环境： Centos7、jdk8、activemq5.15.8<br>下载地址： <a href="http://activemq.apache.org/activemq-5158-release.html" target="_blank" rel="noopener">http://activemq.apache.org/activemq-5158-release.html</a><br>解压： <code>tar -zxvf apache-activemq-5.15.8-bin.tar.gz -C /var</code><br>修改目录名称 <code>mv /var/apache-activemq-5.15.8/ /var/activemq/</code><br>启动： <code>./bin/activemq start</code><br>停止：<code>./bin/activemq stop</code></p>
+<a id="more"></a>
+
 <h1 id="操作练习"><a href="#操作练习" class="headerlink" title="操作练习"></a>操作练习</h1><p>1、创建一个systemd服务文件：<code>vi /usr/lib/systemd/system/activemq.service</code></p>
 <p>2、 放入内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;ActiveMQ service</span><br><span class="line">After&#x3D;network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;forking</span><br><span class="line">ExecStart&#x3D;&#x2F;var&#x2F;activemq&#x2F;bin&#x2F;activemq start</span><br><span class="line">ExecStop&#x3D;&#x2F;var&#x2F;activemq&#x2F;bin&#x2F;activemq stop</span><br><span class="line">User&#x3D;root</span><br><span class="line">Group&#x3D;root</span><br><span class="line">Restart&#x3D;always</span><br><span class="line">RestartSec&#x3D;9</span><br><span class="line">StandardOutput&#x3D;syslog</span><br><span class="line">StandardError&#x3D;syslog</span><br><span class="line">SyslogIdentifier&#x3D;activemq</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
