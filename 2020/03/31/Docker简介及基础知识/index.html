@@ -1,26 +1,85 @@
 <!DOCTYPE html>
-<html lang="">
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.songwh.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
 
-  <meta name="description" content="Docker简介及基础知识">
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Docker," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Docker简介及基础知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker简介及基础知识">
 <meta property="og:url" content="http://www.songwh.top/2020/03/31/Docker%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
@@ -57,18 +116,39 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200406134707.gif">
 
-<link rel="canonical" href="http://www.songwh.top/2020/03/31/Docker%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'default'
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2020/03/31/Docker简介及基础知识/"/>
+
+
+
+
 
   <title>Docker简介及基础知识 | 浩子同学</title>
   
@@ -78,155 +158,202 @@
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">浩子同学</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">我的精神家园</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
 </div>
 
-
-
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
+  
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
 
-  </li>
-        <li class="menu-item menu-item-archives">
+      
+    </ul>
+  
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-  </ul>
+  
 </nav>
 
 
 
-
-</div>
+ </div>
     </header>
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
+    <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
+          <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
     
+
+  
+
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2020/03/31/Docker%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="浩子">
       <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="浩子同学">
     </span>
+
+    
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Docker简介及基础知识
-        </h1>
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker简介及基础知识</h1>
+        
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+            
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-31T00:00:00+08:00">
+                2020-03-31
+              </time>
+            
 
-              <time title="Created: 2020-03-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-31T00:00:00+08:00">2020-03-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 18:49:05" itemprop="dateModified" datetime="2020-04-06T18:49:05+08:00">2020-04-06</time>
-              </span>
-            <span class="post-meta-item">
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">奇技淫巧</span></a>
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
                 </span>
+
+                
+                
+              
             </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
 
           
 
         </div>
       </header>
+    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
+      
 
       
         <p>Docker简介及基础知识</p>
@@ -834,7 +961,7 @@
 <p>docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</p>
 <p>我们可以用下面的命令将容器保存为镜像：</p>
 <p>docker commit \</p>
-<p>  –author “Tao Wang <a href="mailto:&#116;&#x77;&#x61;&#110;&#x67;&#50;&#50;&#49;&#x38;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#116;&#x77;&#x61;&#110;&#x67;&#50;&#50;&#49;&#x38;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>“ \</p>
+<p>  –author “Tao Wang <a href="mailto:&#x74;&#x77;&#97;&#110;&#x67;&#50;&#x32;&#x31;&#56;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x74;&#x77;&#97;&#110;&#x67;&#50;&#x32;&#x31;&#56;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a>“ \</p>
 <p>  –message “修改了默认网页” \</p>
 <p>  webserver \</p>
 <p>  nginx:v2</p>
@@ -3040,147 +3167,236 @@
 <p>l Docker 的 Twitter 主页：<a href="https://twitter.com/docker" target="_blank" rel="noopener">https://twitter.com/docker</a></p>
 <h3 id="15-2-4-其它"><a href="#15-2-4-其它" class="headerlink" title="15.2.4.    其它"></a>15.2.4.    其它</h3><p>l Docker 的 StackOverflow 问答主页：<a href="https://stackoverflow.com/search?q=docker" target="_blank" rel="noopener">https://stackoverflow.com/search?q=docker</a></p>
 
+      
     </div>
-
     
     
     
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Docker/" rel="tag"># Docker</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/02/05/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%9A%84%E9%9B%86%E4%B8%AD%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" rel="prev" title="Java网络编程的集中实现方式">
-      <i class="fa fa-chevron-left"></i> Java网络编程的集中实现方式
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/04/06/%E7%BA%BF%E4%B8%8A%E5%86%85%E5%AD%98CPU%E9%97%AE%E9%A2%98%E8%B7%9F%E8%B8%AA/" rel="next" title="线上内存CPU问题跟踪">
-      线上内存CPU问题跟踪 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
     
-  </article>
-  
-  
-  
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
 
+    
 
+    
 
-          </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
           
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+          
         </div>
-          
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/05/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%9A%84%E9%9B%86%E4%B8%AD%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" rel="next" title="Java网络编程的集中实现方式">
+                <i class="fa fa-chevron-left"></i> Java网络编程的集中实现方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/06/%E7%BA%BF%E4%B8%8A%E5%86%85%E5%AD%98CPU%E9%97%AE%E9%A2%98%E8%B7%9F%E8%B8%AA/" rel="prev" title="线上内存CPU问题跟踪">
+                线上内存CPU问题跟踪 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
-  <aside class="sidebar">
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
+      
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Docker-简介"><span class="nav-number">1.</span> <span class="nav-text">1. Docker 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-docker-是什么"><span class="nav-number">1.1.</span> <span class="nav-text">1.1.   docker 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-为什么要使用-docker"><span class="nav-number">1.2.</span> <span class="nav-text">1.2.   为什么要使用 docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-docker-基本概念"><span class="nav-number">2.</span> <span class="nav-text">2. docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-docker-引擎"><span class="nav-number">2.1.</span> <span class="nav-text">2.1.   docker 引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-docker-系统架构"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.   docker 系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-docker-镜像"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.   docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-docker-容器"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.   docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-docker-仓库"><span class="nav-number">2.5.</span> <span class="nav-text">2.5.   docker 仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-公有-Docker-Registry"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1. 公有 Docker Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-私有-Docker-Registry"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2. 私有 Docker Registry</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-docker-安装"><span class="nav-number">3.</span> <span class="nav-text">3. docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-ubuntu-安装docker"><span class="nav-number">3.1.</span> <span class="nav-text">3.1.   ubuntu 安装docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-准备工作"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-使用-APT-安装"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. 使用 APT 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-使用脚本自动安装"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. 使用脚本自动安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-启动-Docker-CE"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4. 启动 Docker CE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-建立-docker-用户组"><span class="nav-number">3.1.5.</span> <span class="nav-text">3.1.5. 建立 docker 用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-6-测试-Docker-是否安装正确"><span class="nav-number">3.1.6.</span> <span class="nav-text">3.1.6. 测试 Docker 是否安装正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-7-镜像加速"><span class="nav-number">3.1.7.</span> <span class="nav-text">3.1.7. 镜像加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-8-参考文档"><span class="nav-number">3.1.8.</span> <span class="nav-text">3.1.8. 参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-centOS-安装-docker"><span class="nav-number">3.2.</span> <span class="nav-text">3.2.   centOS 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-准备工作"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1. 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-使用-yum-安装"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2. 使用 yum 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-使用脚本自动安装"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3. 使用脚本自动安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-启动-Docker-CE"><span class="nav-number">3.2.4.</span> <span class="nav-text">3.2.4. 启动 Docker CE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-建立-docker-用户组"><span class="nav-number">3.2.5.</span> <span class="nav-text">3.2.5. 建立 docker 用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-6-测试-Docker-是否安装正确"><span class="nav-number">3.2.6.</span> <span class="nav-text">3.2.6. 测试 Docker 是否安装正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-7-镜像加速"><span class="nav-number">3.2.7.</span> <span class="nav-text">3.2.7. 镜像加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-8-添加内核参数"><span class="nav-number">3.2.8.</span> <span class="nav-text">3.2.8. 添加内核参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-9-参考文档"><span class="nav-number">3.2.9.</span> <span class="nav-text">3.2.9. 参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-mac-安装-docker"><span class="nav-number">3.3.</span> <span class="nav-text">3.3.   mac 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-系统要求"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1. 系统要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-安装"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-运行"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3. 运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-镜像加速"><span class="nav-number">3.3.4.</span> <span class="nav-text">3.3.4. 镜像加速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-windos-安装-docker"><span class="nav-number">3.4.</span> <span class="nav-text">3.4.   windos 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-系统要求"><span class="nav-number">3.4.1.</span> <span class="nav-text">3.4.1. 系统要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-安装"><span class="nav-number">3.4.2.</span> <span class="nav-text">3.4.2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-运行"><span class="nav-number">3.4.3.</span> <span class="nav-text">3.4.3. 运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-4-镜像加速"><span class="nav-number">3.4.4.</span> <span class="nav-text">3.4.4. 镜像加速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-镜像加速"><span class="nav-number">3.5.</span> <span class="nav-text">3.5.   镜像加速</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-Ubuntu-14-04、Debian-7-Wheezy"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1. Ubuntu 14.04、Debian 7 Wheezy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-Ubuntu-16-04-、Debian-8-、CentOS-7"><span class="nav-number">3.5.2.</span> <span class="nav-text">3.5.2. Ubuntu 16.04+、Debian 8+、CentOS 7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-Windows-10"><span class="nav-number">3.5.3.</span> <span class="nav-text">3.5.3. Windows 10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-macOS"><span class="nav-number">3.5.4.</span> <span class="nav-text">3.5.4. macOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-5-检查加速器是否生效"><span class="nav-number">3.5.5.</span> <span class="nav-text">3.5.5. 检查加速器是否生效</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-docker-镜像"><span class="nav-number">4.</span> <span class="nav-text">4. docker 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Docker-获取镜像"><span class="nav-number">4.1.</span> <span class="nav-text">4.1.   Docker 获取镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-运行"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1. 运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-docker-列出镜像"><span class="nav-number">4.2.</span> <span class="nav-text">4.2.   docker 列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-镜像体积"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1. 镜像体积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-虚悬镜像"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2. 虚悬镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-中间层镜像"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3. 中间层镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-列出部分镜像"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.2.4. 列出部分镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-以特定格式显示"><span class="nav-number">4.2.5.</span> <span class="nav-text">4.2.5. 以特定格式显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-docker-删除本地镜像"><span class="nav-number">4.3.</span> <span class="nav-text">4.3.   docker 删除本地镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-用-ID、镜像名、摘要删除镜像"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1. 用 ID、镜像名、摘要删除镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-Untagged-和-Deleted"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2. Untagged 和 Deleted</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-用-docker-image-ls-命令来配合"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3. 用 docker image ls 命令来配合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-CentOS-RHEL-的用户需要注意的事项"><span class="nav-number">4.3.4.</span> <span class="nav-text">4.3.4. CentOS&#x2F;RHEL 的用户需要注意的事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-利用-commit-理解镜像构成"><span class="nav-number">4.4.</span> <span class="nav-text">4.4.   利用 commit 理解镜像构成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">Hello, Docker!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text">Hello, Docker!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-慎用-docker-commit"><span class="nav-number">6.0.1.</span> <span class="nav-text">4.4.1. 慎用 docker commit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-使用-Dockerfile-定制镜像"><span class="nav-number">6.1.</span> <span class="nav-text">4.5.   使用 Dockerfile 定制镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-1-Dockerfile-定制镜像"><span class="nav-number">6.1.1.</span> <span class="nav-text">4.5.1. Dockerfile 定制镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">7.</span> <span class="nav-text">Hello, Docker!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-2-FROM-指定基础镜像"><span class="nav-number">7.0.1.</span> <span class="nav-text">4.5.2. FROM 指定基础镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-3-RUN-执行命令"><span class="nav-number">7.0.2.</span> <span class="nav-text">4.5.3. RUN 执行命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text">Hello, Docker!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-4-构建镜像"><span class="nav-number">8.0.1.</span> <span class="nav-text">4.5.4. 构建镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-5-镜像构建上下文（Context）"><span class="nav-number">8.0.2.</span> <span class="nav-text">4.5.5. 镜像构建上下文（Context）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-6-其它-docker-build-的用法"><span class="nav-number">8.0.3.</span> <span class="nav-text">4.5.6. 其它 docker build 的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-1-直接用-Git-repo-进行构建"><span class="nav-number">8.0.3.1.</span> <span class="nav-text">4.5.6.1.   直接用 Git repo 进行构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-2-用给定的-tar-压缩包构建"><span class="nav-number">8.0.3.2.</span> <span class="nav-text">4.5.6.2.   用给定的 tar 压缩包构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-3-从标准输入中读取-Dockerfile-进行构建"><span class="nav-number">8.0.3.3.</span> <span class="nav-text">4.5.6.3.   从标准输入中读取 Dockerfile 进行构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-4-从标准输入中读取上下文压缩包进行构建"><span class="nav-number">8.0.3.4.</span> <span class="nav-text">4.5.6.4.   从标准输入中读取上下文压缩包进行构建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Dockerfile-指令详解"><span class="nav-number">8.1.</span> <span class="nav-text">4.6.   Dockerfile 指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-1-COPY-复制文件"><span class="nav-number">8.1.1.</span> <span class="nav-text">4.6.1. COPY 复制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-2-ADD-更高级的复制文件"><span class="nav-number">8.1.2.</span> <span class="nav-text">4.6.2. ADD 更高级的复制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-3-CMD-容器启动命令"><span class="nav-number">8.1.3.</span> <span class="nav-text">4.6.3. CMD 容器启动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-4-ENTRYPOINT-入口点"><span class="nav-number">8.1.4.</span> <span class="nav-text">4.6.4. ENTRYPOINT 入口点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-5-ENV-设置环境变量"><span class="nav-number">8.1.5.</span> <span class="nav-text">4.6.5. ENV 设置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-6-ARG-构建参数"><span class="nav-number">8.1.6.</span> <span class="nav-text">4.6.6. ARG 构建参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-7-VOLUME-定义匿名卷"><span class="nav-number">8.1.7.</span> <span class="nav-text">4.6.7. VOLUME 定义匿名卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-8-EXPOSE-暴露端口"><span class="nav-number">8.1.8.</span> <span class="nav-text">4.6.8. EXPOSE 暴露端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-9-WORKDIR-指定工作目录"><span class="nav-number">8.1.9.</span> <span class="nav-text">4.6.9. WORKDIR 指定工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-10-USER-指定当前用户"><span class="nav-number">8.1.10.</span> <span class="nav-text">4.6.10.    USER 指定当前用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-11-HEALTHCHECK-健康检查"><span class="nav-number">8.1.11.</span> <span class="nav-text">4.6.11.    HEALTHCHECK 健康检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-12-ONBUILD-为他人作嫁衣"><span class="nav-number">8.1.12.</span> <span class="nav-text">4.6.12.    ONBUILD 为他人作嫁衣</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-13-参考文档"><span class="nav-number">8.1.13.</span> <span class="nav-text">4.6.13.    参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Dockerfile-多阶段构建"><span class="nav-number">8.2.</span> <span class="nav-text">4.7.   Dockerfile 多阶段构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-1-之前的做法"><span class="nav-number">8.2.1.</span> <span class="nav-text">4.7.1. 之前的做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1-1-全部放入一个-Dockerfile"><span class="nav-number">8.2.1.1.</span> <span class="nav-text">4.7.1.1.   全部放入一个 Dockerfile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1-2-分散到多个-Dockerfile"><span class="nav-number">8.2.1.2.</span> <span class="nav-text">4.7.1.2.   分散到多个 Dockerfile</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-2-使用多阶段构建"><span class="nav-number">8.2.2.</span> <span class="nav-text">4.7.2. 使用多阶段构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-其他制作镜像方式"><span class="nav-number">8.3.</span> <span class="nav-text">4.8.   其他制作镜像方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-1-从-rootfs-压缩包导入"><span class="nav-number">8.3.1.</span> <span class="nav-text">4.8.1. 从 rootfs 压缩包导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-2-docker-save-和-docker-load"><span class="nav-number">8.3.2.</span> <span class="nav-text">4.8.2. docker save 和 docker load</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-镜像的实现原理"><span class="nav-number">8.4.</span> <span class="nav-text">4.9.   镜像的实现原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-docker-容器"><span class="nav-number">9.</span> <span class="nav-text">5. docker 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-启动容器"><span class="nav-number">9.1.</span> <span class="nav-text">5.1.   启动容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-新建并启动"><span class="nav-number">9.1.1.</span> <span class="nav-text">5.1.1. 新建并启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-启动已终止容器"><span class="nav-number">9.1.2.</span> <span class="nav-text">5.1.2. 启动已终止容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-守护状态运行"><span class="nav-number">9.2.</span> <span class="nav-text">5.2.   守护状态运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-终止容器"><span class="nav-number">9.3.</span> <span class="nav-text">5.3.   终止容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-进入容器"><span class="nav-number">9.4.</span> <span class="nav-text">5.4.   进入容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-attach-命令"><span class="nav-number">9.4.1.</span> <span class="nav-text">5.4.1. attach 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-exec-命令"><span class="nav-number">9.4.2.</span> <span class="nav-text">5.4.2. exec 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-导出和导入容器"><span class="nav-number">9.5.</span> <span class="nav-text">5.5.   导出和导入容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-导出容器"><span class="nav-number">9.5.1.</span> <span class="nav-text">5.5.1. 导出容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-导入容器快照"><span class="nav-number">9.5.2.</span> <span class="nav-text">5.5.2. 导入容器快照</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-删除容器"><span class="nav-number">9.6.</span> <span class="nav-text">5.6.   删除容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-docker-仓库"><span class="nav-number">10.</span> <span class="nav-text">6. docker 仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-docker-hub"><span class="nav-number">10.1.</span> <span class="nav-text">6.1.   docker hub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-注册"><span class="nav-number">10.1.1.</span> <span class="nav-text">6.1.1. 注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-2-登录"><span class="nav-number">10.1.2.</span> <span class="nav-text">6.1.2. 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-3-拉取镜像"><span class="nav-number">10.1.3.</span> <span class="nav-text">6.1.3. 拉取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-4-推送镜像"><span class="nav-number">10.1.4.</span> <span class="nav-text">6.1.4. 推送镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-5-自动创建"><span class="nav-number">10.1.5.</span> <span class="nav-text">6.1.5. 自动创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-docker-私有仓库"><span class="nav-number">10.2.</span> <span class="nav-text">6.2.   docker 私有仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-1-安装运行-docker-registry"><span class="nav-number">10.2.1.</span> <span class="nav-text">6.2.1. 安装运行 docker-registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-2-在私有仓库上传、搜索、下载镜像"><span class="nav-number">10.2.2.</span> <span class="nav-text">6.2.2. 在私有仓库上传、搜索、下载镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-3-注意事项"><span class="nav-number">10.2.3.</span> <span class="nav-text">6.2.3. 注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-1-Ubuntu-14-04-Debian-7-Wheezy"><span class="nav-number">10.2.3.1.</span> <span class="nav-text">6.2.3.1.   Ubuntu 14.04, Debian 7 Wheezy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-2-Ubuntu-16-04-Debian-8-centos-7"><span class="nav-number">10.2.3.2.</span> <span class="nav-text">6.2.3.2.   Ubuntu 16.04+, Debian 8+, centos 7</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-4-其他"><span class="nav-number">10.2.4.</span> <span class="nav-text">6.2.4. 其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-5-docker-registry-配置证书"><span class="nav-number">10.2.5.</span> <span class="nav-text">6.2.5. docker registry 配置证书</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-1-准备站点证书"><span class="nav-number">10.2.5.1.</span> <span class="nav-text">6.2.5.1.   准备站点证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-2-配置私有仓库"><span class="nav-number">10.2.5.2.</span> <span class="nav-text">6.2.5.2.   配置私有仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-3-生成-http-认证文件"><span class="nav-number">10.2.5.3.</span> <span class="nav-text">6.2.5.3.   生成 http 认证文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-4-编辑-docker-compose-yml"><span class="nav-number">10.2.5.4.</span> <span class="nav-text">6.2.5.4.   编辑 docker-compose.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-5-修改-hosts"><span class="nav-number">10.2.5.5.</span> <span class="nav-text">6.2.5.5.   修改 hosts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-6-启动"><span class="nav-number">10.2.5.6.</span> <span class="nav-text">6.2.5.6.   启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-7-测试私有仓库功能"><span class="nav-number">10.2.5.7.</span> <span class="nav-text">6.2.5.7.   测试私有仓库功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-8-注意事项"><span class="nav-number">10.2.5.8.</span> <span class="nav-text">6.2.5.8.   注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-docker-企业级仓库-Harbor"><span class="nav-number">10.3.</span> <span class="nav-text">6.3.   docker 企业级仓库 Harbor</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-docker-数据管理"><span class="nav-number">11.</span> <span class="nav-text">7. docker 数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-docker-数据卷"><span class="nav-number">11.1.</span> <span class="nav-text">7.1.   docker 数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-选择-v-还是-–mount-参数"><span class="nav-number">11.1.1.</span> <span class="nav-text">7.1.1. 选择 -v 还是 -–mount 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-创建一个数据卷"><span class="nav-number">11.1.2.</span> <span class="nav-text">7.1.2. 创建一个数据卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-3-启动一个挂载数据卷的容器"><span class="nav-number">11.1.3.</span> <span class="nav-text">7.1.3. 启动一个挂载数据卷的容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-4-查看数据卷的具体信息"><span class="nav-number">11.1.4.</span> <span class="nav-text">7.1.4. 查看数据卷的具体信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-5-删除数据卷"><span class="nav-number">11.1.5.</span> <span class="nav-text">7.1.5. 删除数据卷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-监听主机目录"><span class="nav-number">11.2.</span> <span class="nav-text">7.2.   监听主机目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-v-还是-–mount-参数"><span class="nav-number">11.2.1.</span> <span class="nav-text">7.2.1. -v 还是 -–mount 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-2-挂载一个主机目录作为数据卷"><span class="nav-number">11.2.2.</span> <span class="nav-text">7.2.2. 挂载一个主机目录作为数据卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-3-查看数据卷的具体信息"><span class="nav-number">11.2.3.</span> <span class="nav-text">7.2.3. 查看数据卷的具体信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-4-挂载一个本地主机文件作为数据卷"><span class="nav-number">11.2.4.</span> <span class="nav-text">7.2.4. 挂载一个本地主机文件作为数据卷</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-docker-网络配置"><span class="nav-number">12.</span> <span class="nav-text">8. docker 网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-Docker-外部访问容器"><span class="nav-number">12.1.</span> <span class="nav-text">8.1.   Docker 外部访问容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-映射所有接口地址"><span class="nav-number">12.1.1.</span> <span class="nav-text">8.1.1. 映射所有接口地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-映射到指定地址的指定端口"><span class="nav-number">12.1.2.</span> <span class="nav-text">8.1.2. 映射到指定地址的指定端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-映射到指定地址的任意端口"><span class="nav-number">12.1.3.</span> <span class="nav-text">8.1.3. 映射到指定地址的任意端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-查看映射端口配置"><span class="nav-number">12.1.4.</span> <span class="nav-text">8.1.4. 查看映射端口配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-Docker-容器互连"><span class="nav-number">12.2.</span> <span class="nav-text">8.2.   Docker 容器互连</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-新建网络"><span class="nav-number">12.2.1.</span> <span class="nav-text">8.2.1. 新建网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-连接容器"><span class="nav-number">12.2.2.</span> <span class="nav-text">8.2.2. 连接容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-3-Docker-Compose"><span class="nav-number">12.2.3.</span> <span class="nav-text">8.2.3. Docker Compose</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-Docker-配置-DNS"><span class="nav-number">12.3.</span> <span class="nav-text">8.3.   Docker 配置 DNS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-docker-高级网络配置"><span class="nav-number">13.</span> <span class="nav-text">9. docker 高级网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-快速配置指南"><span class="nav-number">13.1.</span> <span class="nav-text">9.1.   快速配置指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-容器访问控制"><span class="nav-number">13.2.</span> <span class="nav-text">9.2.   容器访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-1-容器访问外部网络"><span class="nav-number">13.2.1.</span> <span class="nav-text">9.2.1. 容器访问外部网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-2-容器之间访问"><span class="nav-number">13.2.2.</span> <span class="nav-text">9.2.2. 容器之间访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-端口映射实现"><span class="nav-number">13.3.</span> <span class="nav-text">9.3.   端口映射实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-1-容器访问外部实现"><span class="nav-number">13.3.1.</span> <span class="nav-text">9.3.1. 容器访问外部实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-2-外部访问容器实现"><span class="nav-number">13.3.2.</span> <span class="nav-text">9.3.2. 外部访问容器实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-配置-docker0-网桥"><span class="nav-number">13.4.</span> <span class="nav-text">9.4.   配置 docker0 网桥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-自定义网桥"><span class="nav-number">13.5.</span> <span class="nav-text">9.5.   自定义网桥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-6-工具和示例"><span class="nav-number">13.6.</span> <span class="nav-text">9.6.   工具和示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-1-pipework"><span class="nav-number">13.6.1.</span> <span class="nav-text">9.6.1. pipework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-2-playground"><span class="nav-number">13.6.2.</span> <span class="nav-text">9.6.2. playground</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-7-编辑网络配置文件"><span class="nav-number">13.7.</span> <span class="nav-text">9.7.   编辑网络配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-8-实例：创建一个点到点连接"><span class="nav-number">13.8.</span> <span class="nav-text">9.8.   实例：创建一个点到点连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-docker-三剑客-compose"><span class="nav-number">14.</span> <span class="nav-text">10.  docker 三剑客 compose</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-docker-compose-简介"><span class="nav-number">14.1.</span> <span class="nav-text">10.1. docker compose 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-docker-compose-安装和卸载"><span class="nav-number">14.2.</span> <span class="nav-text">10.2. docker compose 安装和卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-1-二进制包"><span class="nav-number">14.2.1.</span> <span class="nav-text">10.2.1.    二进制包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-2-PIP-安装"><span class="nav-number">14.2.2.</span> <span class="nav-text">10.2.2.    PIP 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-3-bash-补全命令"><span class="nav-number">14.2.3.</span> <span class="nav-text">10.2.3.    bash 补全命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-4-容器中执行"><span class="nav-number">14.2.4.</span> <span class="nav-text">10.2.4.    容器中执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-5-卸载"><span class="nav-number">14.2.5.</span> <span class="nav-text">10.2.5.    卸载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-docker-compose-使用"><span class="nav-number">14.3.</span> <span class="nav-text">10.3. docker compose 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-1-术语"><span class="nav-number">14.3.1.</span> <span class="nav-text">10.3.1.    术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-2-场景"><span class="nav-number">14.3.2.</span> <span class="nav-text">10.3.2.    场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-docker-compose-命令说明"><span class="nav-number">14.4.</span> <span class="nav-text">10.4. docker compose 命令说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-1-命令对象与格式"><span class="nav-number">14.4.1.</span> <span class="nav-text">10.4.1.    命令对象与格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-2-命令选项"><span class="nav-number">14.4.2.</span> <span class="nav-text">10.4.2.    命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-3-命令使用说明"><span class="nav-number">14.4.3.</span> <span class="nav-text">10.4.3.    命令使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-1-build"><span class="nav-number">14.4.3.1.</span> <span class="nav-text">10.4.3.1. build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-2-config"><span class="nav-number">14.4.3.2.</span> <span class="nav-text">10.4.3.2. config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-3-down"><span class="nav-number">14.4.3.3.</span> <span class="nav-text">10.4.3.3. down</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-4-exec"><span class="nav-number">14.4.3.4.</span> <span class="nav-text">10.4.3.4. exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-5-help"><span class="nav-number">14.4.3.5.</span> <span class="nav-text">10.4.3.5. help</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-6-images"><span class="nav-number">14.4.3.6.</span> <span class="nav-text">10.4.3.6. images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-7-kill"><span class="nav-number">14.4.3.7.</span> <span class="nav-text">10.4.3.7. kill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-8-logs"><span class="nav-number">14.4.3.8.</span> <span class="nav-text">10.4.3.8. logs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-9-pause"><span class="nav-number">14.4.3.9.</span> <span class="nav-text">10.4.3.9. pause</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-10-port"><span class="nav-number">14.4.3.10.</span> <span class="nav-text">10.4.3.10.    port</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-11-ps"><span class="nav-number">14.4.3.11.</span> <span class="nav-text">10.4.3.11.    ps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-12-pull"><span class="nav-number">14.4.3.12.</span> <span class="nav-text">10.4.3.12.    pull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-13-push"><span class="nav-number">14.4.3.13.</span> <span class="nav-text">10.4.3.13.    push</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-14-restart"><span class="nav-number">14.4.3.14.</span> <span class="nav-text">10.4.3.14.    restart</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-15-rm"><span class="nav-number">14.4.3.15.</span> <span class="nav-text">10.4.3.15.    rm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-16-run"><span class="nav-number">14.4.3.16.</span> <span class="nav-text">10.4.3.16.    run</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-17-scale"><span class="nav-number">14.4.3.17.</span> <span class="nav-text">10.4.3.17.    scale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-18-start"><span class="nav-number">14.4.3.18.</span> <span class="nav-text">10.4.3.18.    start</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-19-stop"><span class="nav-number">14.4.3.19.</span> <span class="nav-text">10.4.3.19.    stop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-20-top"><span class="nav-number">14.4.3.20.</span> <span class="nav-text">10.4.3.20.    top</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-21-unpause"><span class="nav-number">14.4.3.21.</span> <span class="nav-text">10.4.3.21.    unpause</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-22-up"><span class="nav-number">14.4.3.22.</span> <span class="nav-text">10.4.3.22.    up</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-23-version"><span class="nav-number">14.4.3.23.</span> <span class="nav-text">10.4.3.23.    version</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-docker-compose-模板文件"><span class="nav-number">14.5.</span> <span class="nav-text">10.5. docker compose 模板文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-1-build"><span class="nav-number">14.5.1.</span> <span class="nav-text">10.5.1.    build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-2-cap-add-cap-drop"><span class="nav-number">14.5.2.</span> <span class="nav-text">10.5.2.    cap_add, cap_drop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-3-command"><span class="nav-number">14.5.3.</span> <span class="nav-text">10.5.3.    command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-4-configs"><span class="nav-number">14.5.4.</span> <span class="nav-text">10.5.4.    configs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-5-cgroup-parent"><span class="nav-number">14.5.5.</span> <span class="nav-text">10.5.5.    cgroup_parent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-6-container-name"><span class="nav-number">14.5.6.</span> <span class="nav-text">10.5.6.    container_name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-7-deploy"><span class="nav-number">14.5.7.</span> <span class="nav-text">10.5.7.    deploy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-8-devices"><span class="nav-number">14.5.8.</span> <span class="nav-text">10.5.8.    devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-9-depends-on"><span class="nav-number">14.5.9.</span> <span class="nav-text">10.5.9.    depends_on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-10-dns"><span class="nav-number">14.5.10.</span> <span class="nav-text">10.5.10.  dns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-11-dns-search"><span class="nav-number">14.5.11.</span> <span class="nav-text">10.5.11.  dns_search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-12-tmpfs"><span class="nav-number">14.5.12.</span> <span class="nav-text">10.5.12.  tmpfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-13-env-file"><span class="nav-number">14.5.13.</span> <span class="nav-text">10.5.13.  env_file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-14-environment"><span class="nav-number">14.5.14.</span> <span class="nav-text">10.5.14.  environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-15-expose"><span class="nav-number">14.5.15.</span> <span class="nav-text">10.5.15.  expose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-16-external-links"><span class="nav-number">14.5.16.</span> <span class="nav-text">10.5.16.  external_links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-17-extra-hosts"><span class="nav-number">14.5.17.</span> <span class="nav-text">10.5.17.  extra_hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-18-healthcheck"><span class="nav-number">14.5.18.</span> <span class="nav-text">10.5.18.  healthcheck</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-19-image"><span class="nav-number">14.5.19.</span> <span class="nav-text">10.5.19.  image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-20-labels"><span class="nav-number">14.5.20.</span> <span class="nav-text">10.5.20.  labels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-21-links"><span class="nav-number">14.5.21.</span> <span class="nav-text">10.5.21.  links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-22-logging"><span class="nav-number">14.5.22.</span> <span class="nav-text">10.5.22.  logging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-23-network-mode"><span class="nav-number">14.5.23.</span> <span class="nav-text">10.5.23.  network_mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-24-networks"><span class="nav-number">14.5.24.</span> <span class="nav-text">10.5.24.  networks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-25-pid"><span class="nav-number">14.5.25.</span> <span class="nav-text">10.5.25.  pid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-26-ports"><span class="nav-number">14.5.26.</span> <span class="nav-text">10.5.26.  ports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-27-secrets"><span class="nav-number">14.5.27.</span> <span class="nav-text">10.5.27.  secrets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-28-security-opt"><span class="nav-number">14.5.28.</span> <span class="nav-text">10.5.28.  security_opt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-29-stop-signal"><span class="nav-number">14.5.29.</span> <span class="nav-text">10.5.29.  stop_signal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-30-sysctls"><span class="nav-number">14.5.30.</span> <span class="nav-text">10.5.30.  sysctls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-31-ulimits"><span class="nav-number">14.5.31.</span> <span class="nav-text">10.5.31.  ulimits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-32-volumes"><span class="nav-number">14.5.32.</span> <span class="nav-text">10.5.32.  volumes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-33-其它指令"><span class="nav-number">14.5.33.</span> <span class="nav-text">10.5.33.  其它指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-34-读取变量"><span class="nav-number">14.5.34.</span> <span class="nav-text">10.5.34.  读取变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-6-docker-compose-实战-dubbo-admin"><span class="nav-number">14.6.</span> <span class="nav-text">10.6. docker compose 实战 dubbo-admin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-1-创建空文件夹"><span class="nav-number">14.6.1.</span> <span class="nav-text">10.6.1.    创建空文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-2-创建-docker-compose-yml-文件"><span class="nav-number">14.6.2.</span> <span class="nav-text">10.6.2.    创建 docker-compose.yml 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-3-构建并运行项目"><span class="nav-number">14.6.3.</span> <span class="nav-text">10.6.3.    构建并运行项目</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-docker-三剑客-machine"><span class="nav-number">15.</span> <span class="nav-text">11.  docker 三剑客 machine</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-Docker-Machine-简介"><span class="nav-number">15.1.</span> <span class="nav-text">11.1. Docker Machine 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-Docker-Machine-安装"><span class="nav-number">15.2.</span> <span class="nav-text">11.2. Docker Machine 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-1-macOS、Windows"><span class="nav-number">15.2.1.</span> <span class="nav-text">11.2.1.    macOS、Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-2-Linux"><span class="nav-number">15.2.2.</span> <span class="nav-text">11.2.2.    Linux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-Docker-Machine-使用"><span class="nav-number">15.3.</span> <span class="nav-text">11.3. Docker Machine 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-1-创建本地主机实例"><span class="nav-number">15.3.1.</span> <span class="nav-text">11.3.1.    创建本地主机实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-2-使用介绍"><span class="nav-number">15.3.2.</span> <span class="nav-text">11.3.2.    使用介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-3-官方支持驱动"><span class="nav-number">15.3.3.</span> <span class="nav-text">11.3.3.    官方支持驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-4-第三方驱动"><span class="nav-number">15.3.4.</span> <span class="nav-text">11.3.4.    第三方驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-5-操作命令"><span class="nav-number">15.3.5.</span> <span class="nav-text">11.3.5.    操作命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-docker-三剑客-swarm"><span class="nav-number">16.</span> <span class="nav-text">12.  docker 三剑客 swarm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-Docker-Swarm-简介"><span class="nav-number">16.1.</span> <span class="nav-text">12.1. Docker Swarm 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-Docker-Swarm-mode"><span class="nav-number">16.2.</span> <span class="nav-text">12.2. Docker Swarm mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-3-Swarm-mode-基本概念"><span class="nav-number">16.3.</span> <span class="nav-text">12.3. Swarm mode 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-1-节点"><span class="nav-number">16.3.1.</span> <span class="nav-text">12.3.1.    节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-2-服务和任务"><span class="nav-number">16.3.2.</span> <span class="nav-text">12.3.2.    服务和任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-4-创建-Swarm-集群"><span class="nav-number">16.4.</span> <span class="nav-text">12.4. 创建 Swarm 集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-1-初始化集群"><span class="nav-number">16.4.1.</span> <span class="nav-text">12.4.1.    初始化集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-2-增加工作节点"><span class="nav-number">16.4.2.</span> <span class="nav-text">12.4.2.    增加工作节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-3-查看集群"><span class="nav-number">16.4.3.</span> <span class="nav-text">12.4.3.    查看集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-5-Swarm-mode-部署服务"><span class="nav-number">16.5.</span> <span class="nav-text">12.5. Swarm mode 部署服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-5-1-新建服务"><span class="nav-number">16.5.1.</span> <span class="nav-text">12.5.1.    新建服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-5-2-查看服务"><span class="nav-number">16.5.2.</span> <span class="nav-text">12.5.2.    查看服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-5-3-删除服务"><span class="nav-number">16.5.3.</span> <span class="nav-text">12.5.3.    删除服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-6-使用-compose-文件"><span class="nav-number">16.6.</span> <span class="nav-text">12.6. 使用 compose 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-6-1-部署服务"><span class="nav-number">16.6.1.</span> <span class="nav-text">12.6.1.    部署服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-6-2-查看服务"><span class="nav-number">16.6.2.</span> <span class="nav-text">12.6.2.    查看服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-6-3-移除服务"><span class="nav-number">16.6.3.</span> <span class="nav-text">12.6.3.    移除服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-7-Swarm-mode-管理敏感数据"><span class="nav-number">16.7.</span> <span class="nav-text">12.7. Swarm mode 管理敏感数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-7-1-创建-secret"><span class="nav-number">16.7.1.</span> <span class="nav-text">12.7.1.    创建 secret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-7-2-查看-secret"><span class="nav-number">16.7.2.</span> <span class="nav-text">12.7.2.    查看 secret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-7-3-创建-MySQL-服务"><span class="nav-number">16.7.3.</span> <span class="nav-text">12.7.3.    创建 MySQL 服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-8-Swarm-mode-管理配置信息"><span class="nav-number">16.8.</span> <span class="nav-text">12.8. Swarm mode 管理配置信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-8-1-创建-config"><span class="nav-number">16.8.1.</span> <span class="nav-text">12.8.1.    创建 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-8-2-查看-config"><span class="nav-number">16.8.2.</span> <span class="nav-text">12.8.2.    查看 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-8-3-创建-redis-服务"><span class="nav-number">16.8.3.</span> <span class="nav-text">12.8.3.    创建 redis 服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-docker-安全"><span class="nav-number">17.</span> <span class="nav-text">13.  docker 安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-内核命名空间"><span class="nav-number">17.1.</span> <span class="nav-text">13.1. 内核命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-控制组"><span class="nav-number">17.2.</span> <span class="nav-text">13.2. 控制组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-服务端防护"><span class="nav-number">17.3.</span> <span class="nav-text">13.3. 服务端防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-内核能力机制"><span class="nav-number">17.4.</span> <span class="nav-text">13.4. 内核能力机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-其它安全特性"><span class="nav-number">17.5.</span> <span class="nav-text">13.5. 其它安全特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-6-安全总结"><span class="nav-number">17.6.</span> <span class="nav-text">13.6. 安全总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-docker-底层实现"><span class="nav-number">18.</span> <span class="nav-text">14.  docker 底层实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-1-基本架构"><span class="nav-number">18.1.</span> <span class="nav-text">14.1. 基本架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-2-命名空间"><span class="nav-number">18.2.</span> <span class="nav-text">14.2. 命名空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-1-pid-命名空间"><span class="nav-number">18.2.1.</span> <span class="nav-text">14.2.1.    pid 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-2-net-命名空间"><span class="nav-number">18.2.2.</span> <span class="nav-text">14.2.2.    net 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-3-ipc-命名空间"><span class="nav-number">18.2.3.</span> <span class="nav-text">14.2.3.    ipc 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-4-mnt-命名空间"><span class="nav-number">18.2.4.</span> <span class="nav-text">14.2.4.    mnt 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-5-uts-命名空间"><span class="nav-number">18.2.5.</span> <span class="nav-text">14.2.5.    uts 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-6-user-命名空间"><span class="nav-number">18.2.6.</span> <span class="nav-text">14.2.6.    user 命名空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-3-控制组"><span class="nav-number">18.3.</span> <span class="nav-text">14.3. 控制组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-4-联合文件系统"><span class="nav-number">18.4.</span> <span class="nav-text">14.4. 联合文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-5-容器格式"><span class="nav-number">18.5.</span> <span class="nav-text">14.5. 容器格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-6-网络"><span class="nav-number">18.6.</span> <span class="nav-text">14.6. 网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-6-1-基本原理"><span class="nav-number">18.6.1.</span> <span class="nav-text">14.6.1.    基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-6-2-创建网络参数"><span class="nav-number">18.6.2.</span> <span class="nav-text">14.6.2.    创建网络参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-6-3-网络配置细节"><span class="nav-number">18.6.3.</span> <span class="nav-text">14.6.3.    网络配置细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-附录"><span class="nav-number">19.</span> <span class="nav-text">15.  附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#15-1-Docker-命令查询"><span class="nav-number">19.1.</span> <span class="nav-text">15.1. Docker 命令查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-1-基本语法"><span class="nav-number">19.1.1.</span> <span class="nav-text">15.1.1.    基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-2-客户端命令选项"><span class="nav-number">19.1.2.</span> <span class="nav-text">15.1.2.    客户端命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-3-dockerd-命令选项"><span class="nav-number">19.1.3.</span> <span class="nav-text">15.1.3.    dockerd 命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-4-客户端命令"><span class="nav-number">19.1.4.</span> <span class="nav-text">15.1.4.    客户端命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-5-一张图总结-Docker-的命令"><span class="nav-number">19.1.5.</span> <span class="nav-text">15.1.5.    一张图总结 Docker 的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-2-Docker-资源链接"><span class="nav-number">19.2.</span> <span class="nav-text">15.2. Docker 资源链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-1-官方网站"><span class="nav-number">19.2.1.</span> <span class="nav-text">15.2.1.    官方网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-2-实践参考"><span class="nav-number">19.2.2.</span> <span class="nav-text">15.2.2.    实践参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-3-技术交流"><span class="nav-number">19.2.3.</span> <span class="nav-text">15.2.3.    技术交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-4-其它"><span class="nav-number">19.2.4.</span> <span class="nav-text">15.2.4.    其它</span></a></li></ol></li></ol></li></ol></div>
-      </div>
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Docker-简介"><span class="nav-number">1.</span> <span class="nav-text">1. Docker 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-docker-是什么"><span class="nav-number">1.1.</span> <span class="nav-text">1.1.   docker 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-为什么要使用-docker"><span class="nav-number">1.2.</span> <span class="nav-text">1.2.   为什么要使用 docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-docker-基本概念"><span class="nav-number">2.</span> <span class="nav-text">2. docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-docker-引擎"><span class="nav-number">2.1.</span> <span class="nav-text">2.1.   docker 引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-docker-系统架构"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.   docker 系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-docker-镜像"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.   docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-docker-容器"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.   docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-docker-仓库"><span class="nav-number">2.5.</span> <span class="nav-text">2.5.   docker 仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-公有-Docker-Registry"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1. 公有 Docker Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-私有-Docker-Registry"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2. 私有 Docker Registry</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-docker-安装"><span class="nav-number">3.</span> <span class="nav-text">3. docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-ubuntu-安装docker"><span class="nav-number">3.1.</span> <span class="nav-text">3.1.   ubuntu 安装docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-准备工作"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-使用-APT-安装"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. 使用 APT 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-使用脚本自动安装"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. 使用脚本自动安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-启动-Docker-CE"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4. 启动 Docker CE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-建立-docker-用户组"><span class="nav-number">3.1.5.</span> <span class="nav-text">3.1.5. 建立 docker 用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-6-测试-Docker-是否安装正确"><span class="nav-number">3.1.6.</span> <span class="nav-text">3.1.6. 测试 Docker 是否安装正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-7-镜像加速"><span class="nav-number">3.1.7.</span> <span class="nav-text">3.1.7. 镜像加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-8-参考文档"><span class="nav-number">3.1.8.</span> <span class="nav-text">3.1.8. 参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-centOS-安装-docker"><span class="nav-number">3.2.</span> <span class="nav-text">3.2.   centOS 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-准备工作"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1. 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-使用-yum-安装"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2. 使用 yum 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-使用脚本自动安装"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3. 使用脚本自动安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-启动-Docker-CE"><span class="nav-number">3.2.4.</span> <span class="nav-text">3.2.4. 启动 Docker CE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-建立-docker-用户组"><span class="nav-number">3.2.5.</span> <span class="nav-text">3.2.5. 建立 docker 用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-6-测试-Docker-是否安装正确"><span class="nav-number">3.2.6.</span> <span class="nav-text">3.2.6. 测试 Docker 是否安装正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-7-镜像加速"><span class="nav-number">3.2.7.</span> <span class="nav-text">3.2.7. 镜像加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-8-添加内核参数"><span class="nav-number">3.2.8.</span> <span class="nav-text">3.2.8. 添加内核参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-9-参考文档"><span class="nav-number">3.2.9.</span> <span class="nav-text">3.2.9. 参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-mac-安装-docker"><span class="nav-number">3.3.</span> <span class="nav-text">3.3.   mac 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-系统要求"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1. 系统要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-安装"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-运行"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3. 运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-镜像加速"><span class="nav-number">3.3.4.</span> <span class="nav-text">3.3.4. 镜像加速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-windos-安装-docker"><span class="nav-number">3.4.</span> <span class="nav-text">3.4.   windos 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-系统要求"><span class="nav-number">3.4.1.</span> <span class="nav-text">3.4.1. 系统要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-安装"><span class="nav-number">3.4.2.</span> <span class="nav-text">3.4.2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-运行"><span class="nav-number">3.4.3.</span> <span class="nav-text">3.4.3. 运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-4-镜像加速"><span class="nav-number">3.4.4.</span> <span class="nav-text">3.4.4. 镜像加速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-镜像加速"><span class="nav-number">3.5.</span> <span class="nav-text">3.5.   镜像加速</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-Ubuntu-14-04、Debian-7-Wheezy"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1. Ubuntu 14.04、Debian 7 Wheezy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-Ubuntu-16-04-、Debian-8-、CentOS-7"><span class="nav-number">3.5.2.</span> <span class="nav-text">3.5.2. Ubuntu 16.04+、Debian 8+、CentOS 7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-Windows-10"><span class="nav-number">3.5.3.</span> <span class="nav-text">3.5.3. Windows 10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-macOS"><span class="nav-number">3.5.4.</span> <span class="nav-text">3.5.4. macOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-5-检查加速器是否生效"><span class="nav-number">3.5.5.</span> <span class="nav-text">3.5.5. 检查加速器是否生效</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-docker-镜像"><span class="nav-number">4.</span> <span class="nav-text">4. docker 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Docker-获取镜像"><span class="nav-number">4.1.</span> <span class="nav-text">4.1.   Docker 获取镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-运行"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1. 运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-docker-列出镜像"><span class="nav-number">4.2.</span> <span class="nav-text">4.2.   docker 列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-镜像体积"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1. 镜像体积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-虚悬镜像"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2. 虚悬镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-中间层镜像"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3. 中间层镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-列出部分镜像"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.2.4. 列出部分镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-以特定格式显示"><span class="nav-number">4.2.5.</span> <span class="nav-text">4.2.5. 以特定格式显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-docker-删除本地镜像"><span class="nav-number">4.3.</span> <span class="nav-text">4.3.   docker 删除本地镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-用-ID、镜像名、摘要删除镜像"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1. 用 ID、镜像名、摘要删除镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-Untagged-和-Deleted"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2. Untagged 和 Deleted</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-用-docker-image-ls-命令来配合"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3. 用 docker image ls 命令来配合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-CentOS-RHEL-的用户需要注意的事项"><span class="nav-number">4.3.4.</span> <span class="nav-text">4.3.4. CentOS&#x2F;RHEL 的用户需要注意的事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-利用-commit-理解镜像构成"><span class="nav-number">4.4.</span> <span class="nav-text">4.4.   利用 commit 理解镜像构成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">Hello, Docker!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text">Hello, Docker!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-慎用-docker-commit"><span class="nav-number">6.0.1.</span> <span class="nav-text">4.4.1. 慎用 docker commit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-使用-Dockerfile-定制镜像"><span class="nav-number">6.1.</span> <span class="nav-text">4.5.   使用 Dockerfile 定制镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-1-Dockerfile-定制镜像"><span class="nav-number">6.1.1.</span> <span class="nav-text">4.5.1. Dockerfile 定制镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">7.</span> <span class="nav-text">Hello, Docker!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-2-FROM-指定基础镜像"><span class="nav-number">7.0.1.</span> <span class="nav-text">4.5.2. FROM 指定基础镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-3-RUN-执行命令"><span class="nav-number">7.0.2.</span> <span class="nav-text">4.5.3. RUN 执行命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text">Hello, Docker!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-4-构建镜像"><span class="nav-number">8.0.1.</span> <span class="nav-text">4.5.4. 构建镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-5-镜像构建上下文（Context）"><span class="nav-number">8.0.2.</span> <span class="nav-text">4.5.5. 镜像构建上下文（Context）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-6-其它-docker-build-的用法"><span class="nav-number">8.0.3.</span> <span class="nav-text">4.5.6. 其它 docker build 的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-1-直接用-Git-repo-进行构建"><span class="nav-number">8.0.3.1.</span> <span class="nav-text">4.5.6.1.   直接用 Git repo 进行构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-2-用给定的-tar-压缩包构建"><span class="nav-number">8.0.3.2.</span> <span class="nav-text">4.5.6.2.   用给定的 tar 压缩包构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-3-从标准输入中读取-Dockerfile-进行构建"><span class="nav-number">8.0.3.3.</span> <span class="nav-text">4.5.6.3.   从标准输入中读取 Dockerfile 进行构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6-4-从标准输入中读取上下文压缩包进行构建"><span class="nav-number">8.0.3.4.</span> <span class="nav-text">4.5.6.4.   从标准输入中读取上下文压缩包进行构建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Dockerfile-指令详解"><span class="nav-number">8.1.</span> <span class="nav-text">4.6.   Dockerfile 指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-1-COPY-复制文件"><span class="nav-number">8.1.1.</span> <span class="nav-text">4.6.1. COPY 复制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-2-ADD-更高级的复制文件"><span class="nav-number">8.1.2.</span> <span class="nav-text">4.6.2. ADD 更高级的复制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-3-CMD-容器启动命令"><span class="nav-number">8.1.3.</span> <span class="nav-text">4.6.3. CMD 容器启动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-4-ENTRYPOINT-入口点"><span class="nav-number">8.1.4.</span> <span class="nav-text">4.6.4. ENTRYPOINT 入口点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-5-ENV-设置环境变量"><span class="nav-number">8.1.5.</span> <span class="nav-text">4.6.5. ENV 设置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-6-ARG-构建参数"><span class="nav-number">8.1.6.</span> <span class="nav-text">4.6.6. ARG 构建参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-7-VOLUME-定义匿名卷"><span class="nav-number">8.1.7.</span> <span class="nav-text">4.6.7. VOLUME 定义匿名卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-8-EXPOSE-暴露端口"><span class="nav-number">8.1.8.</span> <span class="nav-text">4.6.8. EXPOSE 暴露端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-9-WORKDIR-指定工作目录"><span class="nav-number">8.1.9.</span> <span class="nav-text">4.6.9. WORKDIR 指定工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-10-USER-指定当前用户"><span class="nav-number">8.1.10.</span> <span class="nav-text">4.6.10.    USER 指定当前用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-11-HEALTHCHECK-健康检查"><span class="nav-number">8.1.11.</span> <span class="nav-text">4.6.11.    HEALTHCHECK 健康检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-12-ONBUILD-为他人作嫁衣"><span class="nav-number">8.1.12.</span> <span class="nav-text">4.6.12.    ONBUILD 为他人作嫁衣</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-13-参考文档"><span class="nav-number">8.1.13.</span> <span class="nav-text">4.6.13.    参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Dockerfile-多阶段构建"><span class="nav-number">8.2.</span> <span class="nav-text">4.7.   Dockerfile 多阶段构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-1-之前的做法"><span class="nav-number">8.2.1.</span> <span class="nav-text">4.7.1. 之前的做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1-1-全部放入一个-Dockerfile"><span class="nav-number">8.2.1.1.</span> <span class="nav-text">4.7.1.1.   全部放入一个 Dockerfile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1-2-分散到多个-Dockerfile"><span class="nav-number">8.2.1.2.</span> <span class="nav-text">4.7.1.2.   分散到多个 Dockerfile</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-2-使用多阶段构建"><span class="nav-number">8.2.2.</span> <span class="nav-text">4.7.2. 使用多阶段构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-其他制作镜像方式"><span class="nav-number">8.3.</span> <span class="nav-text">4.8.   其他制作镜像方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-1-从-rootfs-压缩包导入"><span class="nav-number">8.3.1.</span> <span class="nav-text">4.8.1. 从 rootfs 压缩包导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-2-docker-save-和-docker-load"><span class="nav-number">8.3.2.</span> <span class="nav-text">4.8.2. docker save 和 docker load</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-镜像的实现原理"><span class="nav-number">8.4.</span> <span class="nav-text">4.9.   镜像的实现原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-docker-容器"><span class="nav-number">9.</span> <span class="nav-text">5. docker 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-启动容器"><span class="nav-number">9.1.</span> <span class="nav-text">5.1.   启动容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-新建并启动"><span class="nav-number">9.1.1.</span> <span class="nav-text">5.1.1. 新建并启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-启动已终止容器"><span class="nav-number">9.1.2.</span> <span class="nav-text">5.1.2. 启动已终止容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-守护状态运行"><span class="nav-number">9.2.</span> <span class="nav-text">5.2.   守护状态运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-终止容器"><span class="nav-number">9.3.</span> <span class="nav-text">5.3.   终止容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-进入容器"><span class="nav-number">9.4.</span> <span class="nav-text">5.4.   进入容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-attach-命令"><span class="nav-number">9.4.1.</span> <span class="nav-text">5.4.1. attach 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-exec-命令"><span class="nav-number">9.4.2.</span> <span class="nav-text">5.4.2. exec 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-导出和导入容器"><span class="nav-number">9.5.</span> <span class="nav-text">5.5.   导出和导入容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-导出容器"><span class="nav-number">9.5.1.</span> <span class="nav-text">5.5.1. 导出容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-导入容器快照"><span class="nav-number">9.5.2.</span> <span class="nav-text">5.5.2. 导入容器快照</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-删除容器"><span class="nav-number">9.6.</span> <span class="nav-text">5.6.   删除容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-docker-仓库"><span class="nav-number">10.</span> <span class="nav-text">6. docker 仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-docker-hub"><span class="nav-number">10.1.</span> <span class="nav-text">6.1.   docker hub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-注册"><span class="nav-number">10.1.1.</span> <span class="nav-text">6.1.1. 注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-2-登录"><span class="nav-number">10.1.2.</span> <span class="nav-text">6.1.2. 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-3-拉取镜像"><span class="nav-number">10.1.3.</span> <span class="nav-text">6.1.3. 拉取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-4-推送镜像"><span class="nav-number">10.1.4.</span> <span class="nav-text">6.1.4. 推送镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-5-自动创建"><span class="nav-number">10.1.5.</span> <span class="nav-text">6.1.5. 自动创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-docker-私有仓库"><span class="nav-number">10.2.</span> <span class="nav-text">6.2.   docker 私有仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-1-安装运行-docker-registry"><span class="nav-number">10.2.1.</span> <span class="nav-text">6.2.1. 安装运行 docker-registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-2-在私有仓库上传、搜索、下载镜像"><span class="nav-number">10.2.2.</span> <span class="nav-text">6.2.2. 在私有仓库上传、搜索、下载镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-3-注意事项"><span class="nav-number">10.2.3.</span> <span class="nav-text">6.2.3. 注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-1-Ubuntu-14-04-Debian-7-Wheezy"><span class="nav-number">10.2.3.1.</span> <span class="nav-text">6.2.3.1.   Ubuntu 14.04, Debian 7 Wheezy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-2-Ubuntu-16-04-Debian-8-centos-7"><span class="nav-number">10.2.3.2.</span> <span class="nav-text">6.2.3.2.   Ubuntu 16.04+, Debian 8+, centos 7</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-4-其他"><span class="nav-number">10.2.4.</span> <span class="nav-text">6.2.4. 其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-5-docker-registry-配置证书"><span class="nav-number">10.2.5.</span> <span class="nav-text">6.2.5. docker registry 配置证书</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-1-准备站点证书"><span class="nav-number">10.2.5.1.</span> <span class="nav-text">6.2.5.1.   准备站点证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-2-配置私有仓库"><span class="nav-number">10.2.5.2.</span> <span class="nav-text">6.2.5.2.   配置私有仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-3-生成-http-认证文件"><span class="nav-number">10.2.5.3.</span> <span class="nav-text">6.2.5.3.   生成 http 认证文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-4-编辑-docker-compose-yml"><span class="nav-number">10.2.5.4.</span> <span class="nav-text">6.2.5.4.   编辑 docker-compose.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-5-修改-hosts"><span class="nav-number">10.2.5.5.</span> <span class="nav-text">6.2.5.5.   修改 hosts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-6-启动"><span class="nav-number">10.2.5.6.</span> <span class="nav-text">6.2.5.6.   启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-7-测试私有仓库功能"><span class="nav-number">10.2.5.7.</span> <span class="nav-text">6.2.5.7.   测试私有仓库功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-8-注意事项"><span class="nav-number">10.2.5.8.</span> <span class="nav-text">6.2.5.8.   注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-docker-企业级仓库-Harbor"><span class="nav-number">10.3.</span> <span class="nav-text">6.3.   docker 企业级仓库 Harbor</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-docker-数据管理"><span class="nav-number">11.</span> <span class="nav-text">7. docker 数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-docker-数据卷"><span class="nav-number">11.1.</span> <span class="nav-text">7.1.   docker 数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-选择-v-还是-–mount-参数"><span class="nav-number">11.1.1.</span> <span class="nav-text">7.1.1. 选择 -v 还是 -–mount 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-创建一个数据卷"><span class="nav-number">11.1.2.</span> <span class="nav-text">7.1.2. 创建一个数据卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-3-启动一个挂载数据卷的容器"><span class="nav-number">11.1.3.</span> <span class="nav-text">7.1.3. 启动一个挂载数据卷的容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-4-查看数据卷的具体信息"><span class="nav-number">11.1.4.</span> <span class="nav-text">7.1.4. 查看数据卷的具体信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-5-删除数据卷"><span class="nav-number">11.1.5.</span> <span class="nav-text">7.1.5. 删除数据卷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-监听主机目录"><span class="nav-number">11.2.</span> <span class="nav-text">7.2.   监听主机目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-v-还是-–mount-参数"><span class="nav-number">11.2.1.</span> <span class="nav-text">7.2.1. -v 还是 -–mount 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-2-挂载一个主机目录作为数据卷"><span class="nav-number">11.2.2.</span> <span class="nav-text">7.2.2. 挂载一个主机目录作为数据卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-3-查看数据卷的具体信息"><span class="nav-number">11.2.3.</span> <span class="nav-text">7.2.3. 查看数据卷的具体信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-4-挂载一个本地主机文件作为数据卷"><span class="nav-number">11.2.4.</span> <span class="nav-text">7.2.4. 挂载一个本地主机文件作为数据卷</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-docker-网络配置"><span class="nav-number">12.</span> <span class="nav-text">8. docker 网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-Docker-外部访问容器"><span class="nav-number">12.1.</span> <span class="nav-text">8.1.   Docker 外部访问容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-映射所有接口地址"><span class="nav-number">12.1.1.</span> <span class="nav-text">8.1.1. 映射所有接口地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-映射到指定地址的指定端口"><span class="nav-number">12.1.2.</span> <span class="nav-text">8.1.2. 映射到指定地址的指定端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-映射到指定地址的任意端口"><span class="nav-number">12.1.3.</span> <span class="nav-text">8.1.3. 映射到指定地址的任意端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-查看映射端口配置"><span class="nav-number">12.1.4.</span> <span class="nav-text">8.1.4. 查看映射端口配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-Docker-容器互连"><span class="nav-number">12.2.</span> <span class="nav-text">8.2.   Docker 容器互连</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-新建网络"><span class="nav-number">12.2.1.</span> <span class="nav-text">8.2.1. 新建网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-连接容器"><span class="nav-number">12.2.2.</span> <span class="nav-text">8.2.2. 连接容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-3-Docker-Compose"><span class="nav-number">12.2.3.</span> <span class="nav-text">8.2.3. Docker Compose</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-Docker-配置-DNS"><span class="nav-number">12.3.</span> <span class="nav-text">8.3.   Docker 配置 DNS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-docker-高级网络配置"><span class="nav-number">13.</span> <span class="nav-text">9. docker 高级网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-快速配置指南"><span class="nav-number">13.1.</span> <span class="nav-text">9.1.   快速配置指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-容器访问控制"><span class="nav-number">13.2.</span> <span class="nav-text">9.2.   容器访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-1-容器访问外部网络"><span class="nav-number">13.2.1.</span> <span class="nav-text">9.2.1. 容器访问外部网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-2-容器之间访问"><span class="nav-number">13.2.2.</span> <span class="nav-text">9.2.2. 容器之间访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-端口映射实现"><span class="nav-number">13.3.</span> <span class="nav-text">9.3.   端口映射实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-1-容器访问外部实现"><span class="nav-number">13.3.1.</span> <span class="nav-text">9.3.1. 容器访问外部实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-2-外部访问容器实现"><span class="nav-number">13.3.2.</span> <span class="nav-text">9.3.2. 外部访问容器实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-配置-docker0-网桥"><span class="nav-number">13.4.</span> <span class="nav-text">9.4.   配置 docker0 网桥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-自定义网桥"><span class="nav-number">13.5.</span> <span class="nav-text">9.5.   自定义网桥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-6-工具和示例"><span class="nav-number">13.6.</span> <span class="nav-text">9.6.   工具和示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-1-pipework"><span class="nav-number">13.6.1.</span> <span class="nav-text">9.6.1. pipework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-2-playground"><span class="nav-number">13.6.2.</span> <span class="nav-text">9.6.2. playground</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-7-编辑网络配置文件"><span class="nav-number">13.7.</span> <span class="nav-text">9.7.   编辑网络配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-8-实例：创建一个点到点连接"><span class="nav-number">13.8.</span> <span class="nav-text">9.8.   实例：创建一个点到点连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-docker-三剑客-compose"><span class="nav-number">14.</span> <span class="nav-text">10.  docker 三剑客 compose</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-docker-compose-简介"><span class="nav-number">14.1.</span> <span class="nav-text">10.1. docker compose 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-docker-compose-安装和卸载"><span class="nav-number">14.2.</span> <span class="nav-text">10.2. docker compose 安装和卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-1-二进制包"><span class="nav-number">14.2.1.</span> <span class="nav-text">10.2.1.    二进制包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-2-PIP-安装"><span class="nav-number">14.2.2.</span> <span class="nav-text">10.2.2.    PIP 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-3-bash-补全命令"><span class="nav-number">14.2.3.</span> <span class="nav-text">10.2.3.    bash 补全命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-4-容器中执行"><span class="nav-number">14.2.4.</span> <span class="nav-text">10.2.4.    容器中执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-5-卸载"><span class="nav-number">14.2.5.</span> <span class="nav-text">10.2.5.    卸载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-docker-compose-使用"><span class="nav-number">14.3.</span> <span class="nav-text">10.3. docker compose 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-1-术语"><span class="nav-number">14.3.1.</span> <span class="nav-text">10.3.1.    术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-2-场景"><span class="nav-number">14.3.2.</span> <span class="nav-text">10.3.2.    场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-docker-compose-命令说明"><span class="nav-number">14.4.</span> <span class="nav-text">10.4. docker compose 命令说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-1-命令对象与格式"><span class="nav-number">14.4.1.</span> <span class="nav-text">10.4.1.    命令对象与格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-2-命令选项"><span class="nav-number">14.4.2.</span> <span class="nav-text">10.4.2.    命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-3-命令使用说明"><span class="nav-number">14.4.3.</span> <span class="nav-text">10.4.3.    命令使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-1-build"><span class="nav-number">14.4.3.1.</span> <span class="nav-text">10.4.3.1. build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-2-config"><span class="nav-number">14.4.3.2.</span> <span class="nav-text">10.4.3.2. config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-3-down"><span class="nav-number">14.4.3.3.</span> <span class="nav-text">10.4.3.3. down</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-4-exec"><span class="nav-number">14.4.3.4.</span> <span class="nav-text">10.4.3.4. exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-5-help"><span class="nav-number">14.4.3.5.</span> <span class="nav-text">10.4.3.5. help</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-6-images"><span class="nav-number">14.4.3.6.</span> <span class="nav-text">10.4.3.6. images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-7-kill"><span class="nav-number">14.4.3.7.</span> <span class="nav-text">10.4.3.7. kill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-8-logs"><span class="nav-number">14.4.3.8.</span> <span class="nav-text">10.4.3.8. logs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-9-pause"><span class="nav-number">14.4.3.9.</span> <span class="nav-text">10.4.3.9. pause</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-10-port"><span class="nav-number">14.4.3.10.</span> <span class="nav-text">10.4.3.10.    port</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-11-ps"><span class="nav-number">14.4.3.11.</span> <span class="nav-text">10.4.3.11.    ps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-12-pull"><span class="nav-number">14.4.3.12.</span> <span class="nav-text">10.4.3.12.    pull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-13-push"><span class="nav-number">14.4.3.13.</span> <span class="nav-text">10.4.3.13.    push</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-14-restart"><span class="nav-number">14.4.3.14.</span> <span class="nav-text">10.4.3.14.    restart</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-15-rm"><span class="nav-number">14.4.3.15.</span> <span class="nav-text">10.4.3.15.    rm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-16-run"><span class="nav-number">14.4.3.16.</span> <span class="nav-text">10.4.3.16.    run</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-17-scale"><span class="nav-number">14.4.3.17.</span> <span class="nav-text">10.4.3.17.    scale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-18-start"><span class="nav-number">14.4.3.18.</span> <span class="nav-text">10.4.3.18.    start</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-19-stop"><span class="nav-number">14.4.3.19.</span> <span class="nav-text">10.4.3.19.    stop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-20-top"><span class="nav-number">14.4.3.20.</span> <span class="nav-text">10.4.3.20.    top</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-21-unpause"><span class="nav-number">14.4.3.21.</span> <span class="nav-text">10.4.3.21.    unpause</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-22-up"><span class="nav-number">14.4.3.22.</span> <span class="nav-text">10.4.3.22.    up</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-3-23-version"><span class="nav-number">14.4.3.23.</span> <span class="nav-text">10.4.3.23.    version</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-docker-compose-模板文件"><span class="nav-number">14.5.</span> <span class="nav-text">10.5. docker compose 模板文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-1-build"><span class="nav-number">14.5.1.</span> <span class="nav-text">10.5.1.    build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-2-cap-add-cap-drop"><span class="nav-number">14.5.2.</span> <span class="nav-text">10.5.2.    cap_add, cap_drop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-3-command"><span class="nav-number">14.5.3.</span> <span class="nav-text">10.5.3.    command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-4-configs"><span class="nav-number">14.5.4.</span> <span class="nav-text">10.5.4.    configs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-5-cgroup-parent"><span class="nav-number">14.5.5.</span> <span class="nav-text">10.5.5.    cgroup_parent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-6-container-name"><span class="nav-number">14.5.6.</span> <span class="nav-text">10.5.6.    container_name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-7-deploy"><span class="nav-number">14.5.7.</span> <span class="nav-text">10.5.7.    deploy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-8-devices"><span class="nav-number">14.5.8.</span> <span class="nav-text">10.5.8.    devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-9-depends-on"><span class="nav-number">14.5.9.</span> <span class="nav-text">10.5.9.    depends_on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-10-dns"><span class="nav-number">14.5.10.</span> <span class="nav-text">10.5.10.  dns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-11-dns-search"><span class="nav-number">14.5.11.</span> <span class="nav-text">10.5.11.  dns_search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-12-tmpfs"><span class="nav-number">14.5.12.</span> <span class="nav-text">10.5.12.  tmpfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-13-env-file"><span class="nav-number">14.5.13.</span> <span class="nav-text">10.5.13.  env_file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-14-environment"><span class="nav-number">14.5.14.</span> <span class="nav-text">10.5.14.  environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-15-expose"><span class="nav-number">14.5.15.</span> <span class="nav-text">10.5.15.  expose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-16-external-links"><span class="nav-number">14.5.16.</span> <span class="nav-text">10.5.16.  external_links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-17-extra-hosts"><span class="nav-number">14.5.17.</span> <span class="nav-text">10.5.17.  extra_hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-18-healthcheck"><span class="nav-number">14.5.18.</span> <span class="nav-text">10.5.18.  healthcheck</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-19-image"><span class="nav-number">14.5.19.</span> <span class="nav-text">10.5.19.  image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-20-labels"><span class="nav-number">14.5.20.</span> <span class="nav-text">10.5.20.  labels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-21-links"><span class="nav-number">14.5.21.</span> <span class="nav-text">10.5.21.  links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-22-logging"><span class="nav-number">14.5.22.</span> <span class="nav-text">10.5.22.  logging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-23-network-mode"><span class="nav-number">14.5.23.</span> <span class="nav-text">10.5.23.  network_mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-24-networks"><span class="nav-number">14.5.24.</span> <span class="nav-text">10.5.24.  networks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-25-pid"><span class="nav-number">14.5.25.</span> <span class="nav-text">10.5.25.  pid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-26-ports"><span class="nav-number">14.5.26.</span> <span class="nav-text">10.5.26.  ports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-27-secrets"><span class="nav-number">14.5.27.</span> <span class="nav-text">10.5.27.  secrets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-28-security-opt"><span class="nav-number">14.5.28.</span> <span class="nav-text">10.5.28.  security_opt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-29-stop-signal"><span class="nav-number">14.5.29.</span> <span class="nav-text">10.5.29.  stop_signal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-30-sysctls"><span class="nav-number">14.5.30.</span> <span class="nav-text">10.5.30.  sysctls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-31-ulimits"><span class="nav-number">14.5.31.</span> <span class="nav-text">10.5.31.  ulimits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-32-volumes"><span class="nav-number">14.5.32.</span> <span class="nav-text">10.5.32.  volumes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-33-其它指令"><span class="nav-number">14.5.33.</span> <span class="nav-text">10.5.33.  其它指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-34-读取变量"><span class="nav-number">14.5.34.</span> <span class="nav-text">10.5.34.  读取变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-6-docker-compose-实战-dubbo-admin"><span class="nav-number">14.6.</span> <span class="nav-text">10.6. docker compose 实战 dubbo-admin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-1-创建空文件夹"><span class="nav-number">14.6.1.</span> <span class="nav-text">10.6.1.    创建空文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-2-创建-docker-compose-yml-文件"><span class="nav-number">14.6.2.</span> <span class="nav-text">10.6.2.    创建 docker-compose.yml 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-3-构建并运行项目"><span class="nav-number">14.6.3.</span> <span class="nav-text">10.6.3.    构建并运行项目</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-docker-三剑客-machine"><span class="nav-number">15.</span> <span class="nav-text">11.  docker 三剑客 machine</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-Docker-Machine-简介"><span class="nav-number">15.1.</span> <span class="nav-text">11.1. Docker Machine 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-Docker-Machine-安装"><span class="nav-number">15.2.</span> <span class="nav-text">11.2. Docker Machine 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-1-macOS、Windows"><span class="nav-number">15.2.1.</span> <span class="nav-text">11.2.1.    macOS、Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-2-Linux"><span class="nav-number">15.2.2.</span> <span class="nav-text">11.2.2.    Linux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-Docker-Machine-使用"><span class="nav-number">15.3.</span> <span class="nav-text">11.3. Docker Machine 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-1-创建本地主机实例"><span class="nav-number">15.3.1.</span> <span class="nav-text">11.3.1.    创建本地主机实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-2-使用介绍"><span class="nav-number">15.3.2.</span> <span class="nav-text">11.3.2.    使用介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-3-官方支持驱动"><span class="nav-number">15.3.3.</span> <span class="nav-text">11.3.3.    官方支持驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-4-第三方驱动"><span class="nav-number">15.3.4.</span> <span class="nav-text">11.3.4.    第三方驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-5-操作命令"><span class="nav-number">15.3.5.</span> <span class="nav-text">11.3.5.    操作命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-docker-三剑客-swarm"><span class="nav-number">16.</span> <span class="nav-text">12.  docker 三剑客 swarm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-Docker-Swarm-简介"><span class="nav-number">16.1.</span> <span class="nav-text">12.1. Docker Swarm 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-Docker-Swarm-mode"><span class="nav-number">16.2.</span> <span class="nav-text">12.2. Docker Swarm mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-3-Swarm-mode-基本概念"><span class="nav-number">16.3.</span> <span class="nav-text">12.3. Swarm mode 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-1-节点"><span class="nav-number">16.3.1.</span> <span class="nav-text">12.3.1.    节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-2-服务和任务"><span class="nav-number">16.3.2.</span> <span class="nav-text">12.3.2.    服务和任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-4-创建-Swarm-集群"><span class="nav-number">16.4.</span> <span class="nav-text">12.4. 创建 Swarm 集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-1-初始化集群"><span class="nav-number">16.4.1.</span> <span class="nav-text">12.4.1.    初始化集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-2-增加工作节点"><span class="nav-number">16.4.2.</span> <span class="nav-text">12.4.2.    增加工作节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-3-查看集群"><span class="nav-number">16.4.3.</span> <span class="nav-text">12.4.3.    查看集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-5-Swarm-mode-部署服务"><span class="nav-number">16.5.</span> <span class="nav-text">12.5. Swarm mode 部署服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-5-1-新建服务"><span class="nav-number">16.5.1.</span> <span class="nav-text">12.5.1.    新建服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-5-2-查看服务"><span class="nav-number">16.5.2.</span> <span class="nav-text">12.5.2.    查看服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-5-3-删除服务"><span class="nav-number">16.5.3.</span> <span class="nav-text">12.5.3.    删除服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-6-使用-compose-文件"><span class="nav-number">16.6.</span> <span class="nav-text">12.6. 使用 compose 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-6-1-部署服务"><span class="nav-number">16.6.1.</span> <span class="nav-text">12.6.1.    部署服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-6-2-查看服务"><span class="nav-number">16.6.2.</span> <span class="nav-text">12.6.2.    查看服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-6-3-移除服务"><span class="nav-number">16.6.3.</span> <span class="nav-text">12.6.3.    移除服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-7-Swarm-mode-管理敏感数据"><span class="nav-number">16.7.</span> <span class="nav-text">12.7. Swarm mode 管理敏感数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-7-1-创建-secret"><span class="nav-number">16.7.1.</span> <span class="nav-text">12.7.1.    创建 secret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-7-2-查看-secret"><span class="nav-number">16.7.2.</span> <span class="nav-text">12.7.2.    查看 secret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-7-3-创建-MySQL-服务"><span class="nav-number">16.7.3.</span> <span class="nav-text">12.7.3.    创建 MySQL 服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-8-Swarm-mode-管理配置信息"><span class="nav-number">16.8.</span> <span class="nav-text">12.8. Swarm mode 管理配置信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-8-1-创建-config"><span class="nav-number">16.8.1.</span> <span class="nav-text">12.8.1.    创建 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-8-2-查看-config"><span class="nav-number">16.8.2.</span> <span class="nav-text">12.8.2.    查看 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-8-3-创建-redis-服务"><span class="nav-number">16.8.3.</span> <span class="nav-text">12.8.3.    创建 redis 服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-docker-安全"><span class="nav-number">17.</span> <span class="nav-text">13.  docker 安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-内核命名空间"><span class="nav-number">17.1.</span> <span class="nav-text">13.1. 内核命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-控制组"><span class="nav-number">17.2.</span> <span class="nav-text">13.2. 控制组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-服务端防护"><span class="nav-number">17.3.</span> <span class="nav-text">13.3. 服务端防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-内核能力机制"><span class="nav-number">17.4.</span> <span class="nav-text">13.4. 内核能力机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-其它安全特性"><span class="nav-number">17.5.</span> <span class="nav-text">13.5. 其它安全特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-6-安全总结"><span class="nav-number">17.6.</span> <span class="nav-text">13.6. 安全总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-docker-底层实现"><span class="nav-number">18.</span> <span class="nav-text">14.  docker 底层实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-1-基本架构"><span class="nav-number">18.1.</span> <span class="nav-text">14.1. 基本架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-2-命名空间"><span class="nav-number">18.2.</span> <span class="nav-text">14.2. 命名空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-1-pid-命名空间"><span class="nav-number">18.2.1.</span> <span class="nav-text">14.2.1.    pid 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-2-net-命名空间"><span class="nav-number">18.2.2.</span> <span class="nav-text">14.2.2.    net 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-3-ipc-命名空间"><span class="nav-number">18.2.3.</span> <span class="nav-text">14.2.3.    ipc 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-4-mnt-命名空间"><span class="nav-number">18.2.4.</span> <span class="nav-text">14.2.4.    mnt 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-5-uts-命名空间"><span class="nav-number">18.2.5.</span> <span class="nav-text">14.2.5.    uts 命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-6-user-命名空间"><span class="nav-number">18.2.6.</span> <span class="nav-text">14.2.6.    user 命名空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-3-控制组"><span class="nav-number">18.3.</span> <span class="nav-text">14.3. 控制组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-4-联合文件系统"><span class="nav-number">18.4.</span> <span class="nav-text">14.4. 联合文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-5-容器格式"><span class="nav-number">18.5.</span> <span class="nav-text">14.5. 容器格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-6-网络"><span class="nav-number">18.6.</span> <span class="nav-text">14.6. 网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-6-1-基本原理"><span class="nav-number">18.6.1.</span> <span class="nav-text">14.6.1.    基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-6-2-创建网络参数"><span class="nav-number">18.6.2.</span> <span class="nav-text">14.6.2.    创建网络参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-6-3-网络配置细节"><span class="nav-number">18.6.3.</span> <span class="nav-text">14.6.3.    网络配置细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-附录"><span class="nav-number">19.</span> <span class="nav-text">15.  附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#15-1-Docker-命令查询"><span class="nav-number">19.1.</span> <span class="nav-text">15.1. Docker 命令查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-1-基本语法"><span class="nav-number">19.1.1.</span> <span class="nav-text">15.1.1.    基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-2-客户端命令选项"><span class="nav-number">19.1.2.</span> <span class="nav-text">15.1.2.    客户端命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-3-dockerd-命令选项"><span class="nav-number">19.1.3.</span> <span class="nav-text">15.1.3.    dockerd 命令选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-4-客户端命令"><span class="nav-number">19.1.4.</span> <span class="nav-text">15.1.4.    客户端命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-5-一张图总结-Docker-的命令"><span class="nav-number">19.1.5.</span> <span class="nav-text">15.1.5.    一张图总结 Docker 的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-2-Docker-资源链接"><span class="nav-number">19.2.</span> <span class="nav-text">15.2. Docker 资源链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-1-官方网站"><span class="nav-number">19.2.1.</span> <span class="nav-text">15.2.1.    官方网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-2-实践参考"><span class="nav-number">19.2.2.</span> <span class="nav-text">15.2.2.    实践参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-3-技术交流"><span class="nav-number">19.2.3.</span> <span class="nav-text">15.2.3.    技术交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-4-其它"><span class="nav-number">19.2.4.</span> <span class="nav-text">15.2.4.    其它</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
       <!--/noindex-->
+      
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">浩子</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">87</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">categories</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">84</span>
-        <span class="site-state-item-name">tags</span>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
+      
 
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
 
 
+        
       </div>
     </main>
 
-    <footer class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
 
         
 
@@ -3190,25 +3406,33 @@
 
 
 
-
+        
       </div>
     </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
 
 
-<script src="/js/next-boot.js"></script>
+
+
+
 
 
 
@@ -3226,8 +3450,111 @@
 
 
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
 
   
 
