@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,CPU," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[TOC] 1、资料12345网易性能调优案例我这边的文档：http:&#x2F;&#x2F;note.youdao.com&#x2F;noteshare?id&#x3D;4e896cdc93694894bccd58174e1bda86&amp;sub&#x3D;03BA0EFE576247FBB7850155102B2A8D另外还有一篇也是fullGC相关的同事写的分享文档：https:&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线上内存CPU问题跟踪">
+<meta property="og:url" content="http://www.songwh.top/2020/04/06/%E7%BA%BF%E4%B8%8A%E5%86%85%E5%AD%98CPU%E9%97%AE%E9%A2%98%E8%B7%9F%E8%B8%AA/index.html">
+<meta property="og:site_name" content="浩子同学">
+<meta property="og:description" content="[TOC] 1、资料12345网易性能调优案例我这边的文档：http:&#x2F;&#x2F;note.youdao.com&#x2F;noteshare?id&#x3D;4e896cdc93694894bccd58174e1bda86&amp;sub&#x3D;03BA0EFE576247FBB7850155102B2A8D另外还有一篇也是fullGC相关的同事写的分享文档：https:&amp;#x2">
+<meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-06T06:08:23.135Z">
+<meta property="article:author" content="浩子">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="CPU">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2020/04/06/线上内存CPU问题跟踪/"/>
+
+
+
+
+
+  <title>线上内存CPU问题跟踪 | 浩子同学</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2020/04/06/%E7%BA%BF%E4%B8%8A%E5%86%85%E5%AD%98CPU%E9%97%AE%E9%A2%98%E8%B7%9F%E8%B8%AA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩子同学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线上内存CPU问题跟踪</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-06T00:00:00+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="1、资料"><a href="#1、资料" class="headerlink" title="1、资料"></a>1、资料</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">网易性能调优案例我这边的文档：</span><br><span class="line">http:&#x2F;&#x2F;note.youdao.com&#x2F;noteshare?id&#x3D;4e896cdc93694894bccd58174e1bda86&amp;sub&#x3D;03BA0EFE576247FBB7850155102B2A8D</span><br><span class="line"></span><br><span class="line">另外还有一篇也是fullGC相关的同事写的分享文档：</span><br><span class="line">https:&#x2F;&#x2F;note.youdao.com&#x2F;ynoteshare1&#x2F;index.html?id&#x3D;626a6d6f768e180c693911d26bca8318&amp;type&#x3D;note#&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2、工具"><a href="#2、工具" class="headerlink" title="2、工具"></a>2、工具</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;www.eclipse.org&#x2F;mat&#x2F;</span><br><span class="line">https:&#x2F;&#x2F;www.cnblogs.com&#x2F;trust-freedom&#x2F;p&#x2F;6744948.html</span><br><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;82b25cf8cfde</span><br><span class="line"></span><br><span class="line">监控工具cat参考资料 http:&#x2F;&#x2F;www.iigrowing.cn&#x2F;cat_tong_yi_jian_kong_ping_tai_jian_dan_shi_yong.html</span><br><span class="line">https:&#x2F;&#x2F;github.com&#x2F;dianping&#x2F;cat</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、-GC日志"><a href="#3、-GC日志" class="headerlink" title="3、 GC日志"></a>3、 GC日志</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">GC：</span><br><span class="line"></span><br><span class="line">表明进行了一次垃圾回收，前面没有Full修饰，表明这是一次Minor GC ,注意它不表示只GC新生代，并且现有的不管是新生代还是老年代都会STW。</span><br><span class="line"></span><br><span class="line">Allocation Failure：</span><br><span class="line"></span><br><span class="line">表明本次引起GC的原因是因为在年轻代中没有足够的空间能够存储新的数据了。</span><br><span class="line"></span><br><span class="line">ParNew：</span><br><span class="line"></span><br><span class="line">    表明本次GC发生在年轻代并且使用的是ParNew垃圾收集器。ParNew是一个Serial收集器的多线程版本，会使用多个CPU和线程完成垃圾收集工作（默认使用的线程数和CPU数相同，可以使用-XX：ParallelGCThreads参数限制）。该收集器采用复制算法回收内存，期间会停止其他工作线程，即Stop The World。</span><br><span class="line"></span><br><span class="line">367523K-&gt;1293K(410432K)：单位是KB</span><br><span class="line"></span><br><span class="line">三个参数分别为：GC前该内存区域(这里是年轻代)使用容量，GC后该内存区域使用容量，该内存区域总容量。</span><br><span class="line"></span><br><span class="line">0.0023988 secs：</span><br><span class="line"></span><br><span class="line">    该内存区域GC耗时，单位是秒</span><br><span class="line"></span><br><span class="line">522739K-&gt;156516K(1322496K)：</span><br><span class="line"></span><br><span class="line">三个参数分别为：堆区垃圾回收前的大小，堆区垃圾回收后的大小，堆区总大小。</span><br><span class="line"></span><br><span class="line">0.0025301 secs：</span><br><span class="line"></span><br><span class="line">该内存区域GC耗时，单位是秒</span><br><span class="line"></span><br><span class="line">[Times: user&#x3D;0.04 sys&#x3D;0.00, real&#x3D;0.01 secs]：</span><br><span class="line"></span><br><span class="line">    分别表示用户态耗时，内核态耗时和总耗时</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">分析下可以得出结论：</span><br><span class="line"></span><br><span class="line">    该次GC新生代减少了367523-1293&#x3D;366239K</span><br><span class="line"></span><br><span class="line">    Heap区总共减少了522739-156516&#x3D;366223K</span><br><span class="line"></span><br><span class="line">    366239 – 366223 &#x3D;17K，说明该次共有17K内存从年轻代移到了老年代，可以看出来数量并不多，说明都是生命周期短的对象，只是这种对象有很多。</span><br><span class="line"></span><br><span class="line">    我们需要的是尽量避免Full GC的发生，让对象尽可能的在年轻代就回收掉，所以这里可以稍微增加一点年轻代的大小，让那17K的数据也保存在年轻代中。</span><br></pre></td></tr></table></figure>
+
+<h1 id="4、统一监控测试"><a href="#4、统一监控测试" class="headerlink" title="4、统一监控测试"></a>4、统一监控测试</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xmx512m -server -Xmx512m -server -verbose:gc -XX:+PrintGCDetails -cp om-demo-1.0.0.jar:netty-all-4.0.24.Final.jar:log4j-1.2.14.jar:cat-client-3.0.0.jar com.study.jvm.FullGCDemo1</span><br></pre></td></tr></table></figure>
+
+<h1 id="5、jstack日志分析"><a href="#5、jstack日志分析" class="headerlink" title="5、jstack日志分析"></a>5、jstack日志分析</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">线程dump信息说明：</span><br><span class="line">elasticsearch[Native][merge][T#1] 是我们为线程起的名字</span><br><span class="line">daemon 表示线程是否是守护线程</span><br><span class="line">prio 表示我们为线程设置的优先级</span><br><span class="line">os_prio 表示的对应的操作系统线程的优先级，由于并不是所有的操作系统都支持线程优先级，所以可能会出现都置为0的情况</span><br><span class="line">tid 是java中为这个线程的id</span><br><span class="line">nid 是这个线程对应的操作系统本地线程id，每一个java线程都有一个对应的操作系统线程</span><br><span class="line">wait on condition表示当前线程处于等待状态，但是并没列出具体原因</span><br><span class="line">java.lang.Thread.State: WAITING (parking) 也是表示的处于等待状态，括号中的内容说明了导致等待的原因，例如这里的parking说明是因为调用了 LockSupport.park方法导致等待</span><br></pre></td></tr></table></figure>
+
+<h1 id="6、-堆外内存泄漏"><a href="#6、-堆外内存泄漏" class="headerlink" title="6、 堆外内存泄漏"></a>6、 堆外内存泄漏</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;gitbook.cn&#x2F;books&#x2F;5c47c4e291e0c40c7a462f05&#x2F;</span><br><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;cff037edb750</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;github.com&#x2F;gperftools&#x2F;gperftools</span><br><span class="line">下载libunwind</span><br><span class="line">wget http:&#x2F;&#x2F;ftp.twaren.net&#x2F;Unix&#x2F;NonGNU&#x2F;libunwind&#x2F;libunwind-1.1.tar.gz</span><br><span class="line">tar -xvf libunwind-1.1.tar.gz</span><br><span class="line">cd libunwind-1.1</span><br><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;tools&#x2F;libunwind&#x2F; CFLAGS&#x3D;-U_FORTRIFY_SOURCE</span><br><span class="line">make</span><br><span class="line">make install </span><br><span class="line"></span><br><span class="line"># 下载 https:&#x2F;&#x2F;github.com&#x2F;gperftools&#x2F;gperftools&#x2F;releases</span><br><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;gperftools&#x2F;gperftools&#x2F;releases&#x2F;download&#x2F;gperftools-2.7&#x2F;gperftools-2.7.tar.gz</span><br><span class="line">tar -xvf gperftools-2.7.tar.gz</span><br><span class="line">cd gperftools-2.7</span><br><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;tools&#x2F;gperftools LDFLAGS&#x3D;-L&#x2F;usr&#x2F;local&#x2F;tools&#x2F;libunwind&#x2F;lib CPPFLAGS&#x3D;-L&#x2F;usr&#x2F;local&#x2F;tools&#x2F;libunwind&#x2F;include</span><br><span class="line">make</span><br><span class="line">make install </span><br><span class="line"></span><br><span class="line"># 使用</span><br><span class="line"># 设定内存申请器</span><br><span class="line">export LD_PRELOAD&#x3D;&#x2F;usr&#x2F;local&#x2F;tools&#x2F;gperftools&#x2F;lib&#x2F;libtcmalloc.so</span><br><span class="line"># 指定内存分析结果存放路径</span><br><span class="line">mkdir &#x2F;tmp&#x2F;gperftool-heap</span><br><span class="line">export HEAPPROFILE&#x3D;&#x2F;tmp&#x2F;gperftool-heap&#x2F;heap</span><br><span class="line"></span><br><span class="line"># 结果分析</span><br><span class="line"> &#x2F;usr&#x2F;local&#x2F;tools&#x2F;gperftools&#x2F;bin&#x2F;pprof --text $JAVA_HOME&#x2F;bin&#x2F;java &#x2F;tmp&#x2F;gperftool-heap&#x2F;heap.0003.heap &gt; report.txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 调用链</span><br><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;btraceio&#x2F;btrace&#x2F;releases&#x2F;download&#x2F;v1.3.11.3&#x2F;btrace-bin-1.3.11.3.tgz</span><br><span class="line">mkdir &#x2F;usr&#x2F;local&#x2F;tools&#x2F;btrace-bin-1.3.11.3</span><br><span class="line">mv btrace-bin-1.3.11.3.tgz &#x2F;usr&#x2F;local&#x2F;tools&#x2F;btrace-bin-1.3.11.3&#x2F;btrace-bin-1.3.11.3.tgz</span><br><span class="line">cd  &#x2F;usr&#x2F;local&#x2F;tools&#x2F;btrace-bin-1.3.11.3</span><br><span class="line">tar -xvf btrace-bin-1.3.11.3.tgz</span><br><span class="line">rm -rf btrace-bin-1.3.11.3.tgz</span><br><span class="line"></span><br><span class="line">.&#x2F;btrace -cp &#x2F;usr&#x2F;local&#x2F;tools&#x2F;btrace-bin-1.3.11.3&#x2F;build&#x2F; 6358 &#x2F;tmp&#x2F;test&#x2F;TraceMethodCaller.java </span><br><span class="line">或者 jvisualVM插件Btrace</span><br></pre></td></tr></table></figure>
+
+<p>#</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/CPU/" rel="tag"><i class="fa fa-tag"></i> CPU</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/06/redislive/" rel="next" title="Redis的安装">
+                <i class="fa fa-chevron-left"></i> Redis的安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/06/redis%E5%93%A8%E5%85%B5%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA/" rel="prev" title="Redis哨兵高可用搭建">
+                Redis哨兵高可用搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、资料"><span class="nav-number">1.</span> <span class="nav-text">1、资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、工具"><span class="nav-number">2.</span> <span class="nav-text">2、工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、-GC日志"><span class="nav-number">3.</span> <span class="nav-text">3、 GC日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、统一监控测试"><span class="nav-number">4.</span> <span class="nav-text">4、统一监控测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、jstack日志分析"><span class="nav-number">5.</span> <span class="nav-text">5、jstack日志分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6、-堆外内存泄漏"><span class="nav-number">6.</span> <span class="nav-text">6、 堆外内存泄漏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
