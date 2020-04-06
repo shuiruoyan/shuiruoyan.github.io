@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,HugeGraph," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HugeGraph是百度开源的一个图数据库，其插入性能比Neo4j优秀很多，在大数据处理方面性能卓越。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HugeGraph基本操作">
+<meta property="og:url" content="http://www.songwh.top/2019/04/05/HugeGraph%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="浩子同学">
+<meta property="og:description" content="HugeGraph是百度开源的一个图数据库，其插入性能比Neo4j优秀很多，在大数据处理方面性能卓越。">
+<meta property="article:published_time" content="2019-04-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-04-05T15:48:11.947Z">
+<meta property="article:author" content="浩子">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="HugeGraph">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2019/04/05/HugeGraph基本操作/"/>
+
+
+
+
+
+  <title>HugeGraph基本操作 | 浩子同学</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2019/04/05/HugeGraph%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩子同学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HugeGraph基本操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>HugeGraph</code>是百度开源的一个图数据库，其插入性能比<code>Neo4j</code>优秀很多，在大数据处理方面性能卓越。</p>
+<a id="more"></a>
+
+<h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h2><h3 id="1-1-基本概念"><a href="#1-1-基本概念" class="headerlink" title="1.1 基本概念"></a>1.1 基本概念</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 图（Graph）：指关系图。比如：同学及朋友关系图、银行转账图等。</span><br><span class="line"><span class="number">2.</span> 顶点（Vertex）：一般指实体。比如：人、账户等。</span><br><span class="line"><span class="number">3.</span> 边（Edge）：一般指顶点之间的关系。比如：朋友关系、转账动作等。</span><br><span class="line"><span class="number">4.</span> 属性（Property）：顶点或边可以包含属性，比如：人的姓名、人的年龄、转账的时间等。</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-元数据"><a href="#1-2-元数据" class="headerlink" title="1.2 元数据"></a>1.2 元数据</h3><p>在<code>hugegraph</code>中定义了四种基本的元数据:</p>
+<ol>
+<li><code>PropertyKey</code>：属性的类型</li>
+<li><code>VertexLabel</code>：顶点的类型 </li>
+<li><code>EdgeLabel</code>：边的类型 </li>
+<li><code>IndexLabel</code>：索引的类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 他们之间的关系</span><br><span class="line">    IndexLabel </span><br><span class="line">      &#x2F;      \</span><br><span class="line">     &#x2F;        \</span><br><span class="line">    &#x2F;       EdgeLabel</span><br><span class="line">   &#x2F;           &#x2F;</span><br><span class="line">VertexLabel   &#x2F;</span><br><span class="line">      &#x2F;      &#x2F;</span><br><span class="line">     &#x2F;      &#x2F;</span><br><span class="line">   PropertyKey</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-IndexLabel，索引类型"><a href="#1-2-1-IndexLabel，索引类型" class="headerlink" title="1.2.1 IndexLabel，索引类型"></a>1.2.1 IndexLabel，索引类型</h4><p>在<code>hugeGraph</code>中可以对顶点和边增加索引，提高图数据库的查询效率，其索引方式有三种：</p>
+<ol>
+<li><code>search()</code>，全文索引；</li>
+<li><code>secondary()</code>，二级索引，可以通过属性值来快算匹配顶点和边；</li>
+<li><code>range()</code>，范围索引，可以按照属性值的范围快速匹配顶点和边。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建索引类型："personByName"，可以按“name”属性的值快速查询对应的“person”顶点 </span></span><br><span class="line">schema.indexLabel(<span class="string">"personByName"</span>) </span><br><span class="line">	.onV(<span class="string">"person"</span>) .by(<span class="string">"name"</span>) </span><br><span class="line">	.secondary() .create(); </span><br><span class="line"><span class="comment">// 创建索引类型："personByAge"，可以按“age”属性的范围快速查询对应的“person”顶点</span></span><br><span class="line">schema.indexLabel(<span class="string">"personByAge"</span>)</span><br><span class="line">	.onV(<span class="string">"person"</span>)</span><br><span class="line">	.by(<span class="string">"age"</span>)</span><br><span class="line">	.range()</span><br><span class="line">	.create();</span><br><span class="line"><span class="comment">// 创建索引类型："knowsByWeight"，可以按“weight”属性的范围快速查询对应的“knows”边</span></span><br><span class="line">schema.indexLabel(<span class="string">"knowsByWeight"</span>)</span><br><span class="line">	.onE(<span class="string">"knows"</span>)</span><br><span class="line">	.by(<span class="string">"weight"</span>)</span><br><span class="line">	.range()</span><br><span class="line">	.ifNotExist()</span><br><span class="line">	.create();</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-2-EdgeLabel，边类型"><a href="#1-2-2-EdgeLabel，边类型" class="headerlink" title="1.2.2 EdgeLabel，边类型"></a>1.2.2 EdgeLabel，边类型</h4><p>在<code>hugegraph</code>中边类型可以定义其<code>name</code>，<code>sourceLabel</code>，<code>targetLabel</code>，<code>properties</code>等等</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建边类型：人认识人"knows"，此类边由"person"指向"person" </span></span><br><span class="line">graph.schema().edgeLabel(<span class="string">"knows"</span>)</span><br><span class="line">	.sourceLabel(<span class="string">"person"</span>)</span><br><span class="line">	.targetLabel(<span class="string">"person"</span>)</span><br><span class="line">	.properties(<span class="string">"weight"</span>)</span><br><span class="line">	.create()</span><br><span class="line"><span class="comment">// 创建边类型：人创建软件"created"，此类边由"person"指向"software"</span></span><br><span class="line">graph.schema().edgeLabel(<span class="string">"created"</span>)</span><br><span class="line">	.sourceLabel(<span class="string">"person"</span>)</span><br><span class="line">	.targetLabel(<span class="string">"software"</span>)</span><br><span class="line">	.properties(<span class="string">"weight"</span>)</span><br><span class="line">	.create()</span><br><span class="line"><span class="comment">// 创建边类型：软件包含软件"contains"，此类边由"software"指向"software"</span></span><br><span class="line">graph.schema().edgeLabel(<span class="string">"contains"</span>)</span><br><span class="line">	.sourceLabel(<span class="string">"software"</span>)</span><br><span class="line">	.targetLabel(<span class="string">"software"</span>)</span><br><span class="line">	.properties(<span class="string">"weight"</span>)</span><br><span class="line">	.create()</span><br><span class="line"><span class="comment">// 创建边类型：软件定义语言"define"，此类边由"software"指向"language"</span></span><br><span class="line">graph.schema().edgeLabel(<span class="string">"define"</span>)</span><br><span class="line">	.sourceLabel(<span class="string">"software"</span>)</span><br><span class="line">	.targetLabel(<span class="string">"language"</span>)</span><br><span class="line">	.properties(<span class="string">"weight"</span>)</span><br><span class="line">	.create()</span><br><span class="line"><span class="comment">// 创建边类型：软件实现软件"implements"，此类边由"software"指向"software"</span></span><br><span class="line">graph.schema().edgeLabel(<span class="string">"implements"</span>)</span><br><span class="line">	.sourceLabel(<span class="string">"software"</span>)</span><br><span class="line">	.targetLabel(<span class="string">"software"</span>)</span><br><span class="line">	.properties(<span class="string">"weight"</span>)</span><br><span class="line">	.create()</span><br><span class="line"><span class="comment">// 创建边类型：软件支持语言"supports"，此类边由"software"指向"language"</span></span><br><span class="line">graph.schema().edgeLabel(<span class="string">"supports"</span>)</span><br><span class="line">	.sourceLabel(<span class="string">"software"</span>)</span><br><span class="line">	.targetLabel(<span class="string">"language"</span>)</span><br><span class="line">	.properties(<span class="string">"weight"</span>)</span><br><span class="line">	.create()</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-3-VertexLabel，顶点类型"><a href="#1-2-3-VertexLabel，顶点类型" class="headerlink" title="1.2.3 VertexLabel，顶点类型"></a>1.2.3 VertexLabel，顶点类型</h4><p><code>VertexLabel</code>是顶点的类型，每个顶点都有对应的<code>VertexLabel</code>，一个<code>VertexLabel</code>可以有多个具体的顶点。<code>VertexLabel</code>可以定义一类顶点的类型名称、拥有的属性、<code>ID</code>策略、是否创建按类型的索引等。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建顶点类型：人"person"，包含姓名、年龄、地址等属性，使用自定义的字符串作为ID </span></span><br><span class="line">graph.schema()</span><br><span class="line">    .vertexLabel(<span class="string">"person"</span>)</span><br><span class="line">    .properties(<span class="string">"name"</span>, <span class="string">"age"</span>, <span class="string">"addr"</span>, <span class="string">"weight"</span>)</span><br><span class="line">    .nullableKeys(<span class="string">"addr"</span>, <span class="string">"weight"</span>)</span><br><span class="line">    .useCustomizeStringId()</span><br><span class="line">    .create()</span><br><span class="line"><span class="comment">// 创建顶点类型：软件"software"，包含名称、使用语言、标签等属性，使用名称作为主键</span></span><br><span class="line">graph.schema()</span><br><span class="line">    .vertexLabel(<span class="string">"software"</span>)</span><br><span class="line">    .properties(<span class="string">"name"</span>, <span class="string">"lang"</span>, <span class="string">"tag"</span>, <span class="string">"weight"</span>)</span><br><span class="line">    .primaryKeys(<span class="string">"name"</span>)</span><br><span class="line">    .create()</span><br><span class="line"><span class="comment">// 创建顶点类型：语言"language"，包含名称、使用语言等属性，使用名称作为主键 </span></span><br><span class="line">graph.schema()</span><br><span class="line">    .vertexLabel(<span class="string">"language"</span>)</span><br><span class="line">    .properties(<span class="string">"name"</span>, <span class="string">"lang"</span>, <span class="string">"weight"</span>)</span><br><span class="line">    .primaryKeys(<span class="string">"name"</span>)</span><br><span class="line">    .create()</span><br></pre></td></tr></table></figure>
+
+<p>以<code>VertexLabel person</code>为例：</p>
+<ol>
+<li><code>vertexLabel(&quot;person&quot;)</code>表示顶点类型的名字为<code>person</code>；</li>
+<li><code>properties(&quot;name&quot;, &quot;age&quot;,&quot;addr&quot;, &quot;weight&quot;)</code>表示<code>person</code>类型的顶点包含PropertyKey<code>name</code>、<code>age</code>、<code>addr</code>和<code>weight</code>类型的属性；</li>
+<li><code>nullableKeys(&quot;addr&quot;,&quot;weight&quot;)</code>表示<code>person</code>类型的顶点可以不包含PropertyKey <code>addr</code>和<code>weight</code>类型的属性；</li>
+<li><code>useCustomizeStringId()</code>表示<code>person</code>类型的顶点使用指定的<code>String</code>类型的<code>ID</code>；</li>
+<li>默认包含<code>enableLabelIndex(true)</code>，表示可以按类型查找<code>person</code>类型的顶点。</li>
+</ol>
+<p>定义<code>VertexLable</code>可用的完整方法说明：</p>
+<ol>
+<li>名字是字符串，<code>vertexLabel(String)</code>；</li>
+<li>包含的属性，<code>properties(String...)</code>，必须是系统中已经创建过的PropertyKey的名字；</li>
+<li>可空属性，<code>nullableKeys(String...)</code>，必须是properties的子集。</li>
+</ol>
+<p>ID策略</p>
+<ol>
+<li><code>useAutomaticId()</code>，自动<code>ID</code>策略，该类型的每个顶点会在创建时由系统提供一个数字<code>ID</code>;</li>
+<li><code>usePrimaryKeyId()</code>，主键<code>ID</code>策略，该类型的顶点的<code>ID</code>是通过拼接<code>primaryKeys(String...)</code>中的多个属性的值组成;</li>
+<li><code>useCustomizeStringId()</code>，指定<code>String ID</code>策略，该类型的顶点在创建时使用指定的<code>String</code>作为顶点<code>ID</code>;</li>
+<li><code>useCustomizeNumberId()</code>，指定<code>Number ID</code>策略，该类型的顶点在创建时使用指定的<code>Number</code>作为顶点<code>ID</code>。</li>
+</ol>
+<p>类型索引，<code>enableLabelIndex(Boolean)</code>，是否创建类型索引，如果创建了类型索引，就可以高效按类型查询顶点。</p>
+<h4 id="1-2-4-PropertyKey，属性类型"><a href="#1-2-4-PropertyKey，属性类型" class="headerlink" title="1.2.4 PropertyKey，属性类型"></a>1.2.4 PropertyKey，属性类型</h4><p><code>PropertyKey</code>定义属性的类型，包括名字、类型、基数等。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建姓名属性，文本类型</span><br><span class="line">graph.schema().propertyKey(&quot;name&quot;).asText().create()</span><br><span class="line">&#x2F;&#x2F; 创建年龄属性，整数类型 graph.schema().propertyKey(&quot;addr&quot;).asText().create()</span><br><span class="line">&#x2F;&#x2F; 创建地址属性，文本类型 graph.schema().propertyKey(&quot;lang&quot;).asText().create()</span><br><span class="line">&#x2F;&#x2F; 创建语言属性，文本类型 graph.schema().propertyKey(&quot;tag&quot;).asText().create()</span><br><span class="line">&#x2F;&#x2F; 创建标签属性，文本类型 graph.schema().propertyKey(&quot;weight&quot;).asFloat().create()</span><br><span class="line">&#x2F;&#x2F; 创建权重属性，浮点类型</span><br><span class="line">graph.schema().propertyKey(&quot;age&quot;).asInt().create()</span><br></pre></td></tr></table></figure>
+
+<p>以<code>PropertyKey name</code>为例：</p>
+<ol>
+<li><code>propertyKey(&quot;name&quot;)</code>表示属性的名字为“name”</li>
+<li><code>asText()</code>表示属性的类型为文本</li>
+<li><code>valueSingle()</code>表示属性的基数为single，即单值类型</li>
+</ol>
+<p>定义<code>PropertyKey</code>可用的完整方法说明：</p>
+<ol>
+<li>名字是字符串，<code>propertyKey(String)</code></li>
+<li>类型包括：<br><code>asText()</code>，字符串类型，是默认值<br><code>asInt()</code>，整型<br><code>asDate()</code>，日期类型<br><code>asUuid()</code>，UUID类型<br><code>asBoolean()</code>，布尔型<br><code>asByte()</code>，字节型<br><code>asBlob()</code>，字节数组型<br><code>asDouble()</code>，双精度浮点型<br><code>asFloat()</code>，单精度浮点型<br><code>asLong()</code>，长整型</li>
+<li>基数包括：<br> <code>valueSingle()</code>，值是单值类型，是默认值<br> <code>valueList()</code>，值是列表类型<br> <code>valueSet()</code>，值是集合类型</li>
+</ol>
+<h2 id="2-图数据"><a href="#2-图数据" class="headerlink" title="2.图数据"></a>2.图数据</h2><p><code>HugeGraph</code>中的图数据包括：</p>
+<ol>
+<li>顶点及其属性</li>
+<li>边及其属性</li>
+<li>索引数据</li>
+</ol>
+<p>属性不可单独存在，必须依附于顶点或者边，索引数据用户不可见，属于系统内部数据，用于加速按属性查询。</p>
+<h3 id="2-1-vertex，顶点"><a href="#2-1-vertex，顶点" class="headerlink" title="2.1 vertex，顶点"></a>2.1 vertex，顶点</h3><p><code>Vertex</code>是一个顶点，往往对应现实中的一个实体，比如一个人或者一本书等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加3个作者顶点</span></span><br><span class="line">javeme = graph.addVertex(T.label, <span class="string">"person"</span>, T.id, <span class="string">"javeme"</span>, <span class="string">"name"</span>, <span class="string">"Jermy Li"</span>, <span class="string">"age"</span>, <span class="number">29</span>, <span class="string">"addr"</span>, <span class="string">"Beijing"</span>, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line">zhoney = graph.addVertex(T.label, <span class="string">"person"</span>, T.id, <span class="string">"zhoney"</span>, <span class="string">"name"</span>, <span class="string">"Zhoney Zhang"</span>, <span class="string">"age"</span>, <span class="number">29</span>, <span class="string">"addr"</span>, <span class="string">"Beijing"</span>, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line">linary = graph.addVertex(T.label, <span class="string">"person"</span>, T.id, <span class="string">"linary"</span>, <span class="string">"name"</span>, <span class="string">"Linary Li"</span>, <span class="string">"age"</span>, <span class="number">28</span>, <span class="string">"addr"</span>, <span class="string">"Wuhan. Hubei"</span>, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加HugeGraph顶点</span></span><br><span class="line">hugegraph = graph.addVertex(T.label, <span class="string">"software"</span>, <span class="string">"name"</span>, <span class="string">"HugeGraph"</span>, <span class="string">"lang"</span>, <span class="string">"java"</span>, <span class="string">"tag"</span>, <span class="string">"Graph Database"</span>, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>以顶点<code>javeme</code>为例说明：</p>
+<ol>
+<li><code>Label</code>是<code>VertexLabel person</code></li>
+<li><code>ID</code>是<code>javeme</code>，<code>VertexLabel  person</code>的<code>ID</code>策略是<code>useCustomizeStringId()</code>，所以可以使用指定的字符串”javeme”作为顶点<code>ID</code></li>
+<li>包含的属性及其值是<code>{“name”: “Jermy Li”, “age”: 29, “addr”: “Beijing”, “weight”: 1}</code></li>
+</ol>
+<p><code>Vertex</code>有三部分组成：</p>
+<ol>
+<li><code>Label</code>，顶点的类型，即某个<code>VertexLabel</code></li>
+<li><code>ID</code>，每个顶点的唯一标识，<code>ID</code>的类型根据顶点的<code>VertexLabel</code>的ID策略决定（可参见<code>VertexLabel</code>部分）</li>
+<li><code>Properties</code>，顶点的属性，属性的数目和种类由<code>VertexLabel</code>限定，包括哪些可以为空等；属性的值由<code>PropertyKey</code>限定</li>
+</ol>
+<blockquote>
+<p>由于Vertex依赖于其所属的VertexLabel，所以创建Vertex之前，必须保证对应的VertexLabel已经创建完成</p>
+</blockquote>
+<h3 id="2-1-Edge，顶点"><a href="#2-1-Edge，顶点" class="headerlink" title="2.1 Edge，顶点"></a>2.1 Edge，顶点</h3><p><code>Edge</code>是一条边，往往代表现实中的一种关系或者动作，比如包含、属于或者阅读等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加作者创建HugeGraph的边</span></span><br><span class="line">javeme.addEdge(<span class="string">"created"</span>, hugegraph, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line">zhoney.addEdge(<span class="string">"created"</span>, hugegraph, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line">linary.addEdge(<span class="string">"created"</span>, hugegraph, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加作者之间的关系边</span></span><br><span class="line">javeme.addEdge(<span class="string">"knows"</span>, zhoney, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line">javeme.addEdge(<span class="string">"knows"</span>, linary, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加HugeGraph实现TinkerPop的边</span></span><br><span class="line">hugegraph.addEdge(<span class="string">"implements"</span>, tinkerpop, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br><span class="line"><span class="comment">// 添加HugeGraph支持Gremlin的边</span></span><br><span class="line">hugegraph.addEdge(<span class="string">"supports"</span>, gremlin, <span class="string">"weight"</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>以边<code>javeme&gt;created&gt;&gt;hugegraph</code>为例（上述例子中的第一条边）：</p>
+<ol>
+<li>边的出发顶点<code>source vertex</code>，<code>VertexLabel person</code>类型的顶点<code>javeme</code>；</li>
+<li>边的目标顶点<code>target vertex</code>，VertexLabel software<code>enter code here</code>类型的顶点<code>hugegraph</code>；</li>
+<li>边的类型<code>label</code>，<code>EdgeLabel created</code> 边的属性<code>properties， {“weight”: 1}</code>。</li>
+</ol>
+<p>边有五部分组成：</p>
+<ol>
+<li><code>Label</code>，边的类型，即某个<code>EdgeLabel</code></li>
+<li><code>Source Vertex</code>，边的源顶点或者出发顶点，必须是<code>EdgeLabel</code>的<code>sourceLabel(String)</code>所指定的<code>VertexLabel</code>类型的顶点</li>
+<li><code>Target Vertex</code>，边的目标顶点或者达到顶点，必须是<code>EdgeLabel</code>的<code>targetLabel(String)</code>所指定的<code>VertexLabel</code>类型的顶点</li>
+<li><code>Properties</code>，边的属性，属性的数目和种类由<code>EdgeLabel</code>限定，包括哪些属性可以为空；属性的值由属性对应的<code>PropertyKey</code>限定</li>
+<li><code>Id</code>，边的唯一标识，边的<code>ID</code>是由<code>Source Vertex</code>、<code>Target Vertex</code>、<code>Label</code>和<code>sortKeys</code>(如果有)拼接而成<ul>
+<li><code>EdgeLabel</code>为<code>singleTime()</code>时，ID格式为<code>sourceVertexId&gt;label&gt;&gt;targetLabelId</code></li>
+<li><code>EdgeLabel</code>为<code>multiTimes()</code>时，ID格式为<code>sourceVertexId&gt;label&gt;sortKeys&gt;targetLabelId</code></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/HugeGraph/" rel="tag"><i class="fa fa-tag"></i> HugeGraph</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/%E3%80%8A%E6%9C%88%E4%BA%AE%E4%B8%8E%E5%85%AD%E4%BE%BF%E5%A3%AB%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="《月亮与六便士》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《月亮与六便士》读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/15/Java%E4%B8%AD%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="prev" title="Java中笛卡尔的实现">
+                Java中笛卡尔的实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基础知识"><span class="nav-number">1.</span> <span class="nav-text">1. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-元数据"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 元数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-IndexLabel，索引类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 IndexLabel，索引类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-EdgeLabel，边类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 EdgeLabel，边类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-VertexLabel，顶点类型"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 VertexLabel，顶点类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-PropertyKey，属性类型"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4 PropertyKey，属性类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-图数据"><span class="nav-number">2.</span> <span class="nav-text">2.图数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-vertex，顶点"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 vertex，顶点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Edge，顶点"><span class="nav-number">2.2.</span> <span class="nav-text">2.1 Edge，顶点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
