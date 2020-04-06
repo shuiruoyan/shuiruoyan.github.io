@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			th {
+				background-color: darkgrey;
+			}
+			.cell,
+			input[class="inputtext"] {
+				width: 200px;
+			}
+			#tab {
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">
+			function del(obj) {
+				obj.parentNode.parentNode.remove();
+			}
+			function add() {
+				var rows = document.getElementsByClassName("row");// 获取当前表哥的所有row
+				var cols = document.getElementsByTagName("th");// 获取表格的宽度
+				var tab = document.getElementById("tab");// 获取tab对象
+				var newRow = tab.insertRow(rows.length);// 向tab表格中插入一行在rows。length的位置
+				newRow.className = "row";// 新插入的行归入row类
+				// 利用for循环创建4个单元格
+				for(var i = 0; i < cols.length; i++) {
+					var cell = newRow.insertCell();// 新建一个单元格
+					cell.className = "cell";// 将新建的单元格归入cell类中
+					if(i == cols.length - 1) {
+						// 如果是最后一个单元格则会向该单元格中添加一个删除按钮
+						var btDel = document.createElement("input");// 新建一个input标签对象
+						btDel.type = "button";// 设置为按钮
+						btDel.value = "删除";// 内容为“删除”
+						// 此处是利用函数绑定del()函数
+						btDel.onclick = function inputdel() {
+							del(this);
+						}
+						cell.appendChild(btDel);// 将删除按钮添加进单元格
+						continue;
+					}
+					var inputText = document.createElement("input");
+					inputText.type = "text";
+					inputText.className = "inputtext";
+					cell.appendChild(inputText);
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<table id="tab" border="1" cellspacing="0">
+			<tr class="row">
+				<th class="cell">商品名称</th>
+				<th class="cell">数量</th>
+				<th class="cell">单价</th>
+				<th class="cell">操作</th>
+			</tr>
+			<tr class="row">
+				<td class="cell"><input class="inputtext" type="text" /></td>
+				<td class="cell"><input class="inputtext" type="text" /></td>
+				<td class="cell"><input class="inputtext" type="text" /></td>
+				<td class="cell"><input type="button" value="删除" onclick="del(this)" /></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="button" name="" id="btnAdd" value="添加一行" onclick="add()" />
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

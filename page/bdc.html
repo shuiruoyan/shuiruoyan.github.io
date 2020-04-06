@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<title>单词默写系统</title>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: snow;
+		}
+		
+		#main {
+			margin: auto;
+			max-width: 800px;
+			background-color: whitesmoke;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		
+		#hint {
+			font-size: 18px;
+			margin-top: 40px;
+			margin: auto;
+			width: 80%;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		
+		#text {
+			width: 80%;
+			height: 30px;
+			font-size: 15px;
+			border-radius: 5px;
+			padding-left: 10px;
+			padding-right: 10px;
+			border: solid blue 1px inset;
+			text-align: center;
+		}
+		
+		#text:hover,
+		#text:focus {
+			box-shadow: 0px 0px 3px blue;
+		}
+		
+		#ts {
+			width: 80%;
+			background: dodgerblue;
+			border: solid dodgerblue 1px;
+			border-radius: 5px;
+			color: white;
+			text-align: justify;
+			margin: auto;
+			padding-left: 10px;
+			padding-right: 10px;
+			font-size: 14px;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+
+	<script type="text/javascript">
+		var words = new Array();
+		var words_index = 0;
+		var isOK = false;
+		$(function() {
+			var rightcount = 0;
+			var allcount = 0;
+			var cookies = document.cookie;
+			var cookie = cookies.split(";")
+			for(var i = 0; i < cookie.length; i++) {
+				var key = cookie[i].split("=")[0].trim();
+				if("rightcount" == key) {
+					rightcount = cookie[i].split("=")[1].trim();
+				} else if("allcount" == key) {
+					allcount = cookie[i].split("=")[1].trim();
+				}
+			}
+
+			function randomsort(a, b) {
+				return Math.random() > .5 ? -1 : 1;
+			}
+			$.get("xml/words.xml", function(data) {
+				$(data).find("item").each(function(index) {
+					debugger;
+					var name = $(this).find("word").html();
+					var trans = $(this).find("trans").html();
+					var notice = trans.substring(9, trans.length - 3);
+					words[index] = {
+						'name': name,
+						'notice': notice
+					};
+				})
+				words.sort(randomsort);
+				$("#btn").trigger("click");
+			})
+			var value_index = 0;
+			$("#btn").click(function() {
+				isOK = false;
+				value_index = words_index;
+				$("#hint").html(words[words_index++].notice);
+				if(words_index == words.length) {
+					words_index = 0;
+				}
+				var date = new Date();
+				date.setTime(date.getTime() + 1000 * 60 * 60 * 24 * 30);
+				document.cookie = "allcount=" + (++allcount) + ";expires=" + date.toGMTString();
+				$("#text").val("");
+				$("#notice").html("");
+				$("#result").html("" + rightcount + "/" + allcount);
+			})
+			$("#text").bind("input", function(e) {
+				var value = words[value_index].name.trim();
+				value = value.toLowerCase()
+				//debugger;
+				if($("#text").val().toLowerCase().trim() == value) {
+					isOK = true;
+					$("#notice").html("<font color='green'>输入正确</font>");
+				} else {
+					isOK = false;
+					$("#notice").html("<font color='red'>输入错误</font>");
+				}
+			})
+			$("#text").bind("keydown", function(e) {
+				if(e.keyCode == 13) {
+					if(isOK == true) {
+						var date = new Date();
+						date.setTime(date.getTime() + 1000 * 60 * 60 * 24 * 30);
+						document.cookie = "rightcount=" + (++rightcount) + ";expires=" + date.toGMTString();
+						$("#btn").trigger("click");
+					} else {
+						$("#notice").html("<font color='red'>请输入正确的单词</font>");
+					}
+				}
+			})
+			$("#help").bind("click", function() {
+				$("#notice").html(words[value_index].name);
+			})
+		})
+	</script>
+
+	<body>
+		<div id="main_frame">
+			<div id="main" style="text-align: center; width: 100%;">
+				<p id="ts">
+					Notice：按照提示输入对应单词，当提示输入正确后按Enter键进入下一单词。
+					<b><a href="http://songwh.top/2018/10/27/%E5%88%A9%E7%94%A8JQuery%E5%AE%9E%E7%8E%B0%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E7%9A%84%E8%83%8C%E5%8D%95%E8%AF%8D%E7%B3%BB%E7%BB%9F/">源码说明点这里</a></b>
+				</p>
+				<p id="hint"></p>
+				<div style="width: 80%;margin: auto; margin-bottom: 10px;">
+					<span id="notice" style="float: left;"></span>
+					<a style="float: right;" id="result"></a><br />
+				</div>
+				<input type="text" id="text">
+				<p></p>
+				<a type="button" name="" id="btn" width="40%" href="#">更新</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a type="button" id="help" width="40%" href="#">帮助</a>
+			</div>
+		</div>
+	</body>
+
+</html>

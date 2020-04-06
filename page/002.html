@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>复选框的全选问题</title>
+		<script type="text/javascript">
+			function selAll() {
+				var cbAll = document.getElementsByName("phone");
+				var all = document.getElementById("all");
+				for(var i = 0; i < cbAll.length; i++) {
+					if(all.checked && !cbAll[i].checked) {
+						cbAll[i].checked = true;
+					}
+					if(!all.checked && cbAll[i].checked) {
+						cbAll[i].checked = false;
+					}
+				}
+			}
+
+			function changeState() {
+				var cbAll = document.getElementsByName("phone");
+				var all = document.getElementById("all");
+				var flag = 0;
+				for(var i = 0; i < cbAll.length; i++) {
+					if(cbAll[i].checked) {
+						flag++;
+					}
+				}
+				if(flag == cbAll.length) {
+					all.checked = true;
+				} else {
+					all.checked = false;
+				}
+			}
+
+			function delChoose() {
+				var cbAll = document.getElementsByName("phone");
+				var all = document.getElementById("all");
+
+				for(var i = 0; i < cbAll.length; i++) {
+					if(cbAll[i].checked) {
+						tb.deleteRow(i + 1);
+						i--;
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<table id="tb" border="1" cellspacing="0" cellpadding="" style="margin: auto;width: 500px;">
+			<tr>
+				<th><input type="checkbox" id="all" onclick="selAll()" />全选</th>
+				<th>产品名称</th>
+				<th>价格(元)</th>
+				<th>数量</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="phone" onclick="changeState()" />1</td>
+				<td>诺基亚N85手机</td>
+				<td>2589</td>
+				<td>6</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="phone" onclick="changeState()" />2</td>
+				<td>佳能XUS95ISY教码相机</td>
+				<td>1865</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="phone" onclick="changeState()" />3</td>
+				<td>戴尔新版SK8115键盘</td>
+				<td>60</td>
+				<td>56</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="phone" onclick="changeState()" />4</td>
+				<td>联想折叠式笔记本电脑桌</td>
+				<td>59</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="phone" onclick="changeState()" />5</td>
+				<td>康佳32英寸液晶电视</td>
+				<td>2945</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="phone" onclick="changeState()" />6</td>
+				<td>九阳JVDX-78D五谷系列豆浆机</td>
+				<td>299</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="button" value="删除选中产品" onclick="delChoose()" />
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

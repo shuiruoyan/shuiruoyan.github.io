@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#showBox {
+				margin: 0 auto;
+				width: 800px;
+				/*border: 1px solid red;*/
+			}
+			
+			#pre,
+			#next {
+				width: 10%;
+				height: 100px;
+				background-color: darkgrey;
+				border: 1px solid blue;
+			}
+			
+			/*#pre{
+				float: left;
+			}
+			#next{
+				float: right;
+			}*/
+			
+			#pic {
+				/*float: left;*/
+				margin-top: 10px;
+				width: 100%;
+				box-shadow: 0px 0px 10px 0px;
+				border-radius: 10px;
+			}
+			#line{
+				margin: 10px 0px 10px 0px;
+				border: 1px lightgrey solid;
+				width: 100%;
+			}
+		</style>
+		<script type="text/javascript">
+			var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg",
+				"005.jpg", "006.jpg", "007.jpg", "008.jpg", "009.jpg", "010.jpg", "011.jpg"
+			];
+
+			function getIndex() {
+				var img = document.getElementById("pic");
+				var src = img.src;
+				src = src.split("/");
+				src = src[src.length - 1];
+				console.log(src);
+				return images.indexOf(src);
+			}
+
+			function prePic() {
+				var img = document.getElementById("pic");
+				var index = getIndex();
+				if(index == 0) {
+					img.src = "img/" + images[images.length - 1];
+				} else {
+					img.src = "img/" + images[index - 1];
+				}
+
+			}
+
+			function nextPic() {
+				var img = document.getElementById("pic");
+				var index = getIndex();
+				if(index == images.length - 1) {
+					img.src = "img/" + images[0];
+				} else {
+					img.src = "img/" + images[index + 1];
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="showBox">
+			<input type="button" value="上一个" onclick="prePic()" />
+			<input type="button" value="下一个" onclick="nextPic()" /><br />
+			<div id="line"></div>
+			<img id="pic" src="img/001.jpg" style="background-size: contain" />
+			
+		</div>
+	</body>
+
+</html>

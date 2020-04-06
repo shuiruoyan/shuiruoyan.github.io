@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+	作者：songwh
+	时间：2018-09-26
+	描述：这是一个计算器
+-->
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>计算器</title>
+		<style type="text/css">
+			.btn {
+				width: 50px;
+				height: 50px;
+				font-size: 24px;
+				/*background-image:url(img/baidu.gif);*/
+				/*background-color: snow;*/
+			}
+			
+			#screen {
+				height: 40px;
+				width: 230px;
+				background-color: lightgrey;
+				font-size: 30px;
+				text-align: right;
+			}
+		</style>
+
+		<script type="text/javascript">
+			var lastValue;
+			var opt;
+
+			function myClear() {
+				debugger;
+				lastValue = 0;
+				opt = "";
+				var screen = document.getElementById("screen");
+				screen.value = 0;
+			}
+
+			function btn(obj) {
+				screen = document.getElementById("screen");
+				if(obj.value == "+" || obj.value == "-" || obj.value == "x" || obj.value == "/") {
+					lastValue = screen.value;
+					screen.value = 0;
+					opt = obj.value;
+				} else if(obj.value == "=") {
+					if(opt == "+") {
+						screen.value = parseInt(lastValue) + parseInt(screen.value);
+					} else if(opt == "-") {
+						screen.value = lastValue - screen.value;
+					} else if(opt == "x") {
+						screen.value = lastValue * screen.value;
+					} else if(opt == "/") {
+						screen.value = lastValue / screen.value;
+					}
+				} else {
+					if(screen.value != 0) {
+						screen.value = parseInt(screen.value) + obj.value;
+					} else {
+						screen.value = obj.value;
+					}
+
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<p></p>
+		<table border="10" cellspacing="10" cellpadding="0" align="center">
+			<tr>
+				<th colspan="4" align="right">
+					<input id="screen" type="text" value="0" disabled="disabled" />
+				</th>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="7" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="8" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="9" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="+" onclick="btn(this)" /></td>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="3" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="4" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="5" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="-" onclick="btn(this)" /></td>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="1" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="2" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="3" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="x" onclick="btn(this)" /></td>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="0" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="C" onclick="myClear()" /></td>
+				<td><input class="btn" type="button" value="=" onclick="btn(this)" /></td>
+				<td><input class="btn" type="button" value="/" onclick="btn(this)" /></td>
+			</tr>
+		</table>
+	</body>
+
+</html>

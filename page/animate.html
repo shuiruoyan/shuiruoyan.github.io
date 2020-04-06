@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>动画演示</title>
+	</head>
+	<style type="text/css">
+		#img{
+			display: none;
+		}
+	</style>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 显示与隐藏
+			$("#btn1").click(function(){
+				$("#img").toggle(500);
+			})
+			// 上滑与下滑
+			$("#btn2").click(function(){
+				$("#img").slideToggle(500);
+			})
+			// 淡入淡出
+			$("#btn3").click(function(){
+				$("#img").fadeToggle(500);
+			})
+		})
+	</script>
+	<body>
+		<input type="button" name="" id="btn1" value="show/hide" />
+		<input type="button" name="" id="btn2" value="slideUp/slideDown" />
+		<input type="button" name="" id="btn3" value="fadeIn/fadeOut" /><br />
+		<p></p>
+		<img src="img/003.jpg" width="320px" id="img"/>
+	</body>
+</html>
