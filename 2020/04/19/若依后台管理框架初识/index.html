@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="若依后台管理框架 若依后台管理框架是一套完整的前后台综合框架，包括前台页面和后台Java，默认支持一常用的用户、角色、部门、岗位、菜单、权限、监控、定时任务等功能，还有强大的代码生成器，可以根据后台数据库表结构自动生成前后台代码。 1. 什么是若依后台管理1.1 若依后台管理系统简介若依后台管理框架是一套完整的前后台综合框架，使用到诸如SpringBoot、Mybatis、Druid、thtmel">
+<meta name="description" content="若依后台管理框架 若依后台管理框架是一套完整的前后台综合框架，包括前台页面和后台Java，默认支持一常用的用户、角色、部门、岗位、菜单、权限、监控、定时任务等功能，还有强大的代码生成器，可以根据后台数据库表结构自动生成前后台代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="若依后台管理框架初识">
 <meta property="og:url" content="http://www.songwh.top/2020/04/19/%E8%8B%A5%E4%BE%9D%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%E5%88%9D%E8%AF%86/index.html">
 <meta property="og:site_name" content="浩子同学">
-<meta property="og:description" content="若依后台管理框架 若依后台管理框架是一套完整的前后台综合框架，包括前台页面和后台Java，默认支持一常用的用户、角色、部门、岗位、菜单、权限、监控、定时任务等功能，还有强大的代码生成器，可以根据后台数据库表结构自动生成前后台代码。 1. 什么是若依后台管理1.1 若依后台管理系统简介若依后台管理框架是一套完整的前后台综合框架，使用到诸如SpringBoot、Mybatis、Druid、thtmel">
+<meta property="og:description" content="若依后台管理框架 若依后台管理框架是一套完整的前后台综合框架，包括前台页面和后台Java，默认支持一常用的用户、角色、部门、岗位、菜单、权限、监控、定时任务等功能，还有强大的代码生成器，可以根据后台数据库表结构自动生成前后台代码。">
 <meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419200955.png">
 <meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202356.png">
 <meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202526.png">
@@ -101,7 +101,7 @@
 <meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419211720.png">
 <meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419212033.png">
 <meta property="article:published_time" content="2020-04-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-19T13:22:56.008Z">
+<meta property="article:modified_time" content="2020-04-19T13:32:58.698Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="若依">
@@ -350,21 +350,24 @@
       
         <h1 id="若依后台管理框架"><a href="#若依后台管理框架" class="headerlink" title="若依后台管理框架"></a>若依后台管理框架</h1><p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419200955.png" alt="若依后台管理界面"></p>
 <p>若依后台管理框架是一套完整的前后台综合框架，包括前台页面和后台<code>Java</code>，默认支持一常用的用户、角色、部门、岗位、菜单、权限、监控、定时任务等功能，还有强大的代码生成器，可以根据后台数据库表结构自动生成前后台代码。</p>
+<a id="more"></a>
+
 <h3 id="1-什么是若依后台管理"><a href="#1-什么是若依后台管理" class="headerlink" title="1. 什么是若依后台管理"></a>1. 什么是若依后台管理</h3><h4 id="1-1-若依后台管理系统简介"><a href="#1-1-若依后台管理系统简介" class="headerlink" title="1.1 若依后台管理系统简介"></a>1.1 若依后台管理系统简介</h4><p>若依后台管理框架是一套完整的前后台综合框架，使用到诸如<code>SpringBoot</code>、<code>Mybatis</code>、<code>Druid</code>、<code>thtmeleaf</code>、<code>shiro</code>等等技术，支持前后端分析，具有基础功能完成，上手快速，扩展新功能简单等等优点。</p>
 <p>若依官网：<a href="http://ruoyi.vip/" target="_blank" rel="noopener">http://ruoyi.vip/</a></p>
 <p>若依文档：<a href="http://doc.ruoyi.vip/" target="_blank" rel="noopener">http://doc.ruoyi.vip/</a></p>
 <h4 id="1-2-安装教程"><a href="#1-2-安装教程" class="headerlink" title="1.2 安装教程"></a>1.2 安装教程</h4><p>开始若依后台管理框架只需要简单的三步即可：</p>
 <ol>
-<li><p>克隆<a href="https://gitee.com/y_project/RuoYi" target="_blank" rel="noopener">若依官方代码库</a>；</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202356.png" alt="若依代码库"></p>
-</li>
-<li><p>初始化MySQL数据库脚本；</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202526.png" alt="若依代码中的SQL脚本"></p>
-</li>
-<li><p>修改数据库连接信息。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202638.png" alt="若依数据库连接配置">1.3 代码结构</p>
-</li>
+<li>克隆<a href="https://gitee.com/y_project/RuoYi" target="_blank" rel="noopener">若依官方代码库</a>；</li>
 </ol>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202356.png" alt="若依代码库"></p>
+<ol start="2">
+<li>初始化MySQL数据库脚本；</li>
+</ol>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202526.png" alt="若依代码中的SQL脚本"></p>
+<ol start="3">
+<li>修改数据库连接信息。</li>
+</ol>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419202638.png" alt="若依数据库连接配置">1.3 代码结构</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">com.ruoyi     </span><br><span class="line">├── common            &#x2F;&#x2F; 工具类</span><br><span class="line">│       └── annotation                    &#x2F;&#x2F; 自定义注解</span><br><span class="line">│       └── config                        &#x2F;&#x2F; 全局配置</span><br><span class="line">│       └── constant                      &#x2F;&#x2F; 通用常量</span><br><span class="line">│       └── core                          &#x2F;&#x2F; 核心控制</span><br><span class="line">│       └── enums                         &#x2F;&#x2F; 通用枚举</span><br><span class="line">│       └── exception                     &#x2F;&#x2F; 通用异常</span><br><span class="line">│       └── json                          &#x2F;&#x2F; JSON数据处理</span><br><span class="line">│       └── utils                         &#x2F;&#x2F; 通用类处理</span><br><span class="line">│       └── xss                           &#x2F;&#x2F; XSS过滤处理</span><br><span class="line">├── framework         &#x2F;&#x2F; 框架核心</span><br><span class="line">│       └── aspectj                       &#x2F;&#x2F; 注解实现</span><br><span class="line">│       └── config                        &#x2F;&#x2F; 系统配置</span><br><span class="line">│       └── datasource                    &#x2F;&#x2F; 数据权限</span><br><span class="line">│       └── manager                       &#x2F;&#x2F; 异步处理</span><br><span class="line">│       └── shiro                         &#x2F;&#x2F; 权限控制</span><br><span class="line">│       └── util                          &#x2F;&#x2F; 通用工具</span><br><span class="line">│       └── web                           &#x2F;&#x2F; 前端控制</span><br><span class="line">├── ruoyi-generator   &#x2F;&#x2F; 代码生成（可移除）</span><br><span class="line">├── ruoyi-quartz      &#x2F;&#x2F; 定时任务（可移除）</span><br><span class="line">├── ruoyi-system      &#x2F;&#x2F; 系统代码</span><br><span class="line">├── ruoyi-admin       &#x2F;&#x2F; 后台服务，启动类所在模块</span><br><span class="line">├── ruoyi-xxxxxx      &#x2F;&#x2F; 其他模块</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-4-系统启动"><a href="#1-4-系统启动" class="headerlink" title="1.4 系统启动"></a>1.4 系统启动</h4><p>若依后台管理系统是基于<code>SpringBoot</code>，其启动类<code>RuoYiApplication</code>为与<code>ruoyi-admin</code>模块中，在跑完数据库脚本修改数据库连接信息后这，直接跑<code>RuoYiApplication</code>里面的<code>main</code>方法即可启动若依。</p>
@@ -384,12 +387,11 @@
 <p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419204401.png" alt="修改字段信息"></p>
 <p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419204417.png" alt="修改生成信息"></p>
 <ol start="3">
-<li><p>点击生成代码，下载生成代码zip文件。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419204733.png" alt="自动生成代码结构"></p>
-<ol start="4">
-<li>将自动生成的<code>java</code>和<code>html</code>文件添加进自定义的模块中，这其中可能会需要修改包路径。</li>
+<li>点击生成代码，下载生成代码zip文件。</li>
 </ol>
-</li>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419204733.png" alt="自动生成代码结构"></p>
+<ol start="3">
+<li>将自动生成的<code>java</code>和<code>html</code>文件添加进自定义的模块中，这其中可能会需要修改包路径。</li>
 </ol>
 <h4 id="2-3-必要的配置修改"><a href="#2-3-必要的配置修改" class="headerlink" title="2.3 必要的配置修改"></a>2.3 必要的配置修改</h4><p>如果自定一的代码中有自定义包路径，那么就需要修改包扫描和<code>mapper</code>扫描路径。</p>
 <ol>
@@ -403,10 +405,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>(exclude = &#123;DataSourceAutoConfiguration<span class="class">.<span class="keyword">class</span>&#125;, <span class="title">scanBasePackages</span> </span>= &#123;<span class="string">"com.songwh.*"</span>, <span class="string">"com.ruoyi.*"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuoYiApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(RuoYiApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
-<li><p>执行自动生成的脚本</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419205614.png" alt="自动生成脚本位置"></p>
-</li>
+<li>执行自动生成的脚本</li>
 </ol>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419205614.png" alt="自动生成脚本位置"></p>
 <h4 id="2-4-修改菜单和权限"><a href="#2-4-修改菜单和权限" class="headerlink" title="2.4 修改菜单和权限"></a>2.4 修改菜单和权限</h4><p>在执行玩自动生成的脚本后，会在后台增加新增功能的菜单，但是这些菜单的位置可能不符合自己的要求，这就需要自己在后台的菜单管理界面修改权限码菜单层级等功能。</p>
 <p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/picgo/20200419205836.png" alt="菜单修改"></p>
 <h3 id="3-如何集成Mybatis-plus"><a href="#3-如何集成Mybatis-plus" class="headerlink" title="3. 如何集成Mybatis plus"></a>3. 如何集成<code>Mybatis plus</code></h3><h4 id="3-1-引入Mybatis-plus坐标"><a href="#3-1-引入Mybatis-plus坐标" class="headerlink" title="3.1 引入Mybatis plus坐标"></a>3.1 引入<code>Mybatis plus</code>坐标</h4><ol>
