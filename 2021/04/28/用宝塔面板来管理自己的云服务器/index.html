@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,linux,宝塔面板," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="每次需要管理我的阿里云服务器上面运行的应用时，都需要通过SSH登录上服务器，然后通过命令行的形式执行我的SpringBoot服务，查看服务器的执行情况也是通过Linux命令，有时候我需要在手机上面看系统的状况时就特别的不方便，刚好昨天在网络上面看到一个开源的服务管理面板——宝塔面板，顺便把我的阿里云服务器上面安装一下看看效果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用宝塔面板来管理自己的云服务器">
+<meta property="og:url" content="http://www.songwh.top/2021/04/28/%E7%94%A8%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E6%9D%A5%E7%AE%A1%E7%90%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="浩子同学">
+<meta property="og:description" content="每次需要管理我的阿里云服务器上面运行的应用时，都需要通过SSH登录上服务器，然后通过命令行的形式执行我的SpringBoot服务，查看服务器的执行情况也是通过Linux命令，有时候我需要在手机上面看系统的状况时就特别的不方便，刚好昨天在网络上面看到一个开源的服务管理面板——宝塔面板，顺便把我的阿里云服务器上面安装一下看看效果。">
+<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619595866381.png">
+<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596194339.png">
+<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596395982.png">
+<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596493694.png">
+<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596638459.png">
+<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596776716.png">
+<meta property="article:published_time" content="2021-04-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:04:31.509Z">
+<meta property="article:author" content="浩子">
+<meta property="article:tag" content="Java,linux,宝塔面板">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619595866381.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2021/04/28/用宝塔面板来管理自己的云服务器/"/>
+
+
+
+
+
+  <title>用宝塔面板来管理自己的云服务器 | 浩子同学</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2021/04/28/%E7%94%A8%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E6%9D%A5%E7%AE%A1%E7%90%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩子同学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用宝塔面板来管理自己的云服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-28T00:00:00+08:00">
+                2021-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>每次需要管理我的阿里云服务器上面运行的应用时，都需要通过SSH登录上服务器，然后通过命令行的形式执行我的SpringBoot服务，查看服务器的执行情况也是通过Linux命令，有时候我需要在手机上面看系统的状况时就特别的不方便，刚好昨天在网络上面看到一个开源的服务管理面板——宝塔面板，顺便把我的阿里云服务器上面安装一下看看效果。</p>
+<a id="more"></a>
+
+<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619595866381.png" alt="宝塔面板"></p>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>使用 SSH 连接工具，如堡塔SSH终端连接到您的 Linux 服务器后，挂载磁盘，根据系统执行相应命令开始安装（大约2分钟完成面板安装）：</p>
+<p><strong>Centos安装脚本</strong>:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> wget &amp;&amp; wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; <span class="keyword">sh</span> install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<p><strong>Ubuntu/Deepin安装脚本</strong> </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install-ubuntu_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; sudo bash install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Debian安装脚本</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install-ubuntu_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; bash install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Fedora安装脚本</strong> </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; bash install.s</span><br></pre></td></tr></table></figure>
+
+<p>整个过程就像宝塔官网上面写的那样，几分钟就结束了；</p>
+<h2 id="安装应用插件"><a href="#安装应用插件" class="headerlink" title="安装应用插件"></a>安装应用插件</h2><p>安装完成之后，会在安装界面提示登录页面地址、用户名和密码等信息，根据提示登录进宝塔系统即可。在后台管理页面点击应用商店就会看到下图这个界面。<br><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596194339.png" alt="应用商店"></p>
+<p>安装必要的组件：nginx、mysql、php、tomcat，安装完成之后，宝塔的基本功能就可以用了。</p>
+<p>整个过程十分轻松方便。</p>
+<h2 id="执行SpringBoot项目"><a href="#执行SpringBoot项目" class="headerlink" title="执行SpringBoot项目"></a>执行SpringBoot项目</h2><ol>
+<li>在应用商店搜索Java，就会出现Java项目一键部署插件，点击安装；</li>
+</ol>
+<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596395982.png" alt="Java项目一键部署"></p>
+<ol start="2">
+<li>安装完成之后点击设置，点击进入左侧springboot，若提示需要安装web容器，请安装tomcat；</li>
+</ol>
+<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596493694.png" alt="设置页面"></p>
+<ol start="3">
+<li>进入springboot项目添加页面，添加一个springboot项目，先选择需要执行的jar，然后配置项目域名和端口，并检查最后的执行命令是否正确；</li>
+</ol>
+<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596638459.png" alt="添加springboot项目"></p>
+<ol start="4">
+<li>确定之后可以查看日志，看看项目是否正确执行，如果自己的域名和端口都填写正确的话，后面状态会现实启动中。</li>
+</ol>
+<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596776716.png" alt="启动中"></p>
+<h2 id="享受宝塔给我们带来的方便吧！"><a href="#享受宝塔给我们带来的方便吧！" class="headerlink" title="享受宝塔给我们带来的方便吧！"></a>享受宝塔给我们带来的方便吧！</h2>
+      
+    </div>
+    
+    
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-linux-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF/" rel="tag"><i class="fa fa-tag"></i> Java,linux,宝塔面板</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/27/%E4%B8%AA%E4%BA%BA%E8%83%BD%E5%8A%9B%E4%BB%B7%E5%80%BC%E4%B8%8E%E7%9B%AE%E6%A0%87%E7%9A%84%E4%B8%89%E5%B1%82%E6%A8%A1%E5%9E%8B/" rel="next" title="个人能力、目标与价值的三层模型">
+                <i class="fa fa-chevron-left"></i> 个人能力、目标与价值的三层模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装应用插件"><span class="nav-number">2.</span> <span class="nav-text">安装应用插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行SpringBoot项目"><span class="nav-number">3.</span> <span class="nav-text">执行SpringBoot项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#享受宝塔给我们带来的方便吧！"><span class="nav-number">4.</span> <span class="nav-text">享受宝塔给我们带来的方便吧！</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
