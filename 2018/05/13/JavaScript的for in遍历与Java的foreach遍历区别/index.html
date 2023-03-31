@@ -85,13 +85,13 @@
 <meta property="og:url" content="http://www.songwh.top/2018/05/13/JavaScript%E7%9A%84for%20in%E9%81%8D%E5%8E%86%E4%B8%8EJava%E7%9A%84foreach%E9%81%8D%E5%8E%86%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="前段时间用JavaScript遍历一个页面的一个指定name属性的元素数组时，结果遍历出来了一堆我并不想要的值，debugger很久百思不得其解。">
-<meta property="og:image" content="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1539396109509.png">
+<meta property="og:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1539396109509.png">
 <meta property="article:published_time" content="2018-05-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2018-10-14T04:51:22.811Z">
+<meta property="article:modified_time" content="2023-03-31T13:44:39.760Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java;JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1539396109509.png">
+<meta name="twitter:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1539396109509.png">
 
 
 
@@ -336,12 +336,12 @@
         <p>前段时间用<code>JavaScript</code>遍历一个页面的一个指定<code>name</code>属性的元素数组时，结果遍历出来了一堆我并不想要的值，debugger很久百思不得其解。</p>
 <a id="more"></a>
 
-<p><img src="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1539396109509.png" alt="控制台输出的遍历下标"></p>
+<p><img src="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1539396109509.png" alt="控制台输出的遍历下标"></p>
 <p>主要代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">del</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> nameString = <span class="string">""</span>;</span><br><span class="line">		<span class="keyword">debugger</span>;</span><br><span class="line">		<span class="keyword">var</span> selects = <span class="built_in">document</span>.getElementsByName(<span class="string">"select"</span>);</span><br><span class="line">		<span class="keyword">var</span> names = <span class="built_in">document</span>.getElementsByName(<span class="string">"name"</span>);</span><br><span class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i <span class="keyword">in</span> selects) &#123; </span><br><span class="line">		<span class="comment">/*for (var i = 0; i &lt; selects.length; i++) &#123;*/</span></span><br><span class="line">			<span class="built_in">console</span>.log(i);</span><br><span class="line">			<span class="keyword">if</span> (selects[i].checked == <span class="literal">true</span>) &#123;</span><br><span class="line">				nameString += names[i].innerHTML;</span><br><span class="line">				nameString += <span class="string">","</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		location.href = <span class="string">"UserServlet?action=del&amp;names="</span> + nameString;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
 <p>经过一番debugger，查出如果用<code>for (var i = 0; i &lt; selects.length; i++)</code>这种方法来遍历元素数组不会出现问题。很明显这是<code>JavaScript</code>的<code>for/in</code>遍历机制与<code>Java</code>里面的遍历机制的特殊性造成的。</p>
-<h3 id="JavaScript的fro-in遍历与Java的foreach遍历的区别"><a href="#JavaScript的fro-in遍历与Java的foreach遍历的区别" class="headerlink" title="JavaScript的fro/in遍历与Java的foreach遍历的区别"></a>JavaScript的fro/in遍历与Java的foreach遍历的区别</h3><ol>
+<h3 id="0-1-JavaScript的fro-in遍历与Java的foreach遍历的区别"><a href="#0-1-JavaScript的fro-in遍历与Java的foreach遍历的区别" class="headerlink" title="0.1 JavaScript的fro/in遍历与Java的foreach遍历的区别"></a>0.1 JavaScript的fro/in遍历与Java的foreach遍历的区别</h3><ol>
 <li><p><code>JavaScript</code>的<code>for/in</code>遍历得到的是数组元素的下标，不是数组元素中的值</p>
 </li>
 <li><p><code>JavaScript</code>的<code>for/in</code>遍历会遍历对象的所有属性，对于一个数组，不仅仅会遍历其数组元素值，还会遍历一些其他有关数组的属性，这也是前文所出现问题的症结所在。</p>
@@ -534,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript的fro-in遍历与Java的foreach遍历的区别"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的fro&#x2F;in遍历与Java的foreach遍历的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-1-JavaScript的fro-in遍历与Java的foreach遍历的区别"><span class="nav-number">1.</span> <span class="nav-text">0.1 JavaScript的fro&#x2F;in遍历与Java的foreach遍历的区别</span></a></li></ol></div>
             
 
           </div>

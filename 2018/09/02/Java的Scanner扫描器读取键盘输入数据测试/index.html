@@ -85,14 +85,14 @@
 <meta property="og:url" content="http://www.songwh.top/2018/09/02/Java%E7%9A%84Scanner%E6%89%AB%E6%8F%8F%E5%99%A8%E8%AF%BB%E5%8F%96%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="在Java里面一般都是用扫描器来读取系统的输入流，具体的格式如下： 1Scanner sc &#x3D; new Scanner();">
-<meta property="og:image" content="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1535880475513.png">
-<meta property="og:image" content="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1535881969972.png">
+<meta property="og:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1535880475513.png">
+<meta property="og:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1535881969972.png">
 <meta property="article:published_time" content="2018-09-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2018-09-02T09:52:59.671Z">
+<meta property="article:modified_time" content="2023-03-31T13:44:34.436Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1535880475513.png">
+<meta name="twitter:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1535880475513.png">
 
 
 
@@ -342,13 +342,13 @@
 <p>这里贴一个比较实例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先导包</span></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">java</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner sc =<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="comment">//sc.useDelimiter("\n"); // 这是设定分隔符，引号内的内容用正则表达式格式</span></span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">			<span class="comment">// sc.hasNextXxx() 表示是否存在下一个Xxx类型的数据，Xxx是基本类型</span></span><br><span class="line">			<span class="keyword">if</span>(sc.hasNextInt())&#123;</span><br><span class="line">				System.out.println(<span class="string">"下一个整数是："</span>+sc.nextInt());</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(sc.hasNextDouble())&#123;</span><br><span class="line">				System.out.println(<span class="string">"下一个是浮点数："</span>+sc.nextDouble());</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// sc.next()表示读取下一个输入的内容</span></span><br><span class="line">				<span class="comment">// sc.nextLine()表示读取下一行内容</span></span><br><span class="line">				String i=sc.next();</span><br><span class="line">				<span class="keyword">if</span>(i.equals(<span class="string">"exit"</span>))</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				System.out.println(<span class="string">"下一个字符串是："</span>+i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1535880475513.png" alt="运算结果"></p>
+<p><img src="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1535880475513.png" alt="运算结果"></p>
 <p>这一段代码可以根据用户输入的整数、浮点数、字符串顺序的优先级来分别输出不同的内容。</p>
 <p>实际上Scanner扫描器的构造方法可以传递一个File对象进去，也就是说Scanner可以输入一个文件：</p>
 <p>当然必要的导包，异常处理都的需要：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">java</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">"java.java"</span>));</span><br><span class="line">			System.out.println(<span class="string">"the firt line in java.java :\n"</span>+sc.nextLine());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://shuiruoyan-1255322941.file.myqcloud.com/MarkDown/1535881969972.png" alt="运算结果"></p>
+<p><img src="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1535881969972.png" alt="运算结果"></p>
 
       
     </div>
