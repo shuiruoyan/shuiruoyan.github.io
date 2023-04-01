@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,腾讯云," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这里介绍一种利用腾讯的对象存储系统COS来作为自己的个人图床。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="薅羊毛之腾讯对象存储系统COS">
+<meta property="og:url" content="http://www.songwh.top/2019/03/12/%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E8%85%BE%E8%AE%AF%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FCOS/index.html">
+<meta property="og:site_name" content="浩子同学">
+<meta property="og:description" content="这里介绍一种利用腾讯的对象存储系统COS来作为自己的个人图床。">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552396822105.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552397404671.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552397579820.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552397763052.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552398087935.png">
+<meta property="article:published_time" content="2019-03-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-31T14:12:07.518Z">
+<meta property="article:author" content="浩子">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="腾讯云">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552396822105.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2019/03/12/薅羊毛之腾讯对象存储系统COS/"/>
+
+
+
+
+
+  <title>薅羊毛之腾讯对象存储系统COS | 浩子同学</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2019/03/12/%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E8%85%BE%E8%AE%AF%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FCOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩子同学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">薅羊毛之腾讯对象存储系统COS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T00:00:00+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这里介绍一种利用腾讯的对象存储系统COS来作为自己的个人图床。</p>
+<a id="more"></a>
+
+<h2 id="腾讯云对象存储系统免费使用的项目"><a href="#腾讯云对象存储系统免费使用的项目" class="headerlink" title="腾讯云对象存储系统免费使用的项目"></a>腾讯云对象存储系统免费使用的项目</h2><p>目前腾讯云COS对个人用户可以免费存储50G内容，另外还可以免费获取到每个月10G的CDN流量，更重要的一点是它有十分完善的SDK，支持目前市面上大多数常用语言，这些API用起来也十分的简单方便。</p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552396822105.png" alt="腾讯云COS 支持的SDK"></p>
+<p>如果自己仅仅是给自己的博客假设一个图床，腾讯云的COS完全是够用的。</p>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><h3 id="1-注册腾讯云账号，开通COS功能"><a href="#1-注册腾讯云账号，开通COS功能" class="headerlink" title="1. 注册腾讯云账号，开通COS功能"></a>1. 注册腾讯云账号，开通<code>COS</code>功能</h3><p>这个没有什么特别注意的，点击<a href="https://cloud.tencent.com/" target="_blank" rel="noopener">腾讯云</a>直接按照步骤一步一步注册就是，注册完成之后创建一个存储桶，最终效果如下图所示，点击进入存储桶，可以上传下载各种类型的文件，就像一个网络硬盘。</p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552397404671.png" alt="我的腾讯云COS存储桶"></p>
+<h3 id="2-在小书匠里面可以腾讯云COS当作图床"><a href="#2-在小书匠里面可以腾讯云COS当作图床" class="headerlink" title="2. 在小书匠里面可以腾讯云COS当作图床"></a>2. 在小书匠里面可以腾讯云COS当作图床</h3><p>2.1 打开自己的小书匠，点击主页的<code>绑定</code>按钮，即可进入图床配置页面，点击<code>腾讯云oos存储</code>，就可以将</p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552397579820.png" alt="小书匠配置图床页面"></p>
+<p>2.2 在腾讯云的<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener">密钥管理页面</a>，可以获取到自己私人的<code>SecretId</code>与<code>SecretKey</code>，填写进小书匠配置图床页面。</p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552397763052.png" alt="密钥管理页面"></p>
+<p>2.3 小书匠配置完成之后就可以直接将将图片拖进小书匠的编辑区域，通过赋值粘贴也可以将图片贴进小书匠，此时小书匠会自动将图片上传至腾讯云的存储桶，并在该页面引用图片地址。</p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1552398087935.png" alt="小书匠的图床演示"></p>
+<h3 id="3-通过腾讯云COS的Java-SDK来给自己的应用添加图床"><a href="#3-通过腾讯云COS的Java-SDK来给自己的应用添加图床" class="headerlink" title="3. 通过腾讯云COS的Java SDK来给自己的应用添加图床"></a>3. 通过腾讯云COS的Java SDK来给自己的应用添加图床</h3><p>3.1 给自己的<code>Java</code>应用引入<code>Maven</code>坐标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;com.qcloud&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;cos_api&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;5.4.10&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.2 初始化<code>COS</code>并获取<code>COSClient</code>对象，这里类似小书匠图床的配置，也需要设置<code>secretid</code>与<code>secretKey</code>，腾讯给的SDK里面已经封装了一个<code>COSClient</code>类，基本上所有的操作都可以通过这个类来进行，所以整个调用过程十分方便。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 初始化用户身份信息（secretId, secretKey）。</span></span><br><span class="line">COSCredentials cred = <span class="keyword">new</span> BasicCOSCredentials(<span class="string">"AKIDXXXXXX"</span>, <span class="string">"XXXXXXXXXXXXXXX"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2 设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224</span></span><br><span class="line"><span class="comment">// clientConfig中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者接口文档 FAQ 中说明。</span></span><br><span class="line">ClientConfig clientConfig = <span class="keyword">new</span> ClientConfig(<span class="keyword">new</span> Region(<span class="string">"ap-beijing-1"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3 生成 cos 客户端。</span></span><br><span class="line">COSClient cosClient = <span class="keyword">new</span> COSClient(cred, clientConfig);</span><br></pre></td></tr></table></figure>
+
+<p>3.3 上传文件的步骤，因为<code>putObject()</code>方法是支持字节流的，可以本地上传，也可以通过网络图片来上传，十分简单，这里需要知道自己怎么访问自己上传的图片，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定本地需要存储的文件</span></span><br><span class="line">File localFile = <span class="keyword">new</span> File(<span class="string">"src/test/resources/len5M.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定要上传到的存储桶名称</span></span><br><span class="line">String bucketName = <span class="string">"demoBucket-1250000000"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定要上传到 COS 上对象键，这里主要是配置存储的文件名称，如果包含文件夹可以加斜杠，如/markdown/pic.png</span></span><br><span class="line">String key = <span class="string">"upload_single_demo.txt"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置上传请求对象</span></span><br><span class="line">PutObjectRequest putObjectRequest = <span class="keyword">new</span> PutObjectRequest(bucketName, key, localFile);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将文件上传至COS</span></span><br><span class="line">PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);</span><br></pre></td></tr></table></figure>
+
+<p>3.4 下载文件也十分的简单，只要知道自己文件的访问对象键，就可以很轻松的通过<code>COSClient</code>来获取图片。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定要下载到的本地路径</span></span><br><span class="line">File downFile = <span class="keyword">new</span> File(<span class="string">"src/test/resources/mydown.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定文件所在的存储桶</span></span><br><span class="line">String bucketName = <span class="string">"demoBucket-1250000000"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定文件在 COS 上的对象键，这个对象键包含文件夹，具体规则同上传时配置的对象键</span></span><br><span class="line">String key = <span class="string">"upload_single_demo.txt"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置请求</span></span><br><span class="line">GetObjectRequest getObjectRequest = <span class="keyword">new</span> GetObjectRequest(bucketName, key);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下载文件</span></span><br><span class="line">ObjectMetadata downObjectMeta = cosClient.getObject(getObjectRequest, downFile);</span><br></pre></td></tr></table></figure>
+
+<p>3.5 删除文件，这个也是通过<code>COSClient</code>来操作。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定文件所在的存储桶</span></span><br><span class="line">String bucketName = <span class="string">"demoBucket-1250000000"</span>;</span><br><span class="line"><span class="comment">// 指定文件在 COS 上的对象键</span></span><br><span class="line">String key = <span class="string">"upload_single_demo.txt"</span>;</span><br><span class="line"><span class="comment">// 调用COSClient的删除文件方法</span></span><br><span class="line">cosClient.deleteObject(bucketName, key);</span><br></pre></td></tr></table></figure>
+
+<p>3.6 个人代码示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songwh.alltoforever.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.qcloud.cos.COSClient;</span><br><span class="line"><span class="keyword">import</span> com.qcloud.cos.model.PutObjectResult;</span><br><span class="line"><span class="keyword">import</span> com.songwh.alltoforever.pojo.ResultBean;</span><br><span class="line"><span class="keyword">import</span> com.songwh.alltoforever.utils.ResultUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@auther</span> SongWH</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/3/10</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/common"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> COSClient cosClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;tecent.cos.bucketname&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String BUCKET_NAME;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String IMAGE_URL_PRE=<span class="string">"https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/upload"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultBean <span class="title">upload</span><span class="params">(MultipartFile file)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream is = file.getInputStream();</span><br><span class="line">        String fileName = <span class="keyword">this</span>.getFileName(file);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            PutObjectResult putObjectResult = cosClient.putObject(BUCKET_NAME, fileName, is, <span class="keyword">null</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span>  ResultUtils.getFailResultBean(<span class="string">"文件上传失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ResultUtils.getSuccessResultBean(IMAGE_URL_PRE+fileName,<span class="string">"上传成功"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileName</span><span class="params">(MultipartFile file)</span></span>&#123;</span><br><span class="line">        String originalFilename = file.getOriginalFilename();</span><br><span class="line">        String fileName = originalFilename.substring(<span class="number">0</span>, originalFilename.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">        String extName= originalFilename.substring(originalFilename.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">        StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">        sb.append(<span class="string">"/Java/"</span>).append(UUID.randomUUID().toString()).append(<span class="string">"_"</span>).append(fileName).append(extName);</span><br><span class="line">        <span class="keyword">return</span>  sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/" rel="tag"><i class="fa fa-tag"></i> 腾讯云</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/SpringBoot%E5%88%A9%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0AOP/" rel="next" title="SpringBoot利用自定义注解实现AOP">
+                <i class="fa fa-chevron-left"></i> SpringBoot利用自定义注解实现AOP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/15/neo4j%E5%9F%BA%E6%9C%AC%E5%85%A5%E9%97%A8/" rel="prev" title="Neo4j基本入门">
+                Neo4j基本入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯云对象存储系统免费使用的项目"><span class="nav-number">1.</span> <span class="nav-text">腾讯云对象存储系统免费使用的项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用流程"><span class="nav-number">2.</span> <span class="nav-text">使用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-注册腾讯云账号，开通COS功能"><span class="nav-number">2.1.</span> <span class="nav-text">1. 注册腾讯云账号，开通COS功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在小书匠里面可以腾讯云COS当作图床"><span class="nav-number">2.2.</span> <span class="nav-text">2. 在小书匠里面可以腾讯云COS当作图床</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-通过腾讯云COS的Java-SDK来给自己的应用添加图床"><span class="nav-number">2.3.</span> <span class="nav-text">3. 通过腾讯云COS的Java SDK来给自己的应用添加图床</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

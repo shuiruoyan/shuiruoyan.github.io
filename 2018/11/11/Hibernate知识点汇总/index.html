@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hibernate,Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Hibernate是一个基于JDBC的持久层框架，功能及其强大，支持线程池、三级缓存、它根据ORM思想设计的，利用它可以利用面向对象的方式来操作数据库，让用户不用和复杂的SQL语言打交道。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate知识点汇总">
+<meta property="og:url" content="http://www.songwh.top/2018/11/11/Hibernate%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="浩子同学">
+<meta property="og:description" content="Hibernate是一个基于JDBC的持久层框架，功能及其强大，支持线程池、三级缓存、它根据ORM思想设计的，利用它可以利用面向对象的方式来操作数据库，让用户不用和复杂的SQL语言打交道。">
+<meta property="article:published_time" content="2018-11-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-11-12T02:46:39.697Z">
+<meta property="article:author" content="浩子">
+<meta property="article:tag" content="Hibernate">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2018/11/11/Hibernate知识点汇总/"/>
+
+
+
+
+
+  <title>Hibernate知识点汇总 | 浩子同学</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2018/11/11/Hibernate%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩子同学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hibernate知识点汇总</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-11T00:00:00+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>Hibernate</code>是一个基于<code>JDBC</code>的持久层框架，功能及其强大，支持线程池、三级缓存、它根据<code>ORM</code>思想设计的，利用它可以利用面向对象的方式来操作数据库，让用户不用和复杂的<code>SQL</code>语言打交道。</p>
+<a id="more"></a>
+
+<h2 id="1-讲下什么是Hibernate？"><a href="#1-讲下什么是Hibernate？" class="headerlink" title="1.讲下什么是Hibernate？"></a>1.讲下什么是<code>Hibernate</code>？</h2><p><code>Hibernate</code>是一个基于<code>JDBC</code>的持久层的开源框架，它可以根据ORM利用面向对象思想来处理数据库的可能，它支持线程池，三级缓存，利用它可以大大简化开发流程，简化数据操作层的代码。</p>
+<h2 id="2-讲下什么是ORM-ORM组件有哪些？"><a href="#2-讲下什么是ORM-ORM组件有哪些？" class="headerlink" title="2.讲下什么是ORM?ORM组件有哪些？"></a>2.讲下什么是<code>ORM</code>?<code>ORM</code>组件有哪些？</h2><p><code>ORM</code>是指对象关系模型，O是指对象<code>object</code>，R是指关系<code>Relational</code>，M是指映射<code>Mapping</code>，是一种用面向对象方法来处理数据库的思想，可以通过控制对象的属性和方法来对数据库进行一些基本的操作，这样用户就无需和复杂的<code>sql</code>语句打交道，简化了数据库的操作。<br>在目前ORM组件有：</p>
+<ol>
+<li><code>JPA</code>，是通过注解或者XML描述对象关系表的映射关系；</li>
+<li><code>Hibernate</code>，是通过对象关系映射的配置；</li>
+<li><code>MyBatis</code>，是<code>Apache</code>下面的一个开源项目，支持普通的SQL插叙，存储过程和高级映射的优秀持久层框架；</li>
+<li><code>DButils</code>、<code>Spring</code>、<code>JDBC</code>、<code>Template</code>；</li>
+<li>最后就是<code>Spring Date</code>。</li>
+</ol>
+<h2 id="3-Hibernate和JDBC相比的优点是什么-缺点是什么"><a href="#3-Hibernate和JDBC相比的优点是什么-缺点是什么" class="headerlink" title="3.Hibernate和JDBC相比的优点是什么?缺点是什么?"></a>3.<code>Hibernate</code>和<code>JDBC</code>相比的优点是什么?缺点是什么?</h2><p><code>Hibernate</code>是基于<code>ORM</code>思想而产生的一个工具，可以实现在Java处理数据库就像操作一个个实体对象一样简单方便，实现<code>Java</code>面向对象开发思想的统一，其相对于<code>JDBC</code>可以大大提高开发效率，简化代码。</p>
+<p>他的优点也给它带来了一些缺点，其最大的缺点就是性能问题，因为<code>Hibernate</code>的存在，程序在访问数据库的流程又多了一个环节，性能问题是它最大的缺陷，特别是在大批量数据处理的时候，其性能与<code>JDBC</code>之间约相差30%之多。</p>
+<h2 id="4-如何搭建一个Hibernate的环境"><a href="#4-如何搭建一个Hibernate的环境" class="headerlink" title="4.如何搭建一个Hibernate的环境"></a>4.如何搭建一个<code>Hibernate</code>的环境</h2><ol>
+<li>首先需要在<code>Hibernate</code>官方网站上面去下载jar包；</li>
+<li>然后将<code>Hibernate</code>的文件包lib目录下面的<code>other</code>和<code>required</code>目录下面的jar包赋值到自己的项目里面，并右键添加进构造路径；</li>
+<li>设置类映射文件，这个配置文件命名是按<code>类名.hbm.xml</code>规律来的，需要和实体类放在同一个文件夹中，文件里面可以配置类和表一些映射关系，<code>id</code>标签是配置主键的，<code>property</code>标签可以配置类属性与表字段名，还可以配置一些更复杂的映射关系，比如一对多，多对多等等；</li>
+<li>设置核心配置文件，首先需要在核心配置文件里面配置数据库的驱动、数据库访问网址、数据库访问用户名和密码，然后还需要将实体类的映射文件加载进来；</li>
+<li>还差最后一步就是创建一个调用<code>Hibernate</code>的工具类，<code>HibernateUtils</code>。</li>
+</ol>
+<h2 id="5-说说Hibernate的三种状态之间如何转换？"><a href="#5-说说Hibernate的三种状态之间如何转换？" class="headerlink" title="5.说说Hibernate的三种状态之间如何转换？"></a>5.说说<code>Hibernate</code>的三种状态之间如何转换？</h2><p><code>Hibernate</code>里面的数据的三种状态分别是瞬时态、持久态、和托管态三种状态，当数据新建new出来之后存储在缓存里面的一种状态就是瞬时态、在缓存中间的数据通过<code>save()</code>或者<code>saveOrUpdate()</code>方法的就会将数据写入数据库，这种数据库和缓存里面都同时存在数据的状态就是持久态，当程序调用<code>close()</code>、<code>clear()</code>，等方法清空缓存区后，数据就只有数据里面才有数据，这种状态就是托管态，而此时，如果调用<code>get()</code>、<code>load()</code>、<code>update()</code>等等方法时数据就会被读取到缓存里面去，这时候数据就收恢复为持久态度，此时如果掉用<code>delete()</code>方法将数据进行删除数据就会立即从数据库中消失变成瞬时态。</p>
+<h2 id="6-Hibernate中session有几种创建方式？都有那些区别？"><a href="#6-Hibernate中session有几种创建方式？都有那些区别？" class="headerlink" title="6.Hibernate中session有几种创建方式？都有那些区别？"></a>6.<code>Hibernate</code>中<code>session</code>有几种创建方式？都有那些区别？</h2><p><code>Hibernate</code>中的<code>session</code>有两种创建方式：</p>
+<ol>
+<li>第一种就是<code>getCurrentSession()</code>方法，这个方法使用前需要在核心配置文件里面和线程绑定，调用它之后，它首先会到当前线程中间去寻找是否存在<code>session</code>，如果不存在它就会新建一个<code>session</code>，使用前它需要创建一个事务，在事务提交之后，它会自动关闭。</li>
+<li>第二种就是open<code>session</code>方法，不需要任何配置，使用前也不需要开启事务，每次调用它都是在当前线程里面新建一个<code>session</code>，而且在事务提交时它是不会自动关闭的，系数要手动关闭。</li>
+</ol>
+<h2 id="7-Hibernate中有哪些缓存？都是如何配置的-三个缓存都要说"><a href="#7-Hibernate中有哪些缓存？都是如何配置的-三个缓存都要说" class="headerlink" title="7.Hibernate中有哪些缓存？都是如何配置的?(三个缓存都要说)"></a>7.<code>Hibernate</code>中有哪些缓存？都是如何配置的?(三个缓存都要说)</h2><p><code>Hibernate</code>中有三种缓存：</p>
+<ol>
+<li>第一种就是<strong>一级缓存</strong>，它在<code>Hibernate</code>中是默认开启的，属于<code>session</code>级别的缓存，缓存的数据仅限当前<code>session</code>来获取。</li>
+<li>第二种就是<strong>二级缓存</strong>，是一种<code>sessionFactory</code>级别的缓存，可以实现<code>session</code>之间的数据共享，它分为内置缓存和外置缓存，其中内置缓存是存储一些供<code>Hibernate</code>自己调用系统参数，而外置缓存<code>Hibernate</code>仅仅是提供了一个接口，需要利用第三方的缓存工具。配置二级缓存有点儿复杂：<br>a. 首先需要导包；<br>b. 第二步在核心配置文件里面开启二级缓存设置；<br>c. 第三步在核心配置文件里面指定二级缓存的供应商；<br>d. 最后还需要配置所需要缓存的类和集合，配置语句需要放在导入映射文件后面，且如果想缓存集合，还需要将集合里面存储的实体类同样配置缓存。</li>
+<li>第三种就是<strong>三级缓存</strong>，也可以叫做查询缓存，他主要是针对HQL语句的缓存，它是依赖于二级缓存的，可以实现<code>session</code>之间相同<code>session</code>语句的和查询结果的缓存。<br>a.首先需要配置耳机缓存，导包、开启二级缓存、指定二级缓存供应商；<br>b.在使用的时候无论是存还是取都需要设置<code>setCachable()</code>值为<code>true</code>，才可以使用。</li>
+</ol>
+<h2 id="8-说说get-amp-load的区别"><a href="#8-说说get-amp-load的区别" class="headerlink" title="8.说说get&amp;load的区别"></a>8.说说<code>ge</code>t&amp;<code>load</code>的区别</h2><p><code>get</code>与<code>load</code>都是数据逐渐查询语句：</p>
+<ol>
+<li><code>get</code>属于积极查询，在调用<code>get()</code>方法后和立即发送<code>SQL</code>语句获取该对象所关联的所有数据，其查询结果是一个具体的实体类，当查询的<code>id</code>不存在时，会返回一空值。</li>
+<li><code>load()</code>方法中<code>lazy</code>属性的默认值是<code>true</code>，属于懒加载，当程序调用后，并不会立即发送<code>sql</code>语句到数据库进行数据查询，而是返回一个存储了<code>id</code>属性的代理对象，只有在调用非<code>id</code>之外的其他属性，才会发送<code>SQL</code>语句到数据库查询数据，而且当需要查询数据数量的时候会发送<code>count</code>来查询，当查询的<code>id</code>不存在时，<code>load()</code>方法是会直接报错。</li>
+</ol>
+<h2 id="9-如何在控制台看到Hibernate生成并执行的sql"><a href="#9-如何在控制台看到Hibernate生成并执行的sql" class="headerlink" title="9.如何在控制台看到Hibernate生成并执行的sql?"></a>9.如何在控制台看到<code>Hibernate</code>生成并执行的<code>sql</code>?</h2><p>在核心配置文件里面用<code>property</code>标签配置<code>show_sql</code>语句为<code>true</code> 就可以看到<code>Hibernate</code>里面生成的<code>sql</code>语句</p>
+<h2 id="10-Hibernate中有几种检索方式？"><a href="#10-Hibernate中有几种检索方式？" class="headerlink" title="10.Hibernate中有几种检索方式？"></a>10.<code>Hibernate</code>中有几种检索方式？</h2><p><code>Hibernate</code>中有两种检索方法，<br>a. <strong>立即检索</strong>：在调用立即检索的方法时，系统会立即向数据库发送<code>SQL</code>语句；<br>b. <strong>延时检索</strong>：在调用延时检索的方法是，系统不会立即向数据库发送<code>SQL</code>查询语句，而是在等待用的时候才会发送<code>SQL</code>语句到数据库。</p>
+<h2 id="11-说说save-flush-commit-方法调用后都做了什么？"><a href="#11-说说save-flush-commit-方法调用后都做了什么？" class="headerlink" title="11.说说save(),flush(),commit()方法调用后都做了什么？"></a>11.说说<code>save()</code>,<code>flush()</code>,<code>commit()</code>方法调用后都做了什么？</h2><ul>
+<li><code>save()</code>：将数据写入缓存区；</li>
+<li><code>flush()</code>：将缓存区的数据写入数据库，但不清空缓存区；</li>
+<li><code>commit()</code>：将缓存区的数据写入数据库，清空缓存区，并关闭当前事务。</li>
+</ul>
+<h2 id="12-Hibernate中怎样实现类之间的关系-如：一对多、多对多的关系"><a href="#12-Hibernate中怎样实现类之间的关系-如：一对多、多对多的关系" class="headerlink" title="12.Hibernate中怎样实现类之间的关系?(如：一对多、多对多的关系)"></a>12.<code>Hibernate</code>中怎样实现类之间的关系?(如：一对多、多对多的关系)</h2><p><code>Hibernate</code>是用映射文件的方式来处理映射表之间的关系：</p>
+<ul>
+<li><strong>一对多</strong>：首先在一的这一方对象需要创建一个存储多方对象的<code>Set</code>集合，然后再该类的映射文件里面添加一个<code>Property</code>标签，配置<code>name</code>属性，并配置多方的类名和关联外键的字段名。而多的一方则是定义一个一方属性，然后在映射文件里面配置属性名和关联字段名；</li>
+<li><strong>多对多</strong>：多对多时利用一个中间表来存储双方的关联外键，在双方都会添加一个对方的对象实例，并在映射文件里面配置对方的关联外键和对方的类。</li>
+</ul>
+<h2 id="13-Hibernate是如何延迟加载"><a href="#13-Hibernate是如何延迟加载" class="headerlink" title="13.Hibernate是如何延迟加载?"></a>13.<code>Hibernate</code>是如何延迟加载?</h2><p><code>Hibernate</code>中的延时加载是指<strong>数据在使用的时候才会发送SQL语句到数据库，避免了一些无意义的查询</strong>。</p>
+<p>具体的配置就是设置<code>lazy</code>属性，它有三个值：<code>true</code>、<code>false</code>、和<code>extra</code>，其中<code>true</code>是延时加载，<code>false</code>是立即加载，而<code>extra</code>则会更加的延时加载，在查询指定记录数量时会发送<code>count()</code>函数，而不是查询所有记录。</p>
+<h2 id="14-谈谈Hibernate中inverse的作用？"><a href="#14-谈谈Hibernate中inverse的作用？" class="headerlink" title="14.谈谈Hibernate中inverse的作用？"></a>14.谈谈<code>Hibernate</code>中<code>inverse</code>的作用？</h2><p><code>inverse</code>是<strong>反转</strong>的意思，在<code>Hibernate</code>中是配置关联数据库表的外键数据维护权，它有两个属性一个是<code>true</code>，一个是<code>false</code>，如果是<code>true</code>则会将外键数据的维护权交给另一方来维护，只有在对象与外键关联的属性值发生变化时才会修改外键值，如果是<code>false</code>则是自己来维护外键数据。</p>
+<h2 id="15-MySQL默认的事务隔离级别是多少？JDBC如何修改？Hibernate如何修改？"><a href="#15-MySQL默认的事务隔离级别是多少？JDBC如何修改？Hibernate如何修改？" class="headerlink" title="15.MySQL默认的事务隔离级别是多少？JDBC如何修改？Hibernate如何修改？"></a>15.<code>MySQL</code>默认的事务隔离级别是多少？<code>JDBC</code>如何修改？<code>Hibernate</code>如何修改？</h2><p><code>READ UNCOMMITTED</code>：脏读、不可重复读、虚读有可能发生；<br><code>READ COMMITTED</code>：避免脏读，不可重复读、虚读有可能发生；<br><code>REPEATABLE READ</code>：避免脏读、不可重复读的发生，虚读有可能发生。<br><code>SERIALIZABLE</code>：避免脏读、不可重复读、虚读的发生。<br><code>JDBC</code>中：<code>connection.setTransactionIsolation()</code>方法来设置。<br><code>Hibernate</code>中是在核心配置文件里面配置<code>isolation</code>的值来修改事务的隔离级别<code>&lt;property name=&quot;Hibernate.connection.isolation&quot;&gt;4&lt;/property&gt;</code></p>
+<h2 id="16-事务的特性有哪些？"><a href="#16-事务的特性有哪些？" class="headerlink" title="16.事务的特性有哪些？"></a>16.事务的特性有哪些？</h2><ol>
+<li><strong>原子性</strong>：事务是数据库的逻辑处理单位，事务中的操作要不就全部完成，要不就是全部都没有完成；</li>
+<li><strong>一致性</strong>：因为事务对数据的操作只有完成与不完成两种，所以数据库中的数据就具备前后的一致性，从一个一致的状态到另一个一致的状态，这就是数据库的一致性；</li>
+<li><strong>隔离性</strong>：事务与事务之间是相互隔离互不干扰的；</li>
+<li><strong>持久性</strong>：事务一旦提交，其对数据的影响就是持久性的。</li>
+</ol>
+<h2 id="17-什么是脏读，不可重复读，幻读"><a href="#17-什么是脏读，不可重复读，幻读" class="headerlink" title="17.什么是脏读，不可重复读，幻读"></a>17.什么是脏读，不可重复读，幻读</h2><ul>
+<li><strong>脏读</strong>是指一个还未提交的事务，读取到了另一个还会提交事务里面的数据。</li>
+<li><strong>不可重复读</strong>是指，一个还未提交的事务，读取到了其他事务里面已经提交导数据库里面的修改记录的数据；</li>
+<li><strong>幻度</strong>也叫<strong>虚度</strong>，是指一个还未提交的事务，读取到了其他事务里面已经提交到数据库里面的新建记录的数据。</li>
+</ul>
+<h2 id="18-说说连接池的原理"><a href="#18-说说连接池的原理" class="headerlink" title="18.说说连接池的原理"></a>18.说说连接池的原理</h2><p>在访问数据库中，与数据的连接对象是一种比较耗费资源的操作，而很多时候我们在创建一个连接之后仅仅处理少量的数据之后就将连接关闭的行为是一种资源浪费，所以连接池的主要任务就是<strong>负责管理、分配、创建换释放连接对象</strong>，提高连接对象的复用次数，在配置连接池的时候会配置一个最大连接数量和最小连接数量，当连接对象的数量叫低的时候会创建连接对象，当连接有连接对象长期没有被使用后，也会释放连接对象，释放资源。</p>
+<h2 id="19-说说HQL和QBC，项目中都是怎么用的？"><a href="#19-说说HQL和QBC，项目中都是怎么用的？" class="headerlink" title="19.说说HQL和QBC，项目中都是怎么用的？"></a>19.说说<code>HQL</code>和<code>QBC</code>，项目中都是怎么用的？</h2><p><code>HQL</code>是描述对象操作的一种语言：可以类似<code>SQL</code>操作那样用语句来操作数据库，它的语法和SQL比较类似但是操作的对象从表名、字段名变成了对象属性名。</p>
+<ul>
+<li><strong>分页操作</strong>,调用<code>setFirstResult</code>和<code>setMaxResult</code>方法来设置起始位置和偏移量；</li>
+<li><strong>排序</strong>，类似<code>SQL</code>语言那样用<code>order by</code>来对查询结果进行排序；</li>
+<li><strong>绑定参数</strong>：利用<code>:变量名</code>的形式在<code>HQL</code>语言里面确定需要传入参数的位置，然后利用查询对象的方法来传入具体的值。</li>
+<li><strong>命名查询</strong>，需要在配置文件里面设置查询<code>HQL</code>语句，然后再程序里面加载查询语句；</li>
+<li><strong>获取结果</strong>，如果结果是一个集合那么就用<code>list()</code>方法来获取，如果单个的值就用<code>uniqueResult</code>来获取。<br><code>QBC</code>是面向对象的条件查询语句</li>
+<li><strong>调用</strong><code>session.creatCriteria(.Class)</code>方法传入参数，获取结果的形式和<code>HQL</code>语言一样的；</li>
+<li><strong>分页查询</strong>与<code>HQL</code>类似需要调用<code>setFirstResult</code>和<code>setMaxResult</code>语句来设置起始点和偏移量；</li>
+<li><strong>排序</strong>需要调用<code>addOrder</code>方法，传入一个<code>Order</code>对象；</li>
+<li><strong>条件查询</strong>利用<code>add</code>方法，传入一个<code>Restriction</code>对象来设置条件；</li>
+<li><strong>离线查询</strong>，离线查询在设置查询条件的时候是不需要获取<code>session</code>对象，这样对于那些查询条件比较复杂的查询可以节省很多的时间，是用方法是获取一个条件查询对象<code>DetachedCriteria</code>，类似普通<code>QBC</code>查询那样设置查询条件。</li>
+</ul>
+<h2 id="20-说说悲观锁和乐观锁？"><a href="#20-说说悲观锁和乐观锁？" class="headerlink" title="20.说说悲观锁和乐观锁？"></a>20.说说悲观锁和乐观锁？</h2><p>在<code>QBC</code>并行处理数据的时候为了避免出现并发问题可以采用两种方式来解决这个问题：</p>
+<ul>
+<li><strong>悲观锁</strong>，其默认是一定会有其他的事务来修改当前事务正在处理的数据，所以在其处理数据的时候默认利用<code>for update</code>语句来讲当前记录锁住；在<code>Hibernate</code>里面利用<code>get</code>语句来设置读取模式为<code>lockOptions.UPGRADE</code>；<ul>
+<li><strong>乐观锁</strong>的实现原理是在每一个需要乐观锁的表中添加一个<code>version</code>字段，这个字段里面存储的是当前记录的修改版本，当程序提交修改数据的时候会自动将当前版本+1，然后载荷数据库中的版本比对，如果发现数据库中的版本不小于自身修改版本就会不予修改。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hibernate/" rel="tag"><i class="fa fa-tag"></i> Hibernate</a>
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/03/JDBC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7/" rel="next" title="JDBC数据库批修改工具">
+                <i class="fa fa-chevron-left"></i> JDBC数据库批修改工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/10/Java%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%AD%A5%E9%AA%A4/" rel="prev" title="Java发送邮件的基本配置与步骤">
+                Java发送邮件的基本配置与步骤 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-讲下什么是Hibernate？"><span class="nav-number">1.</span> <span class="nav-text">1.讲下什么是Hibernate？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-讲下什么是ORM-ORM组件有哪些？"><span class="nav-number">2.</span> <span class="nav-text">2.讲下什么是ORM?ORM组件有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hibernate和JDBC相比的优点是什么-缺点是什么"><span class="nav-number">3.</span> <span class="nav-text">3.Hibernate和JDBC相比的优点是什么?缺点是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-如何搭建一个Hibernate的环境"><span class="nav-number">4.</span> <span class="nav-text">4.如何搭建一个Hibernate的环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-说说Hibernate的三种状态之间如何转换？"><span class="nav-number">5.</span> <span class="nav-text">5.说说Hibernate的三种状态之间如何转换？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Hibernate中session有几种创建方式？都有那些区别？"><span class="nav-number">6.</span> <span class="nav-text">6.Hibernate中session有几种创建方式？都有那些区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Hibernate中有哪些缓存？都是如何配置的-三个缓存都要说"><span class="nav-number">7.</span> <span class="nav-text">7.Hibernate中有哪些缓存？都是如何配置的?(三个缓存都要说)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-说说get-amp-load的区别"><span class="nav-number">8.</span> <span class="nav-text">8.说说get&amp;load的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-如何在控制台看到Hibernate生成并执行的sql"><span class="nav-number">9.</span> <span class="nav-text">9.如何在控制台看到Hibernate生成并执行的sql?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Hibernate中有几种检索方式？"><span class="nav-number">10.</span> <span class="nav-text">10.Hibernate中有几种检索方式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-说说save-flush-commit-方法调用后都做了什么？"><span class="nav-number">11.</span> <span class="nav-text">11.说说save(),flush(),commit()方法调用后都做了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Hibernate中怎样实现类之间的关系-如：一对多、多对多的关系"><span class="nav-number">12.</span> <span class="nav-text">12.Hibernate中怎样实现类之间的关系?(如：一对多、多对多的关系)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Hibernate是如何延迟加载"><span class="nav-number">13.</span> <span class="nav-text">13.Hibernate是如何延迟加载?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-谈谈Hibernate中inverse的作用？"><span class="nav-number">14.</span> <span class="nav-text">14.谈谈Hibernate中inverse的作用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-MySQL默认的事务隔离级别是多少？JDBC如何修改？Hibernate如何修改？"><span class="nav-number">15.</span> <span class="nav-text">15.MySQL默认的事务隔离级别是多少？JDBC如何修改？Hibernate如何修改？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-事务的特性有哪些？"><span class="nav-number">16.</span> <span class="nav-text">16.事务的特性有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-什么是脏读，不可重复读，幻读"><span class="nav-number">17.</span> <span class="nav-text">17.什么是脏读，不可重复读，幻读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-说说连接池的原理"><span class="nav-number">18.</span> <span class="nav-text">18.说说连接池的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-说说HQL和QBC，项目中都是怎么用的？"><span class="nav-number">19.</span> <span class="nav-text">19.说说HQL和QBC，项目中都是怎么用的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-说说悲观锁和乐观锁？"><span class="nav-number">20.</span> <span class="nav-text">20.说说悲观锁和乐观锁？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

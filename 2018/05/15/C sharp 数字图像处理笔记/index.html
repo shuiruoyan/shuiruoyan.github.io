@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C#,图像处理," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="记录了如下内容   MDI多文档窗口创建 打开图像 保存图像 图像的去色处理 图像的二值化 图像的提取边缘 图像的中值滤波 图像的直方图 图像的直方图图像拉伸 图像的直方图均衡化 图像的线性点运算 图像的目标提取标记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 数字图像处理笔记">
+<meta property="og:url" content="http://www.songwh.top/2018/05/15/C%20sharp%20%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="浩子同学">
+<meta property="og:description" content="记录了如下内容   MDI多文档窗口创建 打开图像 保存图像 图像的去色处理 图像的二值化 图像的提取边缘 图像的中值滤波 图像的直方图 图像的直方图图像拉伸 图像的直方图均衡化 图像的线性点运算 图像的目标提取标记">
+<meta property="article:published_time" content="2018-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:02:00.994Z">
+<meta property="article:author" content="浩子">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="图像处理">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.songwh.top/2018/05/15/C sharp 数字图像处理笔记/"/>
+
+
+
+
+
+  <title>C# 数字图像处理笔记 | 浩子同学</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩子同学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的精神家园</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.songwh.top/2018/05/15/C%20sharp%20%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩子同学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C# 数字图像处理笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-15T00:00:00+08:00">
+                2018-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" itemprop="url" rel="index">
+                    <span itemprop="name">奇技淫巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录了如下内容</p>
+<blockquote>
+<ul>
+<li>MDI多文档窗口创建</li>
+<li>打开图像</li>
+<li>保存图像</li>
+<li>图像的去色处理</li>
+<li>图像的二值化</li>
+<li>图像的提取边缘</li>
+<li>图像的中值滤波</li>
+<li>图像的直方图</li>
+<li>图像的直方图图像拉伸</li>
+<li>图像的直方图均衡化</li>
+<li>图像的线性点运算</li>
+<li>图像的目标提取标记</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="MDI多文档窗口创建"><a href="#MDI多文档窗口创建" class="headerlink" title="MDI多文档窗口创建"></a>MDI多文档窗口创建</h2><ul>
+<li>创建一个普通的C# Windows窗体应用程序，将<code>IsMdiContainer</code>设置为<code>true</code>，这样一个多文档应用程序就创建完成了。</li>
+<li>只需将子窗口的<code>MdiParent</code>设置为主窗体就可以为主窗口添加一个子窗口。</li>
+<li>子窗口的显示只能用<code>form.Show()</code>方法，如果用的是<code>form.ShowDialog()</code>则==不是==MDI子窗口了；</li>
+</ul>
+<h2 id="打开图像"><a href="#打开图像" class="headerlink" title="打开图像"></a>打开图像</h2><ul>
+<li>打开文件需要用到<code>OpenFileDialog</code>控件，然后子主程序里面判断是否点击了确定按钮，当用户点击了确定按钮的时候就相应打开文件操作；</li>
+<li>当用户选择了一个文件并确定后，<code>openFileDialog</code>的<code>FileName</code>属性就存储了需要打开文件的完整文件名；</li>
+<li>得到了需要打开图像的完整文件名后就需要用<code>Bitmap</code>对象存储图像文件；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    if (openFileDialog_main.ShowDialog() &#x3D;&#x3D; DialogResult.OK)</span><br><span class="line">        &#123;</span><br><span class="line">            form_MDI form &#x3D; new form_MDI();</span><br><span class="line">            form.MdiParent &#x3D; this;</span><br><span class="line">            form.Text &#x3D; openFileDialog_main.FileName;</span><br><span class="line">            Bitmap image &#x3D; new Bitmap(openFileDialog_main.FileName);</span><br><span class="line">            form.image &#x3D; image;</span><br><span class="line">            form.Show();   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">catch</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(&quot;打开文件错误！&quot;, &quot;无法正常打开文件！&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>这里有一个特别需要注意的地方就是<code>openFileDialog</code>的<code>Filter</code>属性设置方法； </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.openFileDialog_main.Filter &#x3D;  &quot;所有图片文件|*.jpg;*.bmp;*.png;*.pcx;*.gif;&quot;;</span><br><span class="line">this.openFileDialog_main.Title &#x3D; &quot;选择图片&quot;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在窗体上面显示图像，就需要用到<code>Graphics</code>对象；</li>
+<li>在整个窗体绘制完成后用强制刷新窗口，显示最新的图像；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g &#x3D; Graphics.FromHwnd(this.Handle);</span><br><span class="line">g.InterpolationMode &#x3D; InterpolationMode.High;</span><br><span class="line">g.DrawImage(image, new Rectangle(new Point(0, 0), imageSize));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private void form_MDI_SizeChanged(object sender, EventArgs e)</span><br><span class="line">    &#123;</span><br><span class="line">        g &#x3D; Graphics.FromHwnd(this.Handle);</span><br><span class="line">        g.InterpolationMode &#x3D; InterpolationMode.High;</span><br><span class="line">        g.SmoothingMode &#x3D; SmoothingMode.HighQuality;</span><br><span class="line">        this.Invalidate(new Rectangle(0,0,1,1));&#x2F;&#x2F;重绘窗口</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="保存图像"><a href="#保存图像" class="headerlink" title="保存图像"></a>保存图像</h2><ul>
+<li>和打开图像一样，保存图像同样也会用到一个类似的<code>saveFileDialog</code>控件；</li>
+<li>当用户点击了保存窗口的确定按钮后就开始了保存动作；</li>
+<li>同样需要注意的是这个控件的<code>Filter</code>属性；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">try</span><br><span class="line">    &#123;</span><br><span class="line">        if (this.ActiveMdiChild !&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            form_MDI form &#x3D; (form_MDI)this.ActiveMdiChild;</span><br><span class="line">            saveFileDialog1.FileName &#x3D; &quot;MyPicture&quot;; &#x2F;&#x2F; 缺损文件名</span><br><span class="line">            saveFileDialog1.DefaultExt &#x3D; &quot;.bmp&quot;; &#x2F;&#x2F; Default file extension</span><br><span class="line">            saveFileDialog1.Filter &#x3D; &quot;bmp 文件 (.bmp)|*.bmp|jpg 文件(.jpg)|*.jpg|png 文件(.png)|*.png&quot;; &#x2F;&#x2F; Filter files by extension</span><br><span class="line">            string filename &#x3D; string.Empty;</span><br><span class="line">            if (saveFileDialog1.ShowDialog() &#x3D;&#x3D; DialogResult.OK)</span><br><span class="line">                &#123;</span><br><span class="line">                    filename &#x3D; saveFileDialog1.FileName;</span><br><span class="line">                    string fileXtn &#x3D; &quot;bmp&quot;;&#x2F;&#x2F;设置默认扩展名</span><br><span class="line">                    ImageFormat Formt &#x3D; ImageFormat.Bmp;&#x2F;&#x2F;设置保存图片的格式</span><br><span class="line">                    fileXtn &#x3D; filename.Remove(0, filename.Length - 3);&#x2F;&#x2F;提取图片的扩展名</span><br><span class="line">                    switch (fileXtn)</span><br><span class="line">                    &#123;</span><br><span class="line">                        case &quot;bmp&quot;: Formt &#x3D; ImageFormat.Bmp;</span><br><span class="line">                            break;</span><br><span class="line">                        case &quot;jpg&quot;: Formt &#x3D; ImageFormat.Jpeg;</span><br><span class="line">                            break;</span><br><span class="line">                        case &quot;png&quot;: Formt &#x3D; ImageFormat.Png;</span><br><span class="line">                            break;</span><br><span class="line">                        default: return;</span><br><span class="line">                    &#125;</span><br><span class="line">                        form.image.Save(filename, Formt);&#x2F;&#x2F;保存图片</span><br><span class="line">                &#125;</span><br><span class="line">                MessageBox.Show(&quot;保存成功！&quot;, &quot;保存文件&quot;, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);&#x2F;&#x2F;保存成功提示框</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">catch</span><br><span class="line">    &#123; </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图像的去色处理"><a href="#图像的去色处理" class="headerlink" title="图像的去色处理"></a>图像的去色处理</h2><ul>
+<li>图像的去色，就是将普通的彩色图像修改为改为黑白照片；</li>
+<li>普通的RGB图像换算为灰度图像有一个公式<code>(Red * 19595 + Green * 38469 + Blue * 7472) &gt;&gt; 16</code>；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static void GreyImage(Bitmap image)</span><br><span class="line">    &#123;</span><br><span class="line">        BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">        byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">        Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">        for (int y &#x3D; 0; y &lt; image.Height * data.Stride; y +&#x3D; data.Stride)   </span><br><span class="line">        &#123;</span><br><span class="line">            for (int x &#x3D; 0; x &lt; image.Width*3; x +&#x3D; 3)</span><br><span class="line">            &#123;</span><br><span class="line">                int index &#x3D; y + x;</span><br><span class="line">                byte Blue &#x3D; datas[index];</span><br><span class="line">                byte Green &#x3D; datas[index + 1];</span><br><span class="line">                byte Red &#x3D; datas[index + 2];</span><br><span class="line">                datas[index] &#x3D; datas[index + 1] &#x3D; datas[index + 2] &#x3D; (byte)((Red * 19595 + Green * 38469 + Blue * 7472) &gt;&gt; 16);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Marshal.Copy(datas, 0,data.Scan0, datas.Length);</span><br><span class="line">        image.UnlockBits(data);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图像的提取边缘"><a href="#图像的提取边缘" class="headerlink" title="图像的提取边缘"></a>图像的提取边缘</h2><ul>
+<li>图像的边缘提取有很多的方法，这里利用的是差分法，就是利用拉普拉斯算子对图像进行差分计算，得到了灰度边缘，然后进行二值化，使图像形成比较清晰的轮廓；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public static void ExtactEage(Bitmap image)</span><br><span class="line">    &#123;</span><br><span class="line">        BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">        byte[] datas&#x3D;new byte[data.Stride*image.Height];</span><br><span class="line">        byte[] eages&#x3D;new byte[data.Stride*image.Height];</span><br><span class="line">        Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">        for (int y &#x3D; data.Stride; y &lt; image.Height * data.Stride - data.Stride; y +&#x3D; data.Stride)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int x &#x3D; 3; x &lt; image.Width * 3 - 3; x +&#x3D; 3)</span><br><span class="line">            &#123;</span><br><span class="line">                int index &#x3D; y + x; </span><br><span class="line">                byte grey &#x3D; datas[index];</span><br><span class="line">                int value &#x3D; 0;</span><br><span class="line">                for (int yy &#x3D; -data.Stride; yy &lt;&#x3D; data.Stride; yy +&#x3D; data.Stride)</span><br><span class="line">                &#123;</span><br><span class="line">                    for (int xx &#x3D; -3; xx &lt;&#x3D; 3; xx +&#x3D; 3)</span><br><span class="line">                    &#123;</span><br><span class="line">                        if (xx &#x3D;&#x3D; 0 &amp;&amp; yy &#x3D;&#x3D; 0)</span><br><span class="line">                            continue;                            </span><br><span class="line">                        index &#x3D; x + y + xx + yy;</span><br><span class="line">                        value +&#x3D; Math.Abs(grey - datas[index]);</span><br><span class="line">                    &#125;</span><br><span class="line">                    eages[index] &#x3D; eages[index + 1] &#x3D; eages[index + 2] &#x3D; (byte)(value &gt;&gt; 3);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Marshal.Copy(eages, 0, data.Scan0, datas.Length);</span><br><span class="line">        image.UnlockBits(data);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图像的二值化"><a href="#图像的二值化" class="headerlink" title="图像的二值化"></a>图像的二值化</h2><ul>
+<li>图像二值化就是将图片转换成只有黑白两种颜色的图像；</li>
+<li>二值化转换的过程中需要得到进行二值化最小、最大的两个颜色值；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 将图像二值化</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;需要处理的图像&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;indexColor&quot;&gt;处理的颜色索引值，Blue:0,Green:1,Red:2&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;thresholMin&quot;&gt;阈值下限&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;thresholMax&quot;&gt;阈值上限&lt;&#x2F;param&gt;</span><br><span class="line">public static void BinaryImage(Bitmap image, int indexColor, int thresholMin, int thresholMax)</span><br><span class="line">    &#123;</span><br><span class="line">        BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">        byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">        Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">        for (int y &#x3D; 0; y &lt; data.Stride * image.Height;y+&#x3D;data.Stride )</span><br><span class="line">        &#123;</span><br><span class="line">            for (int x &#x3D; 0; x &lt; image.Width*3; x +&#x3D; 3)</span><br><span class="line">            &#123;</span><br><span class="line">                int index &#x3D; y + x;</span><br><span class="line">                if (datas[index+indexColor] &gt;&#x3D; thresholMin &amp;&amp; datas[index+indexColor] &lt;&#x3D; thresholMax)</span><br><span class="line">                &#123;</span><br><span class="line">                    datas[index] &#x3D; datas[index + 1] &#x3D; datas[index + 2] &#x3D; 255;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                    datas[index] &#x3D; datas[index + 1] &#x3D; datas[index + 2] &#x3D; 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Marshal.Copy(datas, 0, data.Scan0, datas.Length);</span><br><span class="line">        image.UnlockBits(data);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图像的中值滤波"><a href="#图像的中值滤波" class="headerlink" title="图像的中值滤波"></a>图像的中值滤波</h2><ul>
+<li>图像的滤波处理可以使图像更加的平滑，这里利用的是中值滤波的方法进行图像滤波处理；</li>
+<li>中值滤波算法的思想是重新计算图像所有的像素值，去像素的3X3邻域9个像素点的颜色值，从大到小进行排列，去排序后中间一个像素的颜色值作为滤波后该颜色的像素值；</li>
+<li>这里排序利用的是<code>List&lt;&gt;[].sort()</code>方法;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 对图像进行中值滤波</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;需要处理的图像&lt;&#x2F;param&gt;</span><br><span class="line">public static void medianFilter(Bitmap image)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">    byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">    Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">    for (int y &#x3D; 1; y &lt; image.Height-1; y++)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int x &#x3D; 1; x &lt; image.Width-1; x++)</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;byte&gt;[] cacData &#x3D; new List&lt;byte&gt;[3];&#x2F;&#x2F;此时的数字3是表示[3个byte]为一个list</span><br><span class="line">            for (int k &#x3D; 0; k &lt;&#x3D; 2; k++)</span><br><span class="line">                cacData[k]&#x3D;new List&lt;byte&gt;();</span><br><span class="line">            for (int yy &#x3D; -1; yy &lt;&#x3D; 1; yy++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int xx &#x3D; -1; xx &lt;&#x3D; 1; xx++)</span><br><span class="line">                &#123;</span><br><span class="line">                    int index &#x3D; (y + yy) * data.Stride + (x + xx) * 3;</span><br><span class="line">                    for (int k &#x3D; 0; k &lt;&#x3D; 2; k++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        cacData[k].Add(datas[index + k]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int k &#x3D; 0; k &lt;&#x3D; 2; k++)</span><br><span class="line">                cacData[k].Sort();</span><br><span class="line">            int indexMedian &#x3D; y * data.Stride + x * 3;</span><br><span class="line">            for (int k &#x3D; 0; k &lt;&#x3D; 2; k++)</span><br><span class="line">            &#123;</span><br><span class="line">                datas[indexMedian + k] &#x3D; cacData[k][4];</span><br><span class="line">                cacData[k].Clear();</span><br><span class="line">            &#125;</span><br><span class="line">            cacData &#x3D; null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Marshal.Copy(datas, 0, data.Scan0, datas.Length);</span><br><span class="line">    image.UnlockBits(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图像的直方图"><a href="#图像的直方图" class="headerlink" title="图像的直方图"></a>图像的直方图</h2><ul>
+<li>图像直方图显示的是一个灰度图像的所有像素值得分不规律；</li>
+<li>横坐标是0-255，纵坐标则是格银色像素点的的相对数量比；</li>
+<li>直方图可以显示一个图像的像素分布水平，可以为其他的更高级的图像处理提供参考依据；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 生成灰度直方图</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;需要统计的图像&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;returns&gt;imageHistogram&lt;&#x2F;returns&gt;</span><br><span class="line">public static Bitmap getHistogram(Bitmap image, int indexColor)</span><br><span class="line">&#123;</span><br><span class="line">    Bitmap imageHistogram &#x3D; new Bitmap(256, 256);</span><br><span class="line">    Graphics gHistogram &#x3D; Graphics.FromImage(imageHistogram);</span><br><span class="line">    int maxHistogram &#x3D; 0;</span><br><span class="line">    int[] histogram &#x3D; new int[256];</span><br><span class="line">    BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(0, 0), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">    byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">    Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">    for (int y &#x3D; 0; y &lt; image.Height * data.Stride; y +&#x3D; data.Stride)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">        &#123;</span><br><span class="line">            int index &#x3D; y + x;</span><br><span class="line">            histogram[datas[index + indexColor]]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    image.UnlockBits(data);</span><br><span class="line"></span><br><span class="line">    for (int value &#x3D; 0; value &lt; 256; value++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (histogram[value] &gt; histogram[maxHistogram])</span><br><span class="line">        &#123;</span><br><span class="line">            maxHistogram &#x3D; (byte)value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    gHistogram.Clear(Color.Gray);</span><br><span class="line">    for (int value &#x3D; 0; value &lt; 256; value++)</span><br><span class="line">    &#123;</span><br><span class="line">        int length &#x3D; Byte.MaxValue * histogram[value] &#x2F; histogram[maxHistogram];</span><br><span class="line">        gHistogram.DrawLine(new Pen(Color.Black, 1f), value, 256, value, 256 - length);</span><br><span class="line">    &#125;</span><br><span class="line">    Font font &#x3D; new Font(&quot;宋体&quot;, 9f);</span><br><span class="line">    for (int value &#x3D; 32; value &lt; 256; value +&#x3D; 32)</span><br><span class="line">    &#123;</span><br><span class="line">        Pen pen &#x3D; new Pen(Color.Red, 1f);</span><br><span class="line">        gHistogram.DrawLine(pen, 0, value, 255, value);</span><br><span class="line">        gHistogram.DrawLine(pen, value, 0, value, 255);</span><br><span class="line">        SizeF sizeValue &#x3D; gHistogram.MeasureString(value.ToString(), font);</span><br><span class="line">        gHistogram.DrawString(value.ToString(), font, Brushes.SkyBlue, value - sizeValue.Width &#x2F; 2, 240);</span><br><span class="line">    &#125;</span><br><span class="line">    return imageHistogram;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图像的直方图图像拉伸"><a href="#图像的直方图图像拉伸" class="headerlink" title="图像的直方图图像拉伸"></a>图像的直方图图像拉伸</h2><ul>
+<li>基于直方图的图像拉伸可以改善图像整体颜色的对比度和亮度；</li>
+<li>直方图的图像拉伸思想是将图像的最大像素值和最小像素值拉伸至255和0，中间各像素点也会同比例的拉伸；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 灰度拉伸，</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;需要做拉伸处理的图像&lt;&#x2F;param&gt;</span><br><span class="line">public static void GreyStretch(Bitmap image)</span><br><span class="line">&#123;</span><br><span class="line">    int maxVlue, minValue;</span><br><span class="line">    BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">    byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">    Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">    maxVlue &#x3D; minValue &#x3D; datas[0];</span><br><span class="line">    try</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;寻找最大、最小值</span><br><span class="line">        for (int y &#x3D; 0; y &lt; data.Stride * image.Height; y +&#x3D; data.Stride)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">            &#123;</span><br><span class="line">                int index &#x3D; y + x;</span><br><span class="line">                if (datas[index] &gt; maxVlue)</span><br><span class="line">                    maxVlue &#x3D; datas[index];</span><br><span class="line">                if (datas[index] &lt; minValue)</span><br><span class="line">                    minValue &#x3D; datas[index];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;图像拉伸</span><br><span class="line">        for (int y &#x3D; 0; y &lt; data.Stride * image.Height; y +&#x3D; data.Stride)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">            &#123;</span><br><span class="line">                int index &#x3D; y + x;</span><br><span class="line">                if (maxVlue &gt; minValue)</span><br><span class="line">                &#123;</span><br><span class="line">                    &#x2F;&#x2F;maxVlue &#x3D; (int)(maxVlue -(maxVlue-minValue)&#x2F;4);</span><br><span class="line">                    &#x2F;&#x2F;minValue &#x3D; (int)(minValue + (maxVlue - minValue) &#x2F; 4);</span><br><span class="line">                    datas[index] &#x3D; (byte)(255 * (datas[index] - minValue) &#x2F; (maxVlue - minValue));&#x2F;&#x2F;主要计算公式</span><br><span class="line">                    datas[index + 1] &#x3D; datas[index + 2] &#x3D; datas[index];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Marshal.Copy(datas, 0, data.Scan0, datas.Length);</span><br><span class="line">        image.UnlockBits(data);</span><br><span class="line">    &#125;</span><br><span class="line">    catch</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图像的直方图均衡化"><a href="#图像的直方图均衡化" class="headerlink" title="图像的直方图均衡化"></a>图像的直方图均衡化</h2><ul>
+<li>直方图均衡化又叫直方图修平，通常该方法用来增加图像的局部对比度，尤其是图像有用像素的对比度十分接近时，通过这种方法亮度可以很好的在直方图上面分布；</li>
+<li>直方图均衡化的思想是将图像所有的像素点通过直方图映射到0-1（也就是0-255，最亮和最暗）区间里；</li>
+<li>此种方法的到的图像直方图是不连续的；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 图像直方图均衡化</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;需要进行直方图均衡化的图像&lt;&#x2F;param&gt;</span><br><span class="line">public static void equalization(Bitmap image)</span><br><span class="line">&#123;</span><br><span class="line">    int[] histogram &#x3D; new int[256];</span><br><span class="line">    int[] quaHistogram &#x3D; new int[256];</span><br><span class="line">    BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(0, 0), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">    byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">    Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">    &#x2F;&#x2F;得到图像的直方图数据</span><br><span class="line">    for (int y &#x3D; 0; y &lt; image.Height * data.Stride; y +&#x3D; data.Stride)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">        &#123;</span><br><span class="line">            int index &#x3D; y + x;</span><br><span class="line">            histogram[datas[index]]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;进行直方图均衡化处理</span><br><span class="line">    int temp &#x3D; 0;</span><br><span class="line">    for (int i &#x3D; 0; i &lt;&#x3D; 255; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp +&#x3D; histogram[i];</span><br><span class="line">        quaHistogram[i] &#x3D; (int)(255 * temp &#x2F; image.Height &#x2F; image.Width + 0.5);&#x2F;&#x2F;将灰度直方图均衡化的数据映射到0-255之内</span><br><span class="line">    &#125;</span><br><span class="line">    for (int y &#x3D; 0; y &lt; image.Height * data.Stride; y +&#x3D; data.Stride)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">        &#123;</span><br><span class="line">            int index &#x3D; y + x;</span><br><span class="line">            int htemp &#x3D; datas[index];</span><br><span class="line">            datas[index] &#x3D; (byte)quaHistogram[htemp];</span><br><span class="line">            datas[index + 1] &#x3D; datas[index + 2] &#x3D; datas[index];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Marshal.Copy(datas, 0, data.Scan0, datas.Length);</span><br><span class="line">    image.UnlockBits(data);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="图像的线性点运算"><a href="#图像的线性点运算" class="headerlink" title="图像的线性点运算"></a>图像的线性点运算</h2><ul>
+<li>图像的线性点运算，可以利用线性的方法改变图像的整体亮度和对比度；</li>
+<li>当斜率设置为<strong>-1</strong>，偏移量设置为<strong>255</strong>时，进过图像的线性运算后得到的就是图像的负片；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; 线性点运算,</span><br><span class="line">&#x2F;&#x2F;&#x2F; Out&#x3D;Old*scaling+offset</span><br><span class="line">&#x2F;&#x2F;&#x2F; 当scaling&#x3D;-1, offset&#x3D;255时得到的就是负片</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;进行点运算的图像&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;scaling&quot;&gt;斜率&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;offset&quot;&gt;偏移量&lt;&#x2F;param&gt;</span><br><span class="line">public static void linear(Bitmap image, double scaling, int offset)</span><br><span class="line">&#123;</span><br><span class="line">    BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">    byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">    Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">    for (int y &#x3D; 0; y &lt; data.Stride * image.Height; y +&#x3D; data.Stride)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">        &#123;</span><br><span class="line">            int index &#x3D; y + x;</span><br><span class="line">            int temp &#x3D; (int)(datas[y + x] * scaling + offset + 0.5);&#x2F;&#x2F;进行主要运算</span><br><span class="line">            if (temp &gt; 255)</span><br><span class="line">            &#123;</span><br><span class="line">                datas[y + x] &#x3D; datas[y + x + 1] &#x3D; datas[y + x + 2] &#x3D; 255;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            else if (temp &lt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                datas[y + x] &#x3D; datas[y + x + 1] &#x3D; datas[y + x + 2] &#x3D; 0;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                datas[y + x] &#x3D; datas[y + x + 1] &#x3D; datas[y + x + 2] &#x3D; (byte)temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Marshal.Copy(datas, 0, data.Scan0, datas.Length);</span><br><span class="line">    image.UnlockBits(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图像的目标提取标记"><a href="#图像的目标提取标记" class="headerlink" title="图像的目标提取标记"></a>图像的目标提取标记</h2><ul>
+<li>==此方法对于色块比较大的二值图像会出现堆栈溢出的现象！==</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 图像连通区域的标记，对于连通区域太大的</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;image&quot;&gt;需要处理的图像&lt;&#x2F;param&gt;</span><br><span class="line">public static void connectRegion(Bitmap image)</span><br><span class="line">&#123;</span><br><span class="line">    BitmapData data &#x3D; image.LockBits(new Rectangle(new Point(), image.Size), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);</span><br><span class="line">    byte[] datas &#x3D; new byte[data.Stride * image.Height];</span><br><span class="line">    Marshal.Copy(data.Scan0, datas, 0, datas.Length);</span><br><span class="line">    int sign &#x3D; 11;</span><br><span class="line">    for (int y &#x3D; 0; y &lt; data.Stride * image.Height; y +&#x3D; data.Stride)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int x &#x3D; 0; x &lt; image.Width * 3; x +&#x3D; 3)</span><br><span class="line">        &#123;</span><br><span class="line">            int index &#x3D; y + x;</span><br><span class="line">            if (datas[index] &#x3D;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                signRegion(datas, x, y, sign, data.Stride, image.Width, image.Height);</span><br><span class="line">                sign &#x3D; (sign + 33) % 255;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Marshal.Copy(datas, 0, data.Scan0, datas.Length);</span><br><span class="line">    image.UnlockBits(data);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>增加了一个进行上下左右搜索的递归函数，此处易出现堆栈溢出；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 连通区域的递归计算</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;datas&quot;&gt;图像数据&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;x&quot;&gt;像素点的竖直坐标&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;y&quot;&gt;像素点的横向坐标&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;sign&quot;&gt;标记的颜色&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;stride&quot;&gt;行宽&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;图像的宽度&lt;&#x2F;param&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;heigh&quot;&gt;图像的高度&lt;&#x2F;param&gt;</span><br><span class="line">static void signRegion(byte[] datas, int x, int y, int sign, int stride, int width, int heigh)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    try</span><br><span class="line">    &#123;</span><br><span class="line">        datas[y + x] &#x3D; datas[y + x + 1] &#x3D; datas[y + x + 2] &#x3D; (byte)sign;&#x2F;&#x2F;标记区域</span><br><span class="line">        if (x &gt; 0 &amp;&amp; datas[y + x - 3] &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            signRegion(datas, x - 3, y, sign, stride, width, heigh);&#x2F;&#x2F;搜索左边像素</span><br><span class="line">        &#125;</span><br><span class="line">        if (x &lt; width * 3 - 3 &amp;&amp; datas[y + x + 3] &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            signRegion(datas, x + 3, y, sign, stride, width, heigh);&#x2F;&#x2F;搜索右边像素</span><br><span class="line">        &#125;</span><br><span class="line">        if (y &gt; 0 &amp;&amp; datas[y - stride + x] &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            signRegion(datas, x, y - stride, sign, stride, width, heigh);&#x2F;&#x2F;搜索上边像素</span><br><span class="line">        &#125;</span><br><span class="line">        if (y &lt; stride * heigh &amp;&amp; datas[y + stride + x] &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            signRegion(datas, x, y + stride, sign, stride, width, heigh);&#x2F;&#x2F;搜索下边像素</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    catch (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(ex.Message, &quot;出现错误&quot;, MessageBoxButtons.OK, MessageBoxIcon.Error);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>–END–</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C#</a>
+          
+            <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 图像处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/13/JavaScript%E7%9A%84for%20in%E9%81%8D%E5%8E%86%E4%B8%8EJava%E7%9A%84foreach%E9%81%8D%E5%8E%86%E5%8C%BA%E5%88%AB/" rel="next" title="JavaScript的for/in遍历与Java的foreach遍历区别">
+                <i class="fa fa-chevron-left"></i> JavaScript的for/in遍历与Java的foreach遍历区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/21/%E7%BD%97%E6%B0%B8%E6%B5%A9%E7%9A%84%E7%90%86%E6%83%B3%E4%B8%8E%E6%AE%8B%E9%85%B7%E7%9A%84%E7%8E%B0%E5%AE%9E/" rel="prev" title="罗永浩的理想与残酷的现实">
+                罗永浩的理想与残酷的现实 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="浩子" />
+            
+              <p class="site-author-name" itemprop="name">浩子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MDI多文档窗口创建"><span class="nav-number">1.</span> <span class="nav-text">MDI多文档窗口创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打开图像"><span class="nav-number">2.</span> <span class="nav-text">打开图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存图像"><span class="nav-number">3.</span> <span class="nav-text">保存图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的去色处理"><span class="nav-number">4.</span> <span class="nav-text">图像的去色处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的提取边缘"><span class="nav-number">5.</span> <span class="nav-text">图像的提取边缘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的二值化"><span class="nav-number">6.</span> <span class="nav-text">图像的二值化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的中值滤波"><span class="nav-number">7.</span> <span class="nav-text">图像的中值滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的直方图"><span class="nav-number">8.</span> <span class="nav-text">图像的直方图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的直方图图像拉伸"><span class="nav-number">9.</span> <span class="nav-text">图像的直方图图像拉伸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的直方图均衡化"><span class="nav-number">10.</span> <span class="nav-text">图像的直方图均衡化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的线性点运算"><span class="nav-number">11.</span> <span class="nav-text">图像的线性点运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的目标提取标记"><span class="nav-number">12.</span> <span class="nav-text">图像的目标提取标记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浩子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
