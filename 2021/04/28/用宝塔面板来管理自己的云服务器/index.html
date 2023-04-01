@@ -85,18 +85,18 @@
 <meta property="og:url" content="http://www.songwh.top/2021/04/28/%E7%94%A8%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E6%9D%A5%E7%AE%A1%E7%90%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="每次需要管理我的阿里云服务器上面运行的应用时，都需要通过SSH登录上服务器，然后通过命令行的形式执行我的SpringBoot服务，查看服务器的执行情况也是通过Linux命令，有时候我需要在手机上面看系统的状况时就特别的不方便，刚好昨天在网络上面看到一个开源的服务管理面板——宝塔面板，顺便把我的阿里云服务器上面安装一下看看效果。">
-<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619595866381.png">
-<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596194339.png">
-<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596395982.png">
-<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596493694.png">
-<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596638459.png">
-<meta property="og:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596776716.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619595866381.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596194339.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596395982.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596493694.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596638459.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596776716.png">
 <meta property="article:published_time" content="2021-04-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-28T08:04:31.509Z">
+<meta property="article:modified_time" content="2023-04-01T08:53:48.962Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java,linux,宝塔面板">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619595866381.png">
+<meta name="twitter:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619595866381.png">
 
 
 
@@ -341,7 +341,7 @@
         <p>每次需要管理我的阿里云服务器上面运行的应用时，都需要通过SSH登录上服务器，然后通过命令行的形式执行我的SpringBoot服务，查看服务器的执行情况也是通过Linux命令，有时候我需要在手机上面看系统的状况时就特别的不方便，刚好昨天在网络上面看到一个开源的服务管理面板——宝塔面板，顺便把我的阿里云服务器上面安装一下看看效果。</p>
 <a id="more"></a>
 
-<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619595866381.png" alt="宝塔面板"></p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619595866381.png" alt="宝塔面板"></p>
 <h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>使用 SSH 连接工具，如堡塔SSH终端连接到您的 Linux 服务器后，挂载磁盘，根据系统执行相应命令开始安装（大约2分钟完成面板安装）：</p>
 <p><strong>Centos安装脚本</strong>:</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> wget &amp;&amp; wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; <span class="keyword">sh</span> install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
@@ -355,25 +355,25 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; bash install.s</span><br></pre></td></tr></table></figure>
 
 <p>整个过程就像宝塔官网上面写的那样，几分钟就结束了；</p>
-<h2 id="安装应用插件"><a href="#安装应用插件" class="headerlink" title="安装应用插件"></a>安装应用插件</h2><p>安装完成之后，会在安装界面提示登录页面地址、用户名和密码等信息，根据提示登录进宝塔系统即可。在后台管理页面点击应用商店就会看到下图这个界面。<br><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596194339.png" alt="应用商店"></p>
+<h2 id="安装应用插件"><a href="#安装应用插件" class="headerlink" title="安装应用插件"></a>安装应用插件</h2><p>安装完成之后，会在安装界面提示登录页面地址、用户名和密码等信息，根据提示登录进宝塔系统即可。在后台管理页面点击应用商店就会看到下图这个界面。<br><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596194339.png" alt="应用商店"></p>
 <p>安装必要的组件：nginx、mysql、php、tomcat，安装完成之后，宝塔的基本功能就可以用了。</p>
 <p>整个过程十分轻松方便。</p>
 <h2 id="执行SpringBoot项目"><a href="#执行SpringBoot项目" class="headerlink" title="执行SpringBoot项目"></a>执行SpringBoot项目</h2><ol>
 <li>在应用商店搜索Java，就会出现Java项目一键部署插件，点击安装；</li>
 </ol>
-<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596395982.png" alt="Java项目一键部署"></p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596395982.png" alt="Java项目一键部署"></p>
 <ol start="2">
 <li>安装完成之后点击设置，点击进入左侧springboot，若提示需要安装web容器，请安装tomcat；</li>
 </ol>
-<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596493694.png" alt="设置页面"></p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596493694.png" alt="设置页面"></p>
 <ol start="3">
 <li>进入springboot项目添加页面，添加一个springboot项目，先选择需要执行的jar，然后配置项目域名和端口，并检查最后的执行命令是否正确；</li>
 </ol>
-<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596638459.png" alt="添加springboot项目"></p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596638459.png" alt="添加springboot项目"></p>
 <ol start="4">
 <li>确定之后可以查看日志，看看项目是否正确执行，如果自己的域名和端口都填写正确的话，后面状态会现实启动中。</li>
 </ol>
-<p><img src="http://shuiruoyan-1255322941.cosgz.myqcloud.com/MarkDown/1619596776716.png" alt="启动中"></p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1619596776716.png" alt="启动中"></p>
 <h2 id="享受宝塔给我们带来的方便吧！"><a href="#享受宝塔给我们带来的方便吧！" class="headerlink" title="享受宝塔给我们带来的方便吧！"></a>享受宝塔给我们带来的方便吧！</h2>
       
     </div>

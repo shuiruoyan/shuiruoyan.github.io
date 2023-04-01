@@ -85,13 +85,13 @@
 <meta property="og:url" content="http://www.songwh.top/2018/08/07/Java%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%89%93%E5%8D%B0%E5%AD%97%E7%AC%A6%E4%B8%89%E8%A7%92%E5%BD%A2/index.html">
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="利用Java如何打印一个字符三角形呢？ 重点：利用for循环嵌套 细节：System.out.print()打印内容但不换行，System.out.println()打印内容后换行，所以在正常每一行打印时都是调用print()方法，在每一行打印结束之后调用println()方法来换行。">
-<meta property="og:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1534038680051.png">
+<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1534038680051.png">
 <meta property="article:published_time" content="2018-08-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-31T13:44:34.440Z">
+<meta property="article:modified_time" content="2023-03-31T14:12:07.128Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1534038680051.png">
+<meta name="twitter:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1534038680051.png">
 
 
 
@@ -341,7 +341,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Java_010</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">char</span>[] alpha=&#123;<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>,<span class="string">'G'</span>&#125;;<span class="comment">//声明数组并赋值</span></span><br><span class="line">		<span class="keyword">int</span> len=alpha.length;</span><br><span class="line">		<span class="comment">//循环每一行，循环体里面分别打印空格和字符</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">			<span class="comment">//打印len-i-1个空格</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">				System.out.print(<span class="string">" "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//打印2*i+1个字符</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">2</span>*i+<span class="number">1</span>;k++)&#123;</span><br><span class="line">				System.out.print(alpha[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();<span class="comment">//末尾换行</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
-<p><img src="http://rsd288mga.hn-bkt.clouddn.com/MarkDown/1534038680051.png" alt="输出结果"></p>
+<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1534038680051.png" alt="输出结果"></p>
 
       
     </div>
