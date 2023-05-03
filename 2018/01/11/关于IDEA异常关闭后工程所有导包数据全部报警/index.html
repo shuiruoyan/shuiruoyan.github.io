@@ -85,16 +85,16 @@
 <meta property="og:url" content="http://www.songwh.top/2018/01/11/%E5%85%B3%E4%BA%8EIDEA%E5%BC%82%E5%B8%B8%E5%85%B3%E9%97%AD%E5%90%8E%E5%B7%A5%E7%A8%8B%E6%89%80%E6%9C%89%E5%AF%BC%E5%8C%85%E6%95%B0%E6%8D%AE%E5%85%A8%E9%83%A8%E6%8A%A5%E8%AD%A6/index.html">
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="最近在用IDEA敲代码的时候，突然电脑断电之后。 电脑重启之后重新打开自己正在工作的工程，发现整个页面的类名都变红了。 经过自己分析这个原因之后，确定原因是整个工程导包失败，类似于我敲了一大堆的代码，却没有导入一个包一样，我的工程是利用SpringBoot创建的，首先我确认问题是否是因为Maven导包失败的原因。">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183575821.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183788509.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183931577.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/1547183575821.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/1547183788509.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/1547183931577.png">
 <meta property="article:published_time" content="2018-01-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-31T14:12:12.639Z">
+<meta property="article:modified_time" content="2023-05-03T03:58:20.441Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="IDEA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183575821.png">
+<meta name="twitter:image" content="https://image.songwh.top/MarkDown/1547183575821.png">
 
 
 
@@ -345,16 +345,16 @@
 <p>这说明问题不在<code>Maven</code>，是其他的原因。没有办法我就重新去百度搜索和我有类似经历的人有什么办法，总结起来差不多有两个办法：</p>
 <ol>
 <li><p>去<code>File</code>-<code>Invalidate Caches/Restart</code>删除<code>IDEA</code>的缓存，并重启<code>IDEA</code>；</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183575821.png" alt="清除IDEA缓存"></p>
+<p><img src="https://image.songwh.top/MarkDown/1547183575821.png" alt="清除IDEA缓存"></p>
 </li>
 </ol>
 <ol start="2">
 <li>第二个办法就是删除工程目录<code>.idea/workspace.xml</code>这个文件，并重启<code>IDEA</code>，让其中心配置整个工程设置，此处需要注意的一点是<strong>单个工程的配置会被清除</strong>；</li>
-<li><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183788509.png" alt="删除workspace.xml文件"></li>
+<li><img src="https://image.songwh.top/MarkDown/1547183788509.png" alt="删除workspace.xml文件"></li>
 </ol>
 <p>在完成这些操作之后，整个工程里面发现<code>JDK</code>之外的包全部正常了，但是<code>JDK</code>的包还是不能正常导入，所以我估计我的<code>JDK</code>坏了。</p>
 <p>为了验证我的想法，我通过通过<code>Project Structure</code>来配置我的<code>JDK</code>发现<code>IDEA</code>会提示我的<code>这个路径不是一个合法的JDK路径</code>，这就证明了我的想法是正确的。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/1547183931577.png" alt="enter description here"></p>
+<p><img src="https://image.songwh.top/MarkDown/1547183931577.png" alt="enter description here"></p>
 <p>没有办法，我得重新安装我的<code>JDK</code>，整个灾难也在我重新安装了<code>JDK</code>之后重新恢复正常。</p>
 
       

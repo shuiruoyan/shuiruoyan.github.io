@@ -85,23 +85,23 @@
 <meta property="og:url" content="http://www.songwh.top/2017/10/08/Tomcat%E4%B8%8EServlet%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="浩子同学">
 <meta property="og:description" content="在开发动态web页面时，经常会用到Tomcat映射Servlet这两个好用的不能再好用的工具。 这里简单介绍一下基本的Tomcat与Servlet基础知识。">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/01.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard02.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard03.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard04.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard05.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard06.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard07.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard08.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard09.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard10.png">
-<meta property="og:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard11.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/01.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard02.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard03.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard04.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard05.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard06.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard07.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard08.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard09.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard10.png">
+<meta property="og:image" content="https://image.songwh.top/MarkDown/clipboard11.png">
 <meta property="article:published_time" content="2017-10-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-31T14:12:07.219Z">
+<meta property="article:modified_time" content="2023-05-03T03:58:14.364Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="Tomcat;Servlet">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/01.png">
+<meta name="twitter:image" content="https://image.songwh.top/MarkDown/01.png">
 
 
 
@@ -352,23 +352,23 @@
 <p>动态web资源：指那些由程序动态生成的网页。我们常见的购物网站，搜索引擎等等都是动态生成的网页。此类网页不仅仅要用到<code>HTML+CSS+JavaScript</code>等技术还会用到一些其他比较高级的工具比如<code>Tomcat</code>、<code>Servlet</code>等等。</p>
 <h2 id="二、Tomcat容器"><a href="#二、Tomcat容器" class="headerlink" title="二、Tomcat容器"></a>二、Tomcat容器</h2><p>Tomcat是Apache下面的一个开源项目，它是一个容器，前端与服务器就是通过这个容器来进行沟通的。</p>
 <h3 id="1-Tomcat的web项目目录介绍"><a href="#1-Tomcat的web项目目录介绍" class="headerlink" title="1. Tomcat的web项目目录介绍"></a>1. Tomcat的web项目目录介绍</h3><p>在开发Tomcat项目时，前后端的文件都必须严格按照要求存储在指定的目录下面。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/01.png" alt="enter description here" title="Tomcat的web项目目录介绍"></p>
+<p><img src="https://image.songwh.top/MarkDown/01.png" alt="enter description here" title="Tomcat的web项目目录介绍"></p>
 <h3 id="2-Tomcat体系结构"><a href="#2-Tomcat体系结构" class="headerlink" title="2. Tomcat体系结构"></a>2. Tomcat体系结构</h3><p>Server代表整个Servlet容器组件，是最顶层的元素，可以包含多个Service元素；<br>每个Service包含一个Engine和多个Connector元素；<br>Connector元素代表和客户端程序交互的组件，负责接受客户端请求和想客户端返回响应；<br>Engine中可以包含多个Host，Host表示一个虚拟主机，他可以包含多个web应用；<br>Context代表运行在虚拟主机上的单个web应用；</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard02.png" alt="enter description here" title="Tomcat体系结构"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard02.png" alt="enter description here" title="Tomcat体系结构"></p>
 <h3 id="3-web-xml"><a href="#3-web-xml" class="headerlink" title="3. web.xml"></a>3. web.xml</h3><p>在用Tomcat发布应用过程中，就必须先配置web.xml文件，此文件在WEB_INF文件夹下，里面包含前后端页面的主要配置参数。</p>
 <p><welcome-file-list>标签可以设置加载工程后默认打开的页面；</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard03.png" alt="enter description here" title="设置默认页面"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard03.png" alt="enter description here" title="设置默认页面"></p>
 <p><servlet>是用来配置Servlet对象的名称、类名、初始化参数、自启动加载顺序等；</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard04.png" alt="enter description here" title="设置Servlet参数"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard04.png" alt="enter description here" title="设置Servlet参数"></p>
 <p><servlet-mapping>可以配置Servlet对象的映射地址，这样浏览器就可以通过这个地址访问Servlet对象。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard05.png" alt="enter description here" title="设置Servlet映射关系"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard05.png" alt="enter description here" title="设置Servlet映射关系"></p>
 <h2 id="三、Servlet"><a href="#三、Servlet" class="headerlink" title="三、Servlet"></a>三、Servlet</h2><p>Servlet是sun公司提供的一个用于开发动态web资源的的计数，可以实现和客户端的交互，接受客户端请求和给客户端返回响应。</p>
 <p>Sun公司在其API中提供了一个servlet接口，用户若想开发一个动态web资源一半需要完成2个步骤：<br>编写一个Java类，实现Servlet接口；<br>把开发好的Java类部署到web服务器中。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard06.png" alt="enter description here" title="Servlet简单代码"></p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard07.png" alt="enter description here" title="Servlet第一个项目运行结果"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard06.png" alt="enter description here" title="Servlet简单代码"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard07.png" alt="enter description here" title="Servlet第一个项目运行结果"></p>
 <h2 id="四、Servlet实现类"><a href="#四、Servlet实现类" class="headerlink" title="四、Servlet实现类"></a>四、Servlet实现类</h2><p>GenericServlet，一般的Servlet实现类。<br>HttpServlet，此实现类可以处理HTTP请求的Servlet，他在原Servlet的开发了众多处理HTTP协议的方法。功能十分强大，所以在开发web项目时，通常都会继承这个类。</p>
 <p>HttpServlet在继承Servlet请求时重写了service方法，它会判断用户的请求是GET还是POST，然后再相应调用doGet()方法或者doPost()方法。</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard08.png" alt="enter description here" title="Servlet运行周期测试结果"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard08.png" alt="enter description here" title="Servlet运行周期测试结果"></p>
 <h2 id="五、Servlet的运行过程"><a href="#五、Servlet的运行过程" class="headerlink" title="五、Servlet的运行过程"></a>五、Servlet的运行过程</h2><p>经过测试发现Servlet在运行过程中只会创建一个实例化对象，然后反复调用，而Servlet的销毁也仅仅是发生在Servlet实现类发生改变时需要重新加载时，其他无论是关闭浏览器还是关闭服务器都不会出发destroy方法。</p>
 <p>Servlet程序是由WEB服务器调用，web服务器收到客户端的Servlet访问请求后：</p>
 <blockquote>
@@ -380,10 +380,10 @@
 <p>如果在<servlet>元素中配置了一个<load-on-startup>元素，那么WEB应用程序在启动时，就会装载并创建Servlet的实例对象、以及调用Servlet实例对象的init()方法。</p>
 <p>用途：为web应用写一个InitServlet，这个servlet配置为启动时装载，为整个web应用创建必要的公共数据。</p>
 <h2 id="七、ServletConfig对象"><a href="#七、ServletConfig对象" class="headerlink" title="七、ServletConfig对象"></a>七、ServletConfig对象</h2><p>ServletConfig对象可以获取初始化web.xml文件中设置的初始化参数：</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard09.png" alt="enter description here" title="配置Servlet初始化参数"></p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard10.png" alt="enter description here" title="初始化参数运行结果"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard09.png" alt="enter description here" title="配置Servlet初始化参数"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard10.png" alt="enter description here" title="初始化参数运行结果"></p>
 <h2 id="八、context、session、request的区别"><a href="#八、context、session、request的区别" class="headerlink" title="八、context、session、request的区别"></a>八、context、session、request的区别</h2><p>context是全局对象，<br>session是与客户端有关，单个客户端只有一个session，无论网页是否关闭无关<br>request客户端的每次请求都会有不同的request</p>
-<p><img src="https://shuiruoyan-1255322941.cos.ap-guangzhou.myqcloud.com/MarkDown/clipboard11.png" alt="enter description here" title="Servlet流程图"></p>
+<p><img src="https://image.songwh.top/MarkDown/clipboard11.png" alt="enter description here" title="Servlet流程图"></p>
 
       
     </div>
