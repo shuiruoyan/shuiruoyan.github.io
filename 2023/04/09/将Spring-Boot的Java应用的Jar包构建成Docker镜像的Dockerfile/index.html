@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="[!todo]- 文档信息作者: 宋文浩时间: [[2023-04-09]] 11:32:48关联文档:   介绍和记录前后端分离系统的dockerfile文件的模板">
+<meta name="description" content="介绍和记录前后端分离系统的dockerfile文件的模板">
 <meta property="og:type" content="article">
 <meta property="og:title" content="构建Dockerfile">
 <meta property="og:url" content="http://www.songwh.top/2023/04/09/%E5%B0%86Spring-Boot%E7%9A%84Java%E5%BA%94%E7%94%A8%E7%9A%84Jar%E5%8C%85%E6%9E%84%E5%BB%BA%E6%88%90Docker%E9%95%9C%E5%83%8F%E7%9A%84Dockerfile/index.html">
 <meta property="og:site_name" content="浩子同学">
-<meta property="og:description" content="[!todo]- 文档信息作者: 宋文浩时间: [[2023-04-09]] 11:32:48关联文档:   介绍和记录前后端分离系统的dockerfile文件的模板">
+<meta property="og:description" content="介绍和记录前后端分离系统的dockerfile文件的模板">
 <meta property="article:published_time" content="2023-04-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-03T08:47:46.304Z">
+<meta property="article:modified_time" content="2023-09-03T08:51:36.983Z">
 <meta property="article:author" content="浩子">
 <meta property="article:tag" content="奇技淫巧">
 <meta property="article:tag" content="docker">
@@ -332,10 +332,7 @@
       
 
       
-        <blockquote>
-<p>[!todo]- 文档信息<br>作者: 宋文浩<br>时间: [[2023-04-09]] 11:32:48<br>关联文档: </p>
-</blockquote>
-<p>介绍和记录前后端分离系统的dockerfile文件的模板</p>
+        <p>介绍和记录前后端分离系统的dockerfile文件的模板</p>
 <a id="more"></a>
 
 <h2 id="1-后端微服务的Dockerfile模板"><a href="#1-后端微服务的Dockerfile模板" class="headerlink" title="1. 后端微服务的Dockerfile模板"></a>1. 后端微服务的Dockerfile模板</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定以openjdk:8-jre 为基础镜像，来构建此镜像，可以理解为运行的需要基础环境</span></span><br><span class="line"><span class="comment"># 或者用另外一个官方的镜像 adoptopenjdk:8-jre-hotspot</span></span><br><span class="line">FROM registry.cn-hangzhou.aliyuncs.com/songwh/openjdk:8-jre-alpine</span><br><span class="line"><span class="comment"># WORKDIR指令用于指定容器的一个目录， 容器启动时执行的命令会在该目录下执行。</span></span><br><span class="line">WORKDIR /</span><br><span class="line"><span class="comment"># 将当前client.jar 复制到容器根目录下</span></span><br><span class="line">ADD ./songwh-server/ruoyi-admin/target/ruoyi-admin.jar /usr/<span class="built_in">local</span>/app.jar</span><br><span class="line"><span class="comment"># 暴露容器端口为8080 Docker镜像告知Docker宿主机应用监听了指定端口</span></span><br><span class="line">EXPOSE 8080</span><br><span class="line"><span class="comment"># 容器启动时执行的命令</span></span><br><span class="line">ENTRYPOINT [<span class="string">"sh"</span>,<span class="string">"-c"</span>,<span class="string">"java -jar  <span class="variable">$JAVA_OPT</span> /usr/local/app.jar"</span>]</span><br></pre></td></tr></table></figure>
