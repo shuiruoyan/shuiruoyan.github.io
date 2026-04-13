@@ -15,7 +15,10 @@ function loadTheme() {
   const saved = localStorage.getItem('hermes_theme');
   if (saved) {
     document.documentElement.setAttribute('data-theme', saved);
-    document.getElementById('theme-icon').textContent = saved === 'light' ? '🌙' : '☀️';
+    document.getElementById('theme-icon').textContent = saved === 'dark' ? '🌙' : '☀️';
+  } else {
+    // Default to light theme
+    document.getElementById('theme-icon').textContent = '🌙';
   }
 }
 
