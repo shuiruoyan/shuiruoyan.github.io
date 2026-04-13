@@ -57,17 +57,16 @@ async function loadGitHubProfile() {
     document.getElementById('gh-repos').textContent = d.public_repos ?? '--';
     document.getElementById('gh-followers').textContent = d.followers ?? '--';
     document.getElementById('gh-following').textContent = d.following ?? '--';
-    document.getElementById('github-status').textContent = 'ONLINE';
+    document.getElementById('github-status').textContent = '在线';
   } catch {
-    document.getElementById('github-status').textContent = 'OFFLINE';
+    document.getElementById('github-status').textContent = '离线';
   }
 }
 
 // ---- Weather ----
 const WEATHER_ICONS = {
-  'Clear': '☀️', 'Clouds': '☁️', 'Rain': '🌧️', 'Drizzle': '🌦️',
-  'Thunderstorm': '⛈️', 'Snow': '❄️', 'Mist': '🌫️', 'Fog': '🌫️',
-  'Haze': '🌫️', 'Smoke': '🌫️', 'Dust': '💨', 'default': '🌡️'
+  '晴': '☀️', '多云': '☁️', '阴': '☁️', '雨': '🌧️', '毛毛雨': '🌦️',
+  '雷暴': '⛈️', '雪': '❄️', '雾': '🌫️', '霾': '🌫️', '沙尘': '💨', 'default': '🌡️'
 };
 
 async function loadWeather() {
@@ -98,25 +97,25 @@ async function loadWeather() {
     const weatherName = getWeatherName(code);
     document.getElementById('weather-desc').textContent = weatherName;
     document.getElementById('weather-icon').textContent = WEATHER_ICONS[weatherName] || WEATHER_ICONS['default'];
-    document.getElementById('weather-status').textContent = 'OK';
+    document.getElementById('weather-status').textContent = '正常';
   } catch {
-    document.getElementById('weather-status').textContent = 'ERROR';
-    document.getElementById('weather-desc').textContent = 'Unavailable';
+    document.getElementById('weather-status').textContent = '错误';
+    document.getElementById('weather-desc').textContent = '不可用';
     document.getElementById('weather-temp').textContent = '--°';
   }
 }
 
 function getWeatherName(code) {
   const map = {
-    0: 'Clear', 1: 'Clear', 2: 'Clouds', 3: 'Clouds',
-    45: 'Fog', 48: 'Fog',
-    51: 'Drizzle', 53: 'Drizzle', 55: 'Drizzle',
-    61: 'Rain', 63: 'Rain', 65: 'Rain',
-    71: 'Snow', 73: 'Snow', 75: 'Snow',
-    80: 'Rain', 81: 'Rain', 82: 'Rain',
-    95: 'Thunderstorm', 96: 'Thunderstorm', 99: 'Thunderstorm'
+    0: '晴', 1: '晴', 2: '多云', 3: '阴',
+    45: '雾', 48: '雾',
+    51: '毛毛雨', 53: '毛毛雨', 55: '毛毛雨',
+    61: '雨', 63: '雨', 65: '雨',
+    71: '雪', 73: '雪', 75: '雪',
+    80: '雨', 81: '雨', 82: '雨',
+    95: '雷暴', 96: '雷暴', 99: '雷暴'
   };
-  return map[code] || 'Clouds';
+  return map[code] || '多云';
 }
 
 // ---- System Monitor (simulated for browser) ----
@@ -167,7 +166,7 @@ function flashSave() {
   const btn = document.querySelector('.action-btn:last-child');
   if (!btn) return;
   const orig = btn.querySelector('span:last-child').textContent;
-  btn.querySelector('span:last-child').textContent = 'SAVED!';
+  btn.querySelector('span:last-child').textContent = '已保存!';
   setTimeout(() => btn.querySelector('span:last-child').textContent = orig, 1200);
 }
 
@@ -184,6 +183,7 @@ function renderCol(key, cardsId, countId) {
   count.textContent = kanbanData[key].length;
 
   kanbanData[key].forEach((task, i) => {
+    const prioMap = { low: '低', medium: '中', high: '高', critical: '紧急' };
     const card = document.createElement('div');
     card.className = 'kanban-card';
     card.draggable = true;
@@ -194,8 +194,8 @@ function renderCol(key, cardsId, countId) {
       <div class="kanban-card-title">${escHtml(task.title)}</div>
       ${task.desc ? `<div class="kanban-card-desc">${escHtml(task.desc)}</div>` : ''}
       <div class="kanban-card-footer">
-        <span class="priority-badge priority-${task.priority}">${task.priority.toUpperCase()}</span>
-        <button class="card-delete" onclick="deleteTask('${key}', ${i})" title="Delete">&#10005;</button>
+        <span class="priority-badge priority-${task.priority}">${prioMap[task.priority] || task.priority}</span>
+        <button class="card-delete" onclick="deleteTask('${key}', ${i})" title="删除">&#10005;</button>
       </div>
     `;
 

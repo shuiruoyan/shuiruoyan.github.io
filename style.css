@@ -19,7 +19,7 @@
   --text-bright: #ffffff;
   --card-w: 420px;
   --radius: 12px;
-  --font: 'Inter', -apple-system, sans-serif;
+  --font: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 

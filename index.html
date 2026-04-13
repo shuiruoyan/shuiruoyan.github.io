@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission Control — songwh.top</title>
+  <title>任务控制台 — songwh.top</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,14 +24,14 @@
           <div class="logo-ring-inner"></div>
         </div>
         <div>
-          <h1 class="site-title">MISSION CONTROL</h1>
-          <p class="site-subtitle">songwh.top — AI Agent Dashboard</p>
+          <h1 class="site-title">任务控制台</h1>
+          <p class="site-subtitle">songwh.top — AI 代理仪表板</p>
         </div>
       </div>
       <div class="header-right">
         <div class="live-badge">
           <span class="live-dot"></span>
-          <span>LIVE</span>
+          <span>在线</span>
         </div>
         <div class="clock" id="clock">--:--:--</div>
         <div class="date" id="date">----/--/--</div>
@@ -41,20 +41,20 @@
     <!-- STATUS BAR -->
     <div class="status-bar">
       <div class="status-item">
-        <span class="status-label">UPTIME</span>
+        <span class="status-label">运行时间</span>
         <span class="status-value" id="uptime">--:--:--</span>
       </div>
       <div class="status-item">
-        <span class="status-label">AGENT</span>
-        <span class="status-value agent-status">ACTIVE</span>
+        <span class="status-label">代理</span>
+        <span class="status-value agent-status">活跃</span>
       </div>
       <div class="status-item">
-        <span class="status-label">GITHUB</span>
-        <span class="status-value" id="github-status">ONLINE</span>
+        <span class="status-label">GitHub</span>
+        <span class="status-value" id="github-status">在线</span>
       </div>
       <div class="status-item">
-        <span class="status-label">WEATHER</span>
-        <span class="status-value" id="weather-status">LOADING</span>
+        <span class="status-label">天气</span>
+        <span class="status-value" id="weather-status">加载中</span>
       </div>
     </div>
 
@@ -65,28 +65,28 @@
       <div class="card card-github">
         <div class="card-header">
           <span class="card-icon">&#9679;</span>
-          <span>GITHUB PROFILE</span>
+          <span>GitHub 资料</span>
         </div>
         <div class="card-body">
           <div class="github-profile">
             <img class="github-avatar" id="gh-avatar" src="" alt="avatar">
             <div class="github-info">
-              <div class="github-name" id="gh-name">LOADING</div>
+              <div class="github-name" id="gh-name">加载中</div>
               <div class="github-login" id="gh-login">@---</div>
             </div>
           </div>
           <div class="github-stats">
             <div class="gh-stat">
               <span class="gh-stat-num" id="gh-repos">--</span>
-              <span class="gh-stat-label">REPOS</span>
+              <span class="gh-stat-label">仓库</span>
             </div>
             <div class="gh-stat">
               <span class="gh-stat-num" id="gh-followers">--</span>
-              <span class="gh-stat-label">FOLLOWERS</span>
+              <span class="gh-stat-label">粉丝</span>
             </div>
             <div class="gh-stat">
               <span class="gh-stat-num" id="gh-following">--</span>
-              <span class="gh-stat-label">FOLLOWING</span>
+              <span class="gh-stat-label">关注</span>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@
       <div class="card card-clock">
         <div class="card-header">
           <span class="card-icon">&#9679;</span>
-          <span>LOCAL TIME</span>
+          <span>本地时间</span>
         </div>
         <div class="card-body clock-body">
           <div class="big-clock" id="big-clock">--:--:--</div>
@@ -109,7 +109,7 @@
       <div class="card card-weather">
         <div class="card-header">
           <span class="card-icon">&#9679;</span>
-          <span>WEATHER</span>
+          <span>天气</span>
         </div>
         <div class="card-body">
           <div class="weather-main" id="weather-main">
@@ -119,15 +119,15 @@
           </div>
           <div class="weather-details">
             <div class="weather-detail">
-              <span class="wd-label">HUMIDITY</span>
+              <span class="wd-label">湿度</span>
               <span class="wd-value" id="weather-humidity">--%</span>
             </div>
             <div class="weather-detail">
-              <span class="wd-label">WIND</span>
+              <span class="wd-label">风速</span>
               <span class="wd-value" id="weather-wind">-- km/h</span>
             </div>
             <div class="weather-detail">
-              <span class="wd-label">LOCATION</span>
+              <span class="wd-label">位置</span>
               <span class="wd-value" id="weather-city">---</span>
             </div>
           </div>
@@ -138,7 +138,7 @@
       <div class="card card-monitor">
         <div class="card-header">
           <span class="card-icon">&#9679;</span>
-          <span>SYSTEM</span>
+          <span>系统</span>
         </div>
         <div class="card-body">
           <div class="monitor-row">
@@ -149,21 +149,21 @@
             <span class="mon-val" id="cpu-val">0%</span>
           </div>
           <div class="monitor-row">
-            <span class="mon-label">MEM</span>
+            <span class="mon-label">内存</span>
             <div class="mon-bar-wrap">
               <div class="mon-bar mem-bar" id="mem-bar" style="width:0%"></div>
             </div>
             <span class="mon-val" id="mem-val">0%</span>
           </div>
           <div class="monitor-row">
-            <span class="mon-label">DISK</span>
+            <span class="mon-label">磁盘</span>
             <div class="mon-bar-wrap">
               <div class="mon-bar disk-bar" id="disk-bar" style="width:0%"></div>
             </div>
             <span class="mon-val" id="disk-val">0%</span>
           </div>
           <div class="monitor-row">
-            <span class="mon-label">NET</span>
+            <span class="mon-label">网络</span>
             <div class="mon-bar-wrap">
               <div class="mon-bar net-bar" id="net-bar" style="width:0%"></div>
             </div>
@@ -176,27 +176,27 @@
       <div class="card card-kanban">
         <div class="card-header">
           <span class="card-icon">&#9679;</span>
-          <span>KANBAN</span>
-          <span class="card-header-action" onclick="openAddModal()">+ ADD</span>
+          <span>看板</span>
+          <span class="card-header-action" onclick="openAddModal()">+ 添加</span>
         </div>
         <div class="card-body kanban-body">
           <div class="kanban-col" id="kanban-backlog">
             <div class="kanban-col-header">
-              <span class="kanban-col-title">BACKLOG</span>
+              <span class="kanban-col-title">待办</span>
               <span class="kanban-count" id="count-backlog">0</span>
             </div>
             <div class="kanban-cards" id="cards-backlog"></div>
           </div>
           <div class="kanban-col" id="kanban-progress">
             <div class="kanban-col-header">
-              <span class="kanban-col-title">IN PROGRESS</span>
+              <span class="kanban-col-title">进行中</span>
               <span class="kanban-count" id="count-progress">0</span>
             </div>
             <div class="kanban-cards" id="cards-progress"></div>
           </div>
           <div class="kanban-col" id="kanban-done">
             <div class="kanban-col-header">
-              <span class="kanban-col-title">DONE</span>
+              <span class="kanban-col-title">已完成</span>
               <span class="kanban-count" id="count-done">0</span>
             </div>
             <div class="kanban-cards" id="cards-done"></div>
@@ -208,13 +208,13 @@
       <div class="card card-actions">
         <div class="card-header">
           <span class="card-icon">&#9679;</span>
-          <span>QUICK ACTIONS</span>
+          <span>快捷操作</span>
         </div>
         <div class="card-body">
           <div class="actions-grid">
             <button class="action-btn" onclick="openAddModal()">
               <span class="action-icon">+</span>
-              <span>New Task</span>
+              <span>新建任务</span>
             </button>
             <a class="action-btn" href="https://github.com/shuiruoyan" target="_blank">
               <span class="action-icon">&#64;</span>
@@ -222,11 +222,11 @@
             </a>
             <a class="action-btn" href="https://github.com/shuiruoyan/shuiruoyan.github.io" target="_blank">
               <span class="action-icon">&#8635;</span>
-              <span>Repo</span>
+              <span>仓库</span>
             </a>
             <button class="action-btn" onclick="saveKanban()">
               <span class="action-icon">&#128190;</span>
-              <span>Save</span>
+              <span>保存</span>
             </button>
           </div>
         </div>
@@ -236,7 +236,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      <span>MISSION CONTROL — POWERED BY HERMES AGENT</span>
+      <span>任务控制台 — 由 Hermes Agent 驱动</span>
       <span id="footer-time">---</span>
     </footer>
   </div><!-- /container -->
@@ -245,31 +245,31 @@
   <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
     <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
-        <span>NEW TASK</span>
+        <span>新建任务</span>
         <button class="modal-close" onclick="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <label>TITLE</label>
-        <input type="text" id="task-title" placeholder="Task title..." maxlength="80">
-        <label>DESCRIPTION</label>
-        <textarea id="task-desc" placeholder="Optional description..." rows="3"></textarea>
-        <label>PRIORITY</label>
+        <label>标题</label>
+        <input type="text" id="task-title" placeholder="任务标题..." maxlength="80">
+        <label>描述</label>
+        <textarea id="task-desc" placeholder="可选描述..." rows="3"></textarea>
+        <label>优先级</label>
         <select id="task-priority">
-          <option value="low">LOW</option>
-          <option value="medium" selected>MEDIUM</option>
-          <option value="high">HIGH</option>
-          <option value="critical">CRITICAL</option>
+          <option value="low">低</option>
+          <option value="medium" selected>中</option>
+          <option value="high">高</option>
+          <option value="critical">紧急</option>
         </select>
-        <label>COLUMN</label>
+        <label>列表</label>
         <select id="task-col">
-          <option value="backlog">BACKLOG</option>
-          <option value="progress">IN PROGRESS</option>
-          <option value="done">DONE</option>
+          <option value="backlog">待办</option>
+          <option value="progress">进行中</option>
+          <option value="done">已完成</option>
         </select>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" onclick="closeModal()">CANCEL</button>
-        <button class="btn-add" onclick="addTask()">ADD TASK</button>
+        <button class="btn-cancel" onclick="closeModal()">取消</button>
+        <button class="btn-add" onclick="addTask()">添加</button>
       </div>
     </div>
   </div>
