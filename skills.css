@@ -1,0 +1,180 @@
+/* ================================================
+   SKILLS PAGE — skills.css
+   ================================================ */
+
+/* ---- Back Bar ---- */
+.back-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.back-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  background: var(--surface);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.back-link:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+.back-hint {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+/* ---- Skills Hero ---- */
+.skills-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 36px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(16px);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.skills-hero-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+}
+
+.skills-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -0.01em;
+  transition: color 0.25s;
+}
+
+.skills-hero-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  transition: color 0.25s;
+}
+
+/* ---- Category ---- */
+.skills-category {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 36px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(16px);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cat-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: blink 2.5s ease-in-out infinite;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.cat-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 0.04em;
+  transition: color 0.25s;
+}
+
+.cat-count {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 2px 10px;
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ---- Skill Items ---- */
+.cat-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.skill-item {
+  display: grid;
+  grid-template-columns: 200px 80px 1fr;
+  align-items: start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--learning-line);
+}
+
+.skill-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.skill-item:first-child {
+  padding-top: 0;
+}
+
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  transition: color 0.25s;
+}
+
+.skill-level {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--border2);
+  text-align: center;
+  white-space: nowrap;
+  transition: background 0.3s, color 0.3s;
+}
+
+.skill-desc {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  transition: color 0.25s;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+  .skill-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .skills-hero { flex-direction: column; align-items: flex-start; padding: 20px; }
+  .skills-category { padding: 20px; }
+}

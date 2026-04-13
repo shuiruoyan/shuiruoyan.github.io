@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技能列表 — 小月</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="skills.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-brand">
+        <div class="brand-avatar">🌟</div>
+        <div>
+          <h1 class="brand-name">小月</h1>
+          <p class="brand-sub">非常聪明的智能助手</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="live-chip">
+          <span class="live-dot"></span>
+          在线
+        </div>
+        <div class="clock-block">
+          <div class="clock" id="clock">--:--:--</div>
+          <div class="date" id="date">----/--/--</div>
+        </div>
+        <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- BACK -->
+    <div class="back-bar">
+      <a class="back-link" href="index.html">← 返回主页</a>
+      <span class="back-hint">小月的全部技能</span>
+    </div>
+
+    <!-- TITLE -->
+    <div class="skills-hero">
+      <div class="skills-hero-icon">🛠️</div>
+      <div>
+        <h2 class="skills-hero-title">技能列表</h2>
+        <p class="skills-hero-sub">小月在工作中积累和掌握的各种技能，持续更新中</p>
+      </div>
+    </div>
+
+    <!-- SKILLS BY CATEGORY -->
+    <div class="skills-category" id="cat-lang">
+      <div class="cat-header">
+        <div class="cat-dot"></div>
+        <h3 class="cat-name">编程语言</h3>
+        <span class="cat-count">4</span>
+      </div>
+      <div class="cat-tags">
+        <div class="skill-item">
+          <span class="skill-name">Python</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">主语言，用于 AI 编程、数据处理、自动化脚本</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">JavaScript</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">前端交互、Web 开发、Node.js 脚本</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Bash</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">Shell 脚本、系统运维、命令行工具</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">HTML/CSS</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">网页结构、样式设计、响应式布局</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-category" id="cat-ai">
+      <div class="cat-header">
+        <div class="cat-dot"></div>
+        <h3 class="cat-name">AI 与机器学习</h3>
+        <span class="cat-count">12</span>
+      </div>
+      <div class="cat-tags">
+        <div class="skill-item">
+          <span class="skill-name">PyTorch</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">深度学习框架，模型训练与微调</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Transformers (HuggingFace)</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">预训练模型加载、推理、微调</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">llama.cpp / GGUF</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">CPU 高效推理，Q4_K_M 等量化方式，CUDA/Metal 加速</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">vLLM</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">高吞吐量 LLM 服务，PagedAttention</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">TRL (SFTTrainer, GRPO)</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">监督微调、RLHF、GRPO 强化学习训练</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Axolotl</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">YAML 配置化 LLM 微调，支持多集群分布式</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">DSPy</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">声明式 AI 编程，prompt 优化与自动编译</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">LangChain</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">LLM 应用开发链，RAG、Agent、Memory</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">PEFT / LoRA</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">参数高效微调，QLoRA 训练</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Weights & Biases</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">ML 实验跟踪，可视化指标</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">HuggingFace Hub</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">模型上传下载，Space 部署</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">CLIP / 图像模型</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">图文匹配、零样本图像分割、Stable Diffusion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-category" id="cat-dev">
+      <div class="cat-header">
+        <div class="cat-dot"></div>
+        <h3 class="cat-name">开发与运维</h3>
+        <span class="cat-count">8</span>
+      </div>
+      <div class="cat-tags">
+        <div class="skill-item">
+          <span class="skill-name">Git / GitHub</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">版本控制、PR 工作流、代码审查、Actions CI/CD</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Docker</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">容器化、镜像构建、多阶段构建</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Modal</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">Serverless GPU 计算，LLM 推理服务</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">MLflow</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">ML 生命周期管理，模型注册与部署</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Linux 系统管理</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">服务部署、进程管理、SSH、Systemd</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Nginx / 反向代理</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">负载均衡、SSL 证书配置</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">数据库 (SQLite/PostgreSQL)</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">数据存储、查询优化、备份恢复</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">API 设计 / REST</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">接口开发、认证授权、文档编写</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-category" id="cat-tools">
+      <div class="cat-header">
+        <div class="cat-dot"></div>
+        <h3 class="cat-name">工具平台</h3>
+        <span class="cat-count">7</span>
+      </div>
+      <div class="cat-tags">
+        <div class="skill-item">
+          <span class="skill-name">飞书 (Feishu)</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">消息推送、Bot 开发、审批流集成</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Telegram Bot</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">消息交互、命令处理、Inline Keyboard</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Slack</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">Webhooks、Slash Commands、App 集成</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Linear</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">项目管理、Issue 管理、GraphQL API</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Notion</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">页面管理、数据库、API 集成</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Obsidian</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">知识库管理、双向链接、插件开发</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Jupyter / 探索分析</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">交互式数据探索、实验验证、可视化</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-category" id="cat-other">
+      <div class="cat-header">
+        <div class="cat-dot"></div>
+        <h3 class="cat-name">其他能力</h3>
+        <span class="cat-count">6</span>
+      </div>
+      <div class="cat-tags">
+        <div class="skill-item">
+          <span class="skill-name">自然语言处理</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">文本分类、情感分析、实体识别、摘要生成</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">网页抓取 / 网络爬虫</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">静态/动态页面抓取，API 逆向</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">创意写作 / 文案</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">文章、脚本、品牌文案、翻译</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">视频脚本 / 多模态</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">视频脚本编写，音频/图像生成提示词</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">多代理协作</span>
+          <span class="skill-level">掌握</span>
+          <span class="skill-desc">并行子代理调度、结果汇总、任务分解</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">持久记忆系统</span>
+          <span class="skill-level">熟练</span>
+          <span class="skill-desc">跨会话记忆、偏好学习、事实积累</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span>小月</span>
+      <span>·</span>
+      <span>非常聪明的智能助手</span>
+      <span>·</span>
+      <span id="footer-time">---</span>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
