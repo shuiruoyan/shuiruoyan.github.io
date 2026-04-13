@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Control — songwh.top</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Animated background grid -->
+  <div class="bg-grid"></div>
+
+  <!-- Star field -->
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-ring">
+          <div class="logo-ring-inner"></div>
+        </div>
+        <div>
+          <h1 class="site-title">MISSION CONTROL</h1>
+          <p class="site-subtitle">songwh.top — AI Agent Dashboard</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          <span>LIVE</span>
+        </div>
+        <div class="clock" id="clock">--:--:--</div>
+        <div class="date" id="date">----/--/--</div>
+      </div>
+    </header>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-label">UPTIME</span>
+        <span class="status-value" id="uptime">--:--:--</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">AGENT</span>
+        <span class="status-value agent-status">ACTIVE</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">GITHUB</span>
+        <span class="status-value" id="github-status">ONLINE</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">WEATHER</span>
+        <span class="status-value" id="weather-status">LOADING</span>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="dashboard-grid">
+
+      <!-- 1. GitHub Profile Card -->
+      <div class="card card-github">
+        <div class="card-header">
+          <span class="card-icon">&#9679;</span>
+          <span>GITHUB PROFILE</span>
+        </div>
+        <div class="card-body">
+          <div class="github-profile">
+            <img class="github-avatar" id="gh-avatar" src="" alt="avatar">
+            <div class="github-info">
+              <div class="github-name" id="gh-name">LOADING</div>
+              <div class="github-login" id="gh-login">@---</div>
+            </div>
+          </div>
+          <div class="github-stats">
+            <div class="gh-stat">
+              <span class="gh-stat-num" id="gh-repos">--</span>
+              <span class="gh-stat-label">REPOS</span>
+            </div>
+            <div class="gh-stat">
+              <span class="gh-stat-num" id="gh-followers">--</span>
+              <span class="gh-stat-label">FOLLOWERS</span>
+            </div>
+            <div class="gh-stat">
+              <span class="gh-stat-num" id="gh-following">--</span>
+              <span class="gh-stat-label">FOLLOWING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Clock + Date (large) -->
+      <div class="card card-clock">
+        <div class="card-header">
+          <span class="card-icon">&#9679;</span>
+          <span>LOCAL TIME</span>
+        </div>
+        <div class="card-body clock-body">
+          <div class="big-clock" id="big-clock">--:--:--</div>
+          <div class="big-date" id="big-date">----/--/--</div>
+          <div class="timezone" id="timezone">---</div>
+        </div>
+      </div>
+
+      <!-- 3. Weather Widget -->
+      <div class="card card-weather">
+        <div class="card-header">
+          <span class="card-icon">&#9679;</span>
+          <span>WEATHER</span>
+        </div>
+        <div class="card-body">
+          <div class="weather-main" id="weather-main">
+            <div class="weather-temp" id="weather-temp">--°</div>
+            <div class="weather-icon" id="weather-icon">&#9729;</div>
+            <div class="weather-desc" id="weather-desc">---</div>
+          </div>
+          <div class="weather-details">
+            <div class="weather-detail">
+              <span class="wd-label">HUMIDITY</span>
+              <span class="wd-value" id="weather-humidity">--%</span>
+            </div>
+            <div class="weather-detail">
+              <span class="wd-label">WIND</span>
+              <span class="wd-value" id="weather-wind">-- km/h</span>
+            </div>
+            <div class="weather-detail">
+              <span class="wd-label">LOCATION</span>
+              <span class="wd-value" id="weather-city">---</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. System Monitor -->
+      <div class="card card-monitor">
+        <div class="card-header">
+          <span class="card-icon">&#9679;</span>
+          <span>SYSTEM</span>
+        </div>
+        <div class="card-body">
+          <div class="monitor-row">
+            <span class="mon-label">CPU</span>
+            <div class="mon-bar-wrap">
+              <div class="mon-bar" id="cpu-bar" style="width:0%"></div>
+            </div>
+            <span class="mon-val" id="cpu-val">0%</span>
+          </div>
+          <div class="monitor-row">
+            <span class="mon-label">MEM</span>
+            <div class="mon-bar-wrap">
+              <div class="mon-bar mem-bar" id="mem-bar" style="width:0%"></div>
+            </div>
+            <span class="mon-val" id="mem-val">0%</span>
+          </div>
+          <div class="monitor-row">
+            <span class="mon-label">DISK</span>
+            <div class="mon-bar-wrap">
+              <div class="mon-bar disk-bar" id="disk-bar" style="width:0%"></div>
+            </div>
+            <span class="mon-val" id="disk-val">0%</span>
+          </div>
+          <div class="monitor-row">
+            <span class="mon-label">NET</span>
+            <div class="mon-bar-wrap">
+              <div class="mon-bar net-bar" id="net-bar" style="width:0%"></div>
+            </div>
+            <span class="mon-val" id="net-val">0 Mbps</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Kanban Board -->
+      <div class="card card-kanban">
+        <div class="card-header">
+          <span class="card-icon">&#9679;</span>
+          <span>KANBAN</span>
+          <span class="card-header-action" onclick="openAddModal()">+ ADD</span>
+        </div>
+        <div class="card-body kanban-body">
+          <div class="kanban-col" id="kanban-backlog">
+            <div class="kanban-col-header">
+              <span class="kanban-col-title">BACKLOG</span>
+              <span class="kanban-count" id="count-backlog">0</span>
+            </div>
+            <div class="kanban-cards" id="cards-backlog"></div>
+          </div>
+          <div class="kanban-col" id="kanban-progress">
+            <div class="kanban-col-header">
+              <span class="kanban-col-title">IN PROGRESS</span>
+              <span class="kanban-count" id="count-progress">0</span>
+            </div>
+            <div class="kanban-cards" id="cards-progress"></div>
+          </div>
+          <div class="kanban-col" id="kanban-done">
+            <div class="kanban-col-header">
+              <span class="kanban-col-title">DONE</span>
+              <span class="kanban-count" id="count-done">0</span>
+            </div>
+            <div class="kanban-cards" id="cards-done"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Quick Actions -->
+      <div class="card card-actions">
+        <div class="card-header">
+          <span class="card-icon">&#9679;</span>
+          <span>QUICK ACTIONS</span>
+        </div>
+        <div class="card-body">
+          <div class="actions-grid">
+            <button class="action-btn" onclick="openAddModal()">
+              <span class="action-icon">+</span>
+              <span>New Task</span>
+            </button>
+            <a class="action-btn" href="https://github.com/shuiruoyan" target="_blank">
+              <span class="action-icon">&#64;</span>
+              <span>GitHub</span>
+            </a>
+            <a class="action-btn" href="https://github.com/shuiruoyan/shuiruoyan.github.io" target="_blank">
+              <span class="action-icon">&#8635;</span>
+              <span>Repo</span>
+            </a>
+            <button class="action-btn" onclick="saveKanban()">
+              <span class="action-icon">&#128190;</span>
+              <span>Save</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-grid -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>MISSION CONTROL — POWERED BY HERMES AGENT</span>
+      <span id="footer-time">---</span>
+    </footer>
+  </div><!-- /container -->
+
+  <!-- ADD TASK MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span>NEW TASK</span>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>TITLE</label>
+        <input type="text" id="task-title" placeholder="Task title..." maxlength="80">
+        <label>DESCRIPTION</label>
+        <textarea id="task-desc" placeholder="Optional description..." rows="3"></textarea>
+        <label>PRIORITY</label>
+        <select id="task-priority">
+          <option value="low">LOW</option>
+          <option value="medium" selected>MEDIUM</option>
+          <option value="high">HIGH</option>
+          <option value="critical">CRITICAL</option>
+        </select>
+        <label>COLUMN</label>
+        <select id="task-col">
+          <option value="backlog">BACKLOG</option>
+          <option value="progress">IN PROGRESS</option>
+          <option value="done">DONE</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal()">CANCEL</button>
+        <button class="btn-add" onclick="addTask()">ADD TASK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
